@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMPOA Community Guide - Complete Edition</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/print-optimized.css">
+    <style>
+        /* Navigation styles */
+        .navigation-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #3498db;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .nav-links a:hover {
+            background-color: #e8f4f8;
+        }
+        .nav-links a.active {
+            background-color: #3498db;
+            color: white;
+        }
+        /* Add padding to body to account for fixed navigation */
+        body {
+            padding-top: 60px;
+        }
+        /* Print styles */
+        @media print {
+            .navigation-bar {
+                display: none;
+            }
+            body {
+                padding-top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navigation-bar">
+        <div class="nav-title">BMPOA Community Guide</div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Full Guide</a>
+            <a href="cover-preview.html">Cover Preview</a>
+            <a href="#table-of-contents">Table of Contents</a>
+            <a href="javascript:window.print()">Print</a>
+        </div>
+    </div>
+    <!-- Include all sections -->
+    <div id="cover-page"></div>
+    <div id="introduction-page"></div>
+    <div id="table-of-contents"></div>
+    <div id="section-1-governance"></div>
+    <div id="section-2-mountain-home"></div>
+    <div id="section-3-wood-chipping"></div>
+    <div id="section-4-fire-safety"></div>
+    <div id="section-5-community-services"></div>
+    <div id="section-6-deer-lake"></div>
+    <div id="section-7-lodge"></div>
+    <div id="section-8-communication"></div>
+    <div id="section-9-contacts"></div>
+    <div id="section-10-natural-attractions"></div>
+    <div id="section-11-construction"></div>
+    <div id="section-12-bear-safety"></div>
+    <div id="back-cover"></div>
+    
+    <script src="js/load-sections.js"></script>
+</body>
+</html>

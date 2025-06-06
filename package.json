@@ -1,0 +1,42 @@
+{
+  "name": "bmpoa-guide-pdf",
+  "version": "1.0.0",
+  "description": "Blue Mountain Property Owners Association Guide - React PDF Version",
+  "type": "module",
+  "scripts": {
+    "scan:assets": "node scripts/scan-assets.js",
+    "generate:pdf:pre": "node scripts/generate-prelim-toc.js",
+    "generate:pdf:final": "node generate-with-toc.js",
+    "pdf": "npm run scan:assets && npm run generate:pdf:pre && npm run generate:pdf:final",
+    "pdf:legacy": "npm run scan:assets && npm run generate:pdf:pre && npm run generate:pdf:final && node scripts/generate-pdf-screenshots.js",
+    "builds": "./scripts/manage-builds.sh list",
+    "builds:latest": "./scripts/manage-builds.sh latest",
+    "builds:clean": "./scripts/manage-builds.sh clean",
+    "builds:analyze": "./scripts/manage-builds.sh analyze",
+    "builds:compare": "./scripts/compare-builds.sh",
+    "builds:export": "./scripts/export-build.sh",
+    "build:status": "./scripts/build-status.sh",
+    "build:monitor": "./scripts/launch-activity-monitor.sh",
+    "build:restart": "./scripts/restart-analysis.sh",
+    "screenshots:rename": "./scripts/auto-rename-screenshots.sh",
+    "style:analyze": "./scripts/style-analysis-workflow.sh",
+    "style:extract": "node scripts/extract-react-suggestions.js",
+    "style:report": "node scripts/generate-style-report-html.js",
+    "start": "cd viewer && parcel index.html --port 1234",
+    "new:page": "plop page",
+    "build:css": "./tailwindcss -i ./css/input.css -o ./css/tailwind-output.css --watch",
+    "build:css:prod": "./tailwindcss -i ./css/input.css -o ./css/tailwind-output.css --minify"
+  },
+  "dependencies": {
+    "@react-pdf/renderer": "^3.1.14",
+    "pdf-lib": "^1.17.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5",
+    "plop": "^3.0.0",
+    "sharp": "^0.34.2",
+    "tailwindcss": "^4.1.8"
+  }
+}

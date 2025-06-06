@@ -45,3 +45,35 @@ cover-preview.html
 
 # Temporary audit reports
 image-audit-report.txt
+.vercel
+
+# Node.js dependencies
+node_modules/
+package-lock.json
+
+# Generated PDFs and build outputs
+output/builds/
+output/BMPOA-Guide.pdf
+output/PDF-Screenshots/
+output/temp-resize/
+output/suggested-filenames*.txt
+output/layout-issues.txt
+*.pdf
+
+# Keep the builds directory but not its contents
+!output/builds/.gitkeep
+
+# Temporary files
+pageNumberMap.json
+src/assetMap.json
+
+# Claude-specific files (optional - you may want to keep this)
+# .claude/
+
+# Large binary files
+*.psd
+*.ai
+*.sketch
+
+# Temporary space character file
+" "

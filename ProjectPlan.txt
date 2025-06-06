@@ -1,0 +1,347 @@
+BMPOA COMMUNITY GUIDE - ENHANCEMENT PROJECT PLAN
+Pages 1-100 Enhancement Implementation
+Generated from Updated PDF Review (BMPOA-Guide.pdf)
+
+STATUS: PHASES 1-3 COMPLETE ✅ | PHASE 4 PENDING ☐ | PHASE 5 IN PROGRESS 🔄
+Last Updated: January 6, 2025
+Total Tasks: 91 (Phase 1: 30 ✓ | Phase 2: 18 ✓ | Phase 3: 14 ✓ | Phase 4: 11 ☐ | Phase 5: 18 tasks - 7 ✓, 2 🔄, 9 ☐)
+
+============================================
+PROJECT OVERVIEW
+============================================
+
+This project plan verifies all previously marked "✓ Done" tasks for pages 1-78, then defines updated tasks for pages 79-100. Each phase corresponds to discrete sections of the PDF.
+
+Key Enhancement Goals:
+- Standardize typography hierarchy throughout (16pt section banners, 12pt subheads, 11pt body, 10pt captions)
+- Ensure exact 0.75" margins and 0.30" gutters on two-column layouts
+- Apply uniform table styling: 0.5pt slate-gray borders, 11pt forest-green header on #F3F4F6 (or white on forest-green), 10pt body with alternating #F9FAFB shading, 4pt×6pt padding
+- Enforce consistent icon sizing and vertical centering (16×16px for subhead icons; 12×12px for inline icons)
+- Standardize call-out box styles: info (#F5F5F5 bg, 0.5pt #4B5563 border, 6pt padding), warning/legal (#FEF2F2 bg, 1pt red border, 6pt padding)
+- Verify each footer: 1pt slate-gray line 0.10" above "BMPOA Community Guide X" (8pt gray #6B7280) flush-left and "www.bmpoa.org" flush-right
+
+============================================
+PHASE 1: PAGES 1-26 (Sections Cover-Community Services) ✅ COMPLETE
+============================================
+
+All 30 tasks marked "✓ Done" below have been visually confirmed in the latest PDF.
+
+HIGH PRIORITY TASKS (✓ Done):
+1. Page 1 (Cover) – Increased leading between title lines by 6pt so "PROPERTY OWNERS" and "ASSOCIATION" breathe properly.
+2. Page 1 (Cover) – Darkened the badge border by 5% for reliable contrast over lighter background spots.
+3. Page 2 (TOC) – Equalized left/right column heights by adding a 2pt extra line spacing before "Section 6" entry in right column.
+4. Page 2 (TOC) – Increased sub-section indent to 0.10" so "BMPOA Overview" and "Sanitary District Explained" clearly nest under Section 1.
+5. Page 3 (Introduction) – Enabled hyphenation to eliminate any large justification gaps in body paragraphs.
+6. Page 3 (Introduction) – Enlarged the quote-box padding to 6pt on all sides so the pull-quote does not feel cramped.
+7. Page 3 (Introduction) – Changed footer alignment from centered to 8pt flush-left ("BMPOA Community Guide 3") inside the 0.75" margins.
+8. Pages 4-5 (Section 1: Governance) – Adjusted the two-column gutter to exactly 0.30" (previously ~0.25").
+9. Pages 4-5 (Section 1: Governance) – Increased "BMPOA Mission:" heading inside its call-out to 12pt bold (it was 11pt before).
+10. Page 5 (Section 1: Governance) – Added a light-gray ribbon behind "KEY BENEFITS" (background #F5F5F5 with 0.5pt slate-gray border, 6pt padding) so that list sits inside a framed box.
+11. Page 6 (Section 1: Governance) – Moved "IMPORTANT NOTE" into a dedicated 0.25"-tall light-yellow call-out (#FEFCE8/0.5pt #4B5563 border, 6pt padding) with the heading in 10pt italic and the body in 10pt italic.
+12. Page 6 (Section 1: Governance) – Shifted the footer page-number "6" 2pt to the right so it aligns exactly at the 0.75" left margin.
+13. Page 7 (Section 2: A Mountain Home) – Increased the hero image caption spacing to exactly 6pt (previously ~2pt).
+14. Page 7 (Section 2: A Mountain Home) – Restyled the "Tip:" call-out: "Tip:" is now 11pt bold forest-green with a leading "💡" icon; body text remains 10pt italic dark gray.
+15. Page 7 (Section 2: A Mountain Home) – Widened the right-edge accent stripe to exactly 12pt (previously ~10pt) for visual consistency.
+16. Pages 8-10 (Section 2: Content) – Enabled full hyphenation/"optimum ragged" in justified paragraphs to remove large word-spacing.
+17. Page 11 (Section 3: Wood-Chipping Program) – Confirmed all checkboxes (□) in the "BRUSH PILE CHECKLIST" are perfectly flush at a 0.25" indent.
+18. Page 11 (Section 3: Wood-Chipping Program) – Updated "MATERIALS NOT ACCEPTED" heading inside its red box to 12pt bold #B91C1C with a leading "🚫" icon; box background #FEF2F2, 0.5pt red border.
+19. Page 11 (Section 3: Wood-Chipping Program) – In "Preparation Reminders" call-out (light-tan #FDF7ED, 0.5pt brown border), bumped the "🛠 Preparation Reminders:" heading to 12pt bold #5D4037; body is 10pt italic.
+20. Page 12 (Section 3: Wood-Chipping Program) – Restyled the map placeholder: background #F9FAFB, "Map Here" 10pt italic centered, 6pt padding.
+21. Pages 12-13 (Section 3: Wood-Chipping Program) – Converted "COMMUNITY ACCESS POINTS" bullets from ■ to green ✓ (10pt), exactly 0.25" indent.
+22. Page 13 (Section 3: Wood-Chipping Program) – Verified the footer reads "BMPOA Community Guide 13" flush-left and "www.bmpoa.org" flush-right.
+23. Page 14 (Section 4: Fire Safety & Emergency) – Resized the wildfire-risk bar to exactly 300px wide (≈4" at 72 dpi).
+24. Page 14 (Section 4: Fire Safety & Emergency) – Swapped the "Item" and "Details/Notes" column widths so "Details/Notes" occupies ~60% of the table's width.
+25. Page 15 (Section 4: Fire Safety & Emergency) – Restyled the "4 PM Burning Law" call-out into a 0.25" yellow box (#FEFCE8, 0.5pt dark-gray border), with heading "🚨 4 PM Burning Law" 12pt bold #B91C1C and body 10pt italic #5D4037.
+26. Page 16 (Section 4: Fire Safety & Emergency) – Indented all wrapped lines in the "ZONE 1:" bullet by 0.20" so they clearly belong to that same item.
+27. Page 16 (Section 4: Fire Safety & Emergency) – Converted "EMERGENCY SUPPLY KIT" bullets to ✓ (10pt) and ensured 0.25" indent.
+28. Page 17 (Section 4: Fire Safety & Emergency) – Confirmed the footer now reads "BMPOA Community Guide 17" flush-left and "www.bmpoa.org" flush-right.
+29. Pages 18-19 (Section 5: Community Services & Amenities) – Centered all 16×16px icons (snowflake/road, trash can, Wi-Fi) vertically with their 12pt bold subhead text.
+30. Page 19 (Section 5: Community Services & Amenities) – Added a fallen-tree icon (16×16px) before "FALLEN TREES & DEBRIS" subhead, with 6pt margin above/below.
+31. Page 19 (Section 5: Community Services & Amenities) – Converted "Utility Line Safety" bullets to green ✓ (10pt) at 0.25" indent.
+32. Page 19 (Section 5: Community Services & Amenities) – Verified footer reads "BMPOA Community Guide 19" flush-left and "www.bmpoa.org" flush-right.
+33. Pages 20-21 (Section 5: Community Services & Amenities) – Changed "BEAR COUNTRY WARNING" from #B91C1C to #5D4037 italic so it reads as a general warning, not legal text.
+34. Page 21 (Section 5: Community Services & Amenities) – Inserted a 16×16px clock icon on the same line as "CONVENIENCE SITE HOURS," 6pt left of the text.
+35. Page 21 (Section 5: Community Services & Amenities) – Adjusted footer to "BMPOA Community Guide 21" flush-left and "www.bmpoa.org" flush-right.
+36. Pages 22-26 (Section 5: Community Services & Amenities) – Standardized every Wi-Fi icon at exactly 16×16px.
+37. Page 23 (Section 5: Community Services & Amenities) – Changed "MOBILE OPTIONS" list bullets from ● to green ✓ (10pt) at 0.25" indent.
+38. Page 24 (Section 5: Community Services & Amenities) – Restyled the "COMMUNITY RESOURCES" call-out (light-gray #F5F5F5, 0.5pt slate-gray border, 6pt padding) with leading "ℹ️ Community Resources" 11pt bold forest-green and body 10pt italic #374151.
+39. Page 26 (Section 5: Community Services & Amenities) – Confirmed footer reads "BMPOA Community Guide 26" flush-left and "www.bmpoa.org" flush-right.
+
+All Phase 1 tasks have been manually verified against the current PDF.
+
+============================================
+PHASE 2: PAGES 27-42 (Sections 6-8: Deer Lake, Lodge, Communication) ✅ COMPLETE
+============================================
+
+All eighteen (18) tasks below are confirmed implemented.
+
+HIGH PRIORITY TASKS (✓ Done):
+1. Page 27 (Section 6: Deer Lake) – Increased hero image caption spacing to 6pt.
+2. Page 27 (Section 6: Deer Lake) – Converted "EXCLUSIVE ACCESS" bullets from ● to green ✓ (10pt), 0.25" indent.
+3. Page 27 (Section 6: Deer Lake) – Updated "HOURS OF OPERATION" table header to 11pt bold forest-green (#1B4332) on a #F3F4F6 background.
+4. Page 32 (Section 7: The Lodge) – Increased spacing under both Lodge photos to exactly 6pt.
+5. Page 32 (Section 7: The Lodge) – Inserted 16×16px wheelchair icon before "Accessibility Highlights" (12pt bold #1E40AF).
+6. Page 37 (Section 8: Community Communication) – Expanded "Where/Notes" column in the Event Calendar table by 4pt to prevent three-line wraps.
+7. Page 37 (Section 8: Community Communication) – Fixed Newsletter sidebar text wrapping by reducing the "200-300 word articles..." line to 9pt so it fits in one line.
+8. Page 37 (Section 8: Community Communication) – Created "Contact Updates" call-out: background #FFFAEB, 0.5pt #EA580C border, 6pt padding, heading "ℹ️ Contact Updates" 11pt bold forest-green, body 10pt italic dark gray.
+
+MEDIUM PRIORITY TASKS (✓ Done):
+1. Page 27 (Section 6: Deer Lake) – Verified two-column gutter is exactly 0.30" (both left/right columns flush).
+2. Page 27 (Section 6: Deer Lake) – Confirmed each 0.5" amenities icon is vertically centered with its 10pt label.
+3. Page 28 (Section 6: Deer Lake) – Added "📜" icon (12×12px) before "Rules & Regulations" heading; maintained 6pt padding.
+4. Page 32 (Section 7: The Lodge) – Confirmed both Lodge images have exactly 0.5pt forest-green (#1B4332) borders.
+5. Page 33 (Section 7: The Lodge) – Verified rental pricing table cell padding: 4pt vertical, 6pt horizontal in every cell.
+6. Page 33 (Section 7: The Lodge) – Widened the Activities table "When" column by 4pt to eliminate multi-line wraps.
+7. Page 33 (Section 7: The Lodge) – Ensured all checklist bullets (✓, 10pt forest-green) are indented 0.25" with 12pt spacing between lines.
+8. Page 37 (Section 8: Community Communication) – Verified Event Calendar table cell padding is exactly 4pt top/bottom and 6pt left/right.
+9. Page 37 (Section 8: Community Communication) – Confirmed all 16×16px icons in the "Facebook & Online Resources" section are vertically centered with 11pt text.
+
+LOW PRIORITY TASKS (✓ Done):
+1. Page 28 (Section 6: Deer Lake) – Confirmed 8pt of white space between the amenities icons row and the "Pass Distribution" text.
+
+All Phase 2 tasks have been manually verified against the current PDF.
+
+============================================
+PHASE 3: PAGES 43-78 (Sections 9-10: Contacts, Natural Attractions & beginning of Section 11) ✅ COMPLETE
+============================================
+
+All 14 tasks below have been verified as implemented.
+
+HIGH PRIORITY TASKS (✓ Done):
+1. Page 43 (Section 9: Contacts & Communication) – Changed "Blue Mountain Property Owners Association" in the "General Contact" block to 11pt bold forest-green; moved the address lines below in 10pt gray.
+2. Page 44 (Section 9: Contacts & Communication) – Created the red-bordered Emergency Numbers box: background #FEE2E2, 1pt border #DC2626, 6pt padding; heading "🔔 EMERGENCY NUMBERS" 12pt bold #B91C1C with the bell icon sized to 12pt.
+3. Page 45 (Section 9: Contacts & Communication) – Placed "Contact Updates" note inside an amber call-out (#FFFAEB, 0.5pt #EA580C border, 6pt padding) with "ℹ️ Contact Updates" 11pt bold forest-green and the body 10pt italic dark gray.
+4. Page 48 (Section 10: Natural Attractions) – Increased the hero photo caption spacing to 6pt.
+5. Page 48 (Section 10: Natural Attractions) – Verified each color-coded subsection bar ("Trilliums & Wildflowers," "Native Plants & Landscaping," "Local Wineries," "Hiking Trails") is exactly 0.25" tall (≈18px at 72 dpi).
+6. Pages 49-51 (Section 10: Natural Attractions) – Inserted 8pt of white space above and below both 4×2 wildflower tables so they never touch adjacent text.
+
+MEDIUM PRIORITY TASKS (✓ Done):
+1. Page 43 (Section 9: Contacts & Communication) – Standardized 6pt spacing between each officer and director entry in the directory.
+2. Page 44 (Section 9: Contacts & Communication) – Confirmed Emergency Numbers table cell padding is exactly 4pt top/bottom and 6pt left/right.
+3. Page 45 (Section 9: Contacts & Communication) – Changed "Volunteer Opportunities" list bullets from ● (6pt) to green ✓ (10pt) at 0.25" indent.
+4. Page 49 (Section 10: Natural Attractions) – Verified each wildflower table cell has 4pt vertical and 6pt horizontal padding.
+5. Pages 49-50 (Section 10: Natural Attractions) – Adjusted wildflower table row heights so no cell text exceeds two lines.
+6. Page 52 (Section 10: Natural Attractions) – Widened the Winery table "Distance" column by 4pt to prevent any entry from wrapping onto three lines.
+7. Page 53 (Section 10: Natural Attractions) – Ensured each ✓ bullet in the Hiking Trails Quick-Reference box is indented exactly 0.25" and spaced 12pt from the heading.
+
+All Phase 3 tasks have been manually verified against the current PDF.
+
+============================================
+PHASE 4: PAGES 79-100 (Sections 11-12, Back Cover & Appendices) ☐ PENDING
+============================================
+
+Target: Section 11 (New Home Construction, PDF pages 79-89), Section 12 (Bear Safety, PDF pages 90-99), Back Cover (PDF page 100), plus any Appendix content.
+
+HIGH PRIORITY TASKS (☐ Pending):
+1. ☐ PHASE 4: Page 79 (Section 11: New Home Construction) – Resize the submission-process flowchart to exactly 300px total width and center it within the right-column area.
+2. ☐ PHASE 4: Pages 79-80 (Section 11: New Home Construction) – Ensure all submission checklist ✓ bullets are indented exactly 0.25" with uniform 12pt line spacing.
+3. ☐ PHASE 4: Page 80 (Section 11: New Home Construction) – Change the "Permitted Structures" Materials table header text to 11pt bold forest-green on a #F3F4F6 background (currently it is black).
+4. ☐ PHASE 4: Page 83 (Section 11: New Home Construction) – Create a red-bordered Compliance & Enforcement call-out (#FEF2F2 background, 1pt #B91C1C border, 6pt padding) with the heading "🚨 Quick Reminder" 12pt bold #B91C1C and the body in 10pt italic dark brown (#5D4037). Verify the box is inset 4pt from both left and right margins.
+5. ☐ PHASE 4: Page 82 (Section 11: New Home Construction) – Move the "ARC reserves the right to inspect..." site-visit note into a light-gray call-out (#F9FAFB background, 0.5pt slate-gray border, 6pt padding) rather than leaving it inline.
+6. ☐ PHASE 4: Pages 79-86 (Section 11: New Home Construction) – Verify every table header in "Material Samples," "Setback Requirements," and "Architectural Guidelines" uses 11pt bold forest-green on #F3F4F6 (no black text).
+
+MEDIUM PRIORITY TASKS (☐ Pending):
+1. ☐ PHASE 4: Page 79 (Section 11: New Home Construction) – Shift the flowchart upward by 4pt so its top edge aligns flush with the baseline of the "PRE-CONSTRUCTION REQUIREMENTS" subhead.
+2. ☐ PHASE 4: Pages 79-80 (Section 11: New Home Construction) – Verify the two-column gutter remains exactly 0.30" between "Submission Process" and "Permitted Structures."
+3. ☐ PHASE 4: Pages 79-86 (Section 11: New Home Construction) – Confirm all table cells use exactly 4pt vertical × 6pt horizontal padding.
+4. ☐ PHASE 4: Page 80 (Section 11: New Home Construction) – Reduce the Setback Diagram border to exactly 0.5pt (it appears slightly thicker).
+5. ☐ PHASE 4: Page 81 (Section 11: New Home Construction) – Insert a 16×16px fence icon next to the "FENCE REQUIREMENTS" subhead (12pt bold forest-green).
+6. ☐ PHASE 4: Page 83 (Section 11: New Home Construction) – Inset the Compliance & Enforcement box 4pt from each margin if it is currently touching the text boundary.
+7. ☐ PHASE 4: Page 85 (Section 11: New Home Construction) – Ensure the "Material Samples" table follows the standard format: 0.5pt slate-gray outer border, alternating #F9FAFB shading in body rows, 4pt×6pt padding, and 11pt bold forest-green header on #F3F4F6.
+8. ☐ PHASE 4: Page 86 (Section 11: New Home Construction) – Inset the "Enforcement Actions" box by 4pt on left/right and keep 6pt internal padding.
+
+LOW PRIORITY TASKS (☐ Pending):
+1. ☐ PHASE 4: Pages 90-92 (Section 12: Bear Safety) – Resize the Bear-Risk bar at the top to exactly 300px wide.
+2. ☐ PHASE 4: Page 91 (Section 12: Bear Safety) – Ensure the "Prevention" column in the "Attractants vs Prevention" table occupies 60% of the table width to eliminate any three-line wraps.
+3. ☐ PHASE 4: Page 94 (Section 12: Bear Safety) – Create a red-bordered Legal Reminder box (#FEF2F2 background, 1.5pt #B91C1C border, 6pt padding) with heading "🚨 Legal Reminder:" in 12pt bold #B91C1C and body in 10pt italic #5D4037. Inset this box 4pt from both margins.
+4. ☐ PHASE 4: Page 100 (Back Cover) – Remove the page number from the footer entirely.
+5. ☐ PHASE 4: Pages 93-99 (Appendices/Sponsors, if present) – Apply standard table formatting to all appendix tables: 0.5pt slate-gray borders, header row 11pt bold forest-green on #F3F4F6, body 10pt gray (#374151), alternating #F9FAFB shading, 4pt×6pt padding.
+6. ☐ PHASE 4: Pages 93-99 (Appendices/Sponsors) – Place any legal or disclaimer text inside a light-gray call-out (#F5F5F5, 0.5pt slate-gray border, 6pt padding) in 10pt italic #374151.
+7. ☐ PHASE 4: Pages 93-99 (Sponsor Logos, if present) – Ensure each sponsor logo is scaled to a maximum of 1" × 1" with a 0.5pt forest-green border and at least 6pt white space around.
+8. ☐ PHASE 4: Page 100 (Back Cover) – If printing full bleed, extend the background watermark 0.125" beyond all trim edges; if digital-only, confirm no extra content bleeds off.
+
+============================================
+GLOBAL VERIFICATION CHECKLIST (Pending after Phase 4)
+============================================
+
+☐ Verify every footer follows exactly:
+   • 1pt slate-gray rule 0.10" above
+   • "BMPOA Community Guide [page#]" in 8pt gray (#6B7280) flush-left at 0.75" margin
+   • "www.bmpoa.org" in 8pt gray (#6B7280) flush-right at 0.75" margin
+
+☐ Confirm all margins are exactly 0.75" (top, bottom, left, right) throughout.
+
+☐ Verify two-column gutters are exactly 0.30" on every page that uses columns.
+
+☐ Confirm all section banners (Pages 6, 10, 16, 21, 27, 32, 37, 44, 53, 62, 79, 90) use 16pt white all-caps on forest-green (#1B4332).
+
+☐ Check all subheads are consistently 12pt bold forest-green (#1B4332), with 8pt above and 4pt below.
+
+☐ Verify all body text is 11pt Merriweather Regular with 15pt line-height and justified alignment.
+
+☐ Confirm all captions are 10pt Merriweather Regular #6B7280 with exactly 6pt spacing below images.
+
+☐ Check every image (hero, icons, photos) has a 0.5pt forest-green border (#1B4332).
+
+☐ Confirm all info boxes use light-gray (#F5F5F5) background, 0.5pt slate-gray (#4B5563) border, 6pt padding, 11pt bold forest-green title (with icon), and 10pt italic #374151 body.
+
+☐ Confirm all warning/legal boxes use light pink (#FEF2F2) background, 1pt red (#B91C1C) border (or 1.5pt for Bear Safety), 6pt padding; title 12pt bold #B91C1C with "🚨" icon, and 10pt italic #5D4037 body.
+
+☐ Verify all tables use 0.5pt slate-gray (#4B5563) outer borders and inner gridlines, header row 11pt bold forest-green on #F3F4F6 (or white on forest-green), body 10pt gray (#374151) with alternating #F9FAFB shading, and consistent cell padding (4pt vertical × 6pt horizontal).
+
+☐ Ensure primary bullets (●) are 6pt forest-green (#1B4332) and indented 0.25" in general lists.
+
+☐ Confirm checkmarks (✓) are 10pt forest-green (#1B4332) and indented 0.25" in all checklist items.
+
+☐ Check all subhead icons are 16×16px forest-green and vertically centered with 12pt text.
+
+☐ Verify inline icons (💡, ℹ️, 📜, 🚫) are 12×12px forest-green and aligned with 10pt or 11pt text as specified.
+
+☐ Ensure no section subhead or table begins within the last two lines of a column—force a break when needed.
+
+☐ Confirm there are no orphaned headings or widowed lines of text anywhere.
+
+☐ Validate that the PDF regenerates without errors and remains ~3.4MB in file size.
+
+☐ Perform a greyscale print-preview to ensure all color-dependent elements (text vs. background) remain legible in black & white.
+
+============================================
+IMPLEMENTATION NOTES
+============================================
+
+1. Verify Complete Tasks: A manual review of pages 1-78 confirms all "✓ Done" items are correctly implemented.
+2. Continue Sequential Phases: Complete Phase 4 tasks (pages 79-100) in order of priority.
+3. Regenerate PDF Frequently: After finishing any major component (e.g., call-out box or table), run npm run pdf to confirm the output matches expected styling.
+4. Keep pageNumberMap.json Updated: Because multiple reflows occurred, ensure TOC and internal links remain accurate.
+5. Use Shared Components & Theme: Leverage DesignComponents.js and theme.js for color and spacing constants to maintain strict consistency.
+6. Maintain NoJSX Pattern: When modifying React components, continue using React.createElement rather than JSX.
+7. Coordinate with Assets Script: If you add or replace icons/images, update scripts/scan-assets.js so asset mapping remains correct.
+8. Check Container Widths: Any new call-out boxes or tables must not exceed the 0.75" margin; verify they align to the same grid used elsewhere.
+
+============================================
+SUCCESS METRICS
+============================================
+
+• ☑ Pages 1-78 fully comply with design specifications (typography, spacing, icons, tables, call-outs).
+• ☐ Pages 79-100 fully updated according to the new Phase 4 tasks.
+• ☐ All 100 pages maintain consistent styling, no orphaned/widowed text.
+• ☐ All tables are correctly formatted with the specified header and body styles; no cell text exceeds two lines unnecessarily.
+• ☐ All images have proper borders and correct caption spacing.
+• ☐ All call-out boxes follow the established style guide (info, warning, legal, bear safety).
+• ☐ Footer page numbers are sequential (1-100), formatted precisely, with the 1pt slate-gray rule.
+• ☐ The PDF generates cleanly at ~3.4MB without rendering errors.
+• ☐ All accessibility considerations (text contrast, alt text in code) are implemented.
+• ☐ The document prints correctly in both color and grayscale without losing readability.
+
+Total Tasks:
+Phase 1: 30 tasks (all ✓ Done)
+Phase 2: 18 tasks (all ✓ Done)
+Phase 3: 14 tasks (all ✓ Done)
+Phase 4: 11 tasks (☐ Pending)
+Phase 5 (NEW): Dense Layout Implementation - 12 tasks (☐ Pending)
+Global Verification: 15 checks (☐ Pending)
+
+Estimated Remaining Timeline:
+Phase 4 Implementation: ~5 hours
+Phase 5 Dense Layouts: ~15 hours (7 tasks complete, 11 remaining)
+  - Critical fixes (blank/minimal pages): ~2 hours
+  - Dense layout conversions: ~10 hours
+  - Section divider integration: ~3 hours
+Global Verification: ~1 hour
+Total Remaining: ~19 hours
+
+Progress Metrics:
+- Pages reduced: 101 → 86 (15% reduction achieved)
+- Target: 101 → 75 (25% reduction)
+- Remaining potential: 11-13 additional pages to remove
+
+============================================
+PHASE 5: DENSE LAYOUT IMPLEMENTATION - COMPREHENSIVE ANALYSIS & STATUS
+============================================
+Last Analysis: January 6, 2025 | Build: 2025-06-06T10-49-01
+Analysis Summary: Pages 5-44 reviewed | Critical issues found
+
+## CRITICAL FINDINGS FROM ANALYSIS
+
+### Page Count Status:
+- Original PDF: 101 pages
+- After Phase 5 partial implementation: 86 pages (15% reduction)
+- Target with full implementation: ~70-75 pages (25-30% reduction)
+
+### Issues Identified in Pages 5-44:
+1. **BLANK PAGES** (2 pages - CRITICAL):
+   - Page 37: Completely blank (in DeerLakePageNoJSX)
+   - Page 42: Completely blank (in LodgePageNoJSX)
+   
+2. **MINIMAL CONTENT PAGES** (6 pages - HIGH PRIORITY):
+   - Page 5: Only 2 bullet points (Introduction)
+   - Page 8: Single line of text (Governance)
+   - Page 14: Two lines of text (Mountain Home)
+   - Page 21: Single tip box (Wood Chipping)
+   - Page 27: Minimal emergency contacts (Fire Safety)
+   - Page 44: Two bullet points only (Lodge)
+   
+3. **SECTION DIVIDERS** (7 full pages - KEEP AS-IS):
+   - Pages: 6, 11, 17, 22, 28, 33, 38
+   - **DECISION: Keep all section dividers for visual separation and navigation**
+   - These pages are intentionally full-page for design consistency
+
+### Implementation Status:
+
+**✅ COMPLETED (Dense Layouts Applied):**
+1. ✓ PHASE 5: Fix QuickFactsBox key prop warning in EnhancedLayoutComponents.js
+2. ✓ PHASE 5: Convert Wood Chipping section to dense two-column layout - reduced from 4 to 2 pages
+3. ✓ PHASE 5: Convert Mountain Home section to dense two-column layout - reduced from 4 to 3 pages
+4. ✓ PHASE 5: Convert Fire Safety section to dense layout with emergency sidebar - reduced from 4 to 3 pages
+5. ✓ PHASE 5: Convert Community Services to dense layout with service cards - reduced from 4 to 3 pages
+6. ✓ PHASE 5: Consolidate Contacts section into card-based grid - reduced from 4 to 2 pages
+7. ✓ PHASE 5: Update TOC to clean single-column format (matches screenshot)
+
+**🔄 IN PROGRESS:**
+1. ☐ PHASE 5: Fix blank pages in DeerLakePageNoJSX and LodgePageNoJSX
+2. ☐ PHASE 5: Merge pages with minimal content (6 pages identified)
+
+**☐ PENDING TASKS:**
+1. ☐ PHASE 5: Convert Communication section (Pages 37-42) to dense layout - reduce from 6 to 3 pages
+2. ☐ PHASE 5: Optimize Natural Attractions (Pages 62-78) tables using CompactTable - reduce from 17 to 12-13 pages
+3. ☐ PHASE 5: Convert Deer Lake section (Pages 27-31) to two-column with facility info sidebar
+4. ☐ PHASE 5: Convert Lodge section (Pages 32-36) to two-column with rental info sidebar
+5. ☐ PHASE 5: Update Construction section (Pages 51-54) to use enhanced components
+6. ☐ PHASE 5: Update Bear Safety section (Pages 56-59) to use dense layout with safety tips sidebar
+
+### Estimated Impact:
+- Immediate fixes (blank pages + minimal content): -8 pages
+- Section dividers: KEEP (0 pages saved)
+- Remaining dense conversions: -10-12 pages
+- **Total potential reduction: 18-20 pages (reaching target of ~81-83 pages)**
+
+============================================
+PHASE 5: DENSE LAYOUT IMPLEMENTATION (Updated Tasks)
+============================================
+
+Target: Achieve 85-90% page space utilization through two-column layouts and enhanced components.
+Expected Result: Reduce total page count by 25-30% (from 101 to ~75 pages)
+
+CRITICAL PRIORITY TASKS (☐ Pending):
+1. ☐ PHASE 5: Remove blank page 37 in DeerLakePageNoJSX component
+2. ☐ PHASE 5: Remove blank page 42 in LodgePageNoJSX component
+3. ☐ PHASE 5: Merge Introduction page 5 (2 bullets) with Governance divider page 6
+4. ☐ PHASE 5: Merge Governance page 8 (single line) with previous page 7 content
+5. ☐ PHASE 5: Merge Mountain Home page 14 (2 lines) with previous page 13 content
+6. ☐ PHASE 5: Merge Wood Chipping page 21 (single tip box) with previous page 20 content
+
+HIGH PRIORITY TASKS (Updated):
+1. ☐ PHASE 5: Merge Fire Safety page 27 (minimal contacts) with previous page 26 content
+2. ☐ PHASE 5: Merge Lodge page 44 (2 bullets) with previous page 43 content
+3. ☐ PHASE 5: Convert Communication section (Pages 37-42) to dense two-column layout - reduce from 6 to 3 pages
+4. ✓ PHASE 5: Convert Deer Lake section (Pages 27-31) to dense two-column layout with facility sidebar - reduced from 5 to 3 pages
+5. ✓ PHASE 5: Convert Lodge section (Pages 32-36) to dense two-column layout with rental info sidebar - reduced from 5 to 3 pages
+6. ☐ PHASE 5: KEEP all section dividers as full pages (design decision)
+
+MEDIUM PRIORITY TASKS (☐ Pending):
+1. ☐ PHASE 5: Optimize Natural Attractions (Pages 62-78) tables using CompactTable component - reduce from 17 to 12 pages
+2. ☐ PHASE 5: Update Construction section (Pages 51-54) to use dense layout with ARC info sidebar
+3. ☐ PHASE 5: Update Bear Safety section (Pages 56-59) to dense layout with prevention checklist sidebar
+4. ☐ PHASE 5: Convert Introduction section (Page 3) to include guide overview in sidebar
+5. ☐ PHASE 5: Standardize all image captions to 6pt spacing below images
+6. ☐ PHASE 5: Review and fix any remaining pages with <25% content utilization

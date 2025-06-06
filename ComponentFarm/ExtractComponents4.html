@@ -1,0 +1,1504 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Mountain Property Owners Association</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Primary Colors */
+            --primary: #5D5CDE;
+            --primary-light: #7A79E3;
+            --secondary: #3498DB;
+            --secondary-light: #5DADE2;
+            --accent: #E74C3C;
+            --accent-light: #F1948A;
+            
+            /* Seasonal Colors */
+            --spring: #2ECC71;
+            --spring-light: #A3E4BC;
+            --summer: #F39C12;
+            --summer-light: #FAD7A0;
+            --fall: #D35400;
+            --fall-light: #EDBB99;
+            --winter: #3498DB;
+            --winter-light: #AED6F1;
+            
+            /* Neutral Colors */
+            --neutral-100: #FFFFFF;
+            --neutral-200: #F7F9FA;
+            --neutral-300: #EEF2F5;
+            --neutral-400: #D1D8E0;
+            --neutral-500: #A9B4C0;
+            --neutral-600: #7F8C9A;
+            --neutral-700: #5D6D7E;
+            --neutral-800: #34495E;
+            --neutral-900: #2C3E50;
+            
+            /* Typography Colors */
+            --text-primary: #2C3E50;
+            --text-secondary: #5D6D7E;
+            --text-muted: #7F8C9A;
+            --text-light: #FFFFFF;
+            
+            /* Shadow */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            
+            /* Spacing */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.5rem;
+            --space-6: 2rem;
+            --space-8: 3rem;
+            --space-10: 5rem;
+            
+            /* Typography */
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Roboto', sans-serif;
+            
+            /* Border Radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            
+            /* Paper Dimensions (Letter size) */
+            --paper-width: 8.5in;
+            --paper-height: 11in;
+            --paper-padding: 1in;
+        }
+        
+        /* Dark Mode Variables */
+        .dark {
+            --neutral-100: #181818;
+            --neutral-200: #202020;
+            --neutral-300: #2A2A2A;
+            --neutral-400: #333333;
+            --neutral-500: #444444;
+            --neutral-600: #666666;
+            --neutral-700: #888888;
+            --neutral-800: #AAAAAA;
+            --neutral-900: #DDDDDD;
+            
+            --text-primary: #F7F9FA;
+            --text-secondary: #D1D8E0;
+            --text-muted: #A9B4C0;
+            --text-light: #F7F9FA;
+            
+            --spring-light: rgba(46, 204, 113, 0.3);
+            --summer-light: rgba(243, 156, 18, 0.3);
+            --fall-light: rgba(211, 84, 0, 0.3);
+            --winter-light: rgba(52, 152, 219, 0.3);
+        }
+        
+        /* Base Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            font-size: 12pt;
+            line-height: 1.5;
+            color: var(--text-primary);
+            background-color: var(--neutral-200);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s, color 0.3s;
+            padding: 2rem;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: var(--space-4);
+            color: var(--text-primary);
+            page-break-after: avoid;
+        }
+        
+        h1 {
+            font-size: 24pt;
+            letter-spacing: -0.025em;
+        }
+        
+        h2 {
+            font-size: 18pt;
+            letter-spacing: -0.0125em;
+            margin-top: var(--space-6);
+        }
+        
+        h3 {
+            font-size: 14pt;
+            letter-spacing: -0.0125em;
+            margin-top: var(--space-5);
+        }
+        
+        h4 {
+            font-size: 12pt;
+        }
+        
+        h5 {
+            font-size: 11pt;
+            font-weight: 600;
+        }
+        
+        h6 {
+            font-size: 10pt;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: var(--space-4);
+        }
+        
+        ul, ol {
+            margin-bottom: var(--space-4);
+            padding-left: var(--space-5);
+        }
+        
+        li {
+            margin-bottom: var(--space-2);
+        }
+        
+        .subtitle {
+            font-size: 14pt;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: var(--space-4);
+            font-family: var(--font-body);
+        }
+
+        /* Paper Pages */
+        .document-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 auto;
+            gap: var(--space-8);
+        }
+        
+        .paper-page {
+            width: var(--paper-width);
+            min-height: var(--paper-height);
+            background-color: var(--neutral-100);
+            padding: var(--paper-padding);
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            max-width: 100%;
+        }
+        
+        @media (max-width: 8.5in) {
+            .paper-page {
+                width: 100%;
+                min-height: auto;
+                padding: 1rem;
+            }
+        }
+        
+        /* Cover Page */
+        .cover-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-position: center;
+            background-size: cover;
+            background-image: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('https://pfst.cf2.poecdn.net/base/image/5a98f2e228668863a785c40ad446f3df3a722a8610ebebcd0f6f4e4c60c851d2?w=1170&h=880');
+            color: var(--text-light);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            min-height: var(--paper-height);
+            height: 100%;
+            padding: var(--paper-padding);
+            margin: -1in;
+        }
+        
+        .cover-badge {
+            display: inline-block;
+            padding: var(--space-1) var(--space-3);
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-right: var(--space-2);
+            margin-bottom: var(--space-2);
+        }
+        
+        .cover-title {
+            font-size: 36pt;
+            font-weight: 800;
+            margin-bottom: var(--space-4);
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+        
+        .cover-subtitle {
+            font-size: 18pt;
+            font-weight: 400;
+            margin-bottom: var(--space-6);
+            max-width: 80%;
+        }
+        
+        .cover-footer {
+            text-align: center;
+        }
+        
+        .cover-footer p {
+            margin-bottom: var(--space-1);
+        }
+        
+        /* Page Header */
+        .page-header {
+            margin-bottom: var(--space-5);
+            position: relative;
+        }
+        
+        .page-title {
+            font-size: 18pt;
+            margin-bottom: var(--space-2);
+            position: relative;
+        }
+        
+        .page-title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .page-subtitle {
+            font-size: 14pt;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* Section Header */
+        .section-header {
+            margin-bottom: var(--space-5);
+            padding-bottom: var(--space-2);
+            border-bottom: 1px solid var(--neutral-400);
+        }
+        
+        .section-title {
+            font-size: 18pt;
+            margin-bottom: var(--space-2);
+            color: var(--primary);
+        }
+        
+        .section-subtitle {
+            font-size: 14pt;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+        
+        /* Component Styles */
+        .highlight-box {
+            background-color: rgba(93, 92, 222, 0.05);
+            border-left: 4px solid var(--primary);
+            padding: var(--space-4);
+            margin: var(--space-5) 0;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        }
+        
+        .dark .highlight-box {
+            background-color: rgba(93, 92, 222, 0.1);
+        }
+        
+        .highlight-box-title {
+            font-size: 12pt;
+            margin-bottom: var(--space-2);
+            color: var(--primary);
+        }
+        
+        .alert-box {
+            background-color: rgba(231, 76, 60, 0.05);
+            border-left: 4px solid var(--accent);
+            padding: var(--space-4);
+            margin: var(--space-5) 0;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        }
+        
+        .dark .alert-box {
+            background-color: rgba(231, 76, 60, 0.1);
+        }
+        
+        .alert-box-title {
+            font-size: 12pt;
+            margin-bottom: var(--space-2);
+            color: var(--accent);
+        }
+        
+        .info-box {
+            background-color: rgba(46, 204, 113, 0.05);
+            border-left: 4px solid var(--spring);
+            padding: var(--space-4);
+            margin: var(--space-5) 0;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        }
+        
+        .dark .info-box {
+            background-color: rgba(46, 204, 113, 0.1);
+        }
+        
+        .info-box-title {
+            font-size: 12pt;
+            margin-bottom: var(--space-2);
+            color: var(--spring);
+        }
+        
+        .checklist-container {
+            background-color: rgba(243, 156, 18, 0.05);
+            border-left: 4px solid var(--summer);
+            padding: var(--space-4);
+            margin: var(--space-5) 0;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        }
+        
+        .dark .checklist-container {
+            background-color: rgba(243, 156, 18, 0.1);
+        }
+        
+        .checklist-title {
+            font-size: 12pt;
+            margin-bottom: var(--space-3);
+            color: var(--summer);
+            font-weight: 600;
+        }
+        
+        .checklist-item {
+            margin-bottom: var(--space-2);
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .checklist-item:before {
+            content: "✓";
+            color: var(--summer);
+            font-weight: bold;
+            margin-right: var(--space-2);
+            flex-shrink: 0;
+        }
+        
+        /* Image Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-4);
+            margin: var(--space-5) 0;
+        }
+        
+        .gallery-item {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: var(--space-2);
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            font-size: 10pt;
+        }
+        
+        /* Contact Directory */
+        .contact-card {
+            background-color: var(--neutral-100);
+            border: 1px solid var(--neutral-300);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            margin-bottom: var(--space-4);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contact-name {
+            font-size: 14pt;
+            font-weight: 600;
+            margin-bottom: var(--space-1);
+            color: var(--primary);
+        }
+        
+        .contact-role {
+            font-size: 10pt;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-2);
+        }
+        
+        .contact-info {
+            display: flex;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+        }
+        
+        .contact-info p {
+            margin-bottom: var(--space-1);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        /* Columns */
+        .columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-4);
+            margin: var(--space-4) 0;
+        }
+        
+        /* Themed Cards */
+        .themed-card {
+            padding: var(--space-4);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            background-color: var(--neutral-100);
+            margin-bottom: var(--space-4);
+        }
+        
+        .spring-card { border-top: 4px solid var(--spring); }
+        .summer-card { border-top: 4px solid var(--summer); }
+        .fall-card { border-top: 4px solid var(--fall); }
+        .winter-card { border-top: 4px solid var(--winter); }
+        
+        /* Page Footer */
+        .page-footer {
+            margin-top: var(--space-6);
+            padding-top: var(--space-3);
+            border-top: 1px solid var(--neutral-300);
+            font-size: 9pt;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        /* Table of Contents */
+        .toc-header {
+            margin-bottom: var(--space-5);
+        }
+        
+        .toc-title {
+            font-size: 24pt;
+            margin-bottom: var(--space-4);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .toc-title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary);
+        }
+        
+        .toc-section {
+            margin-bottom: var(--space-5);
+        }
+        
+        .toc-section-title {
+            font-size: 14pt;
+            color: var(--primary);
+            margin-bottom: var(--space-3);
+            font-weight: 600;
+            font-family: var(--font-heading);
+            border-bottom: 1px solid var(--neutral-300);
+            padding-bottom: var(--space-2);
+        }
+        
+        .toc-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-2);
+            padding-bottom: var(--space-1);
+            border-bottom: 1px dotted var(--neutral-400);
+        }
+        
+        .toc-page-num {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Page Number */
+        .paper-page {
+            counter-increment: page;
+        }
+        
+        .paper-page:not(:first-child)::after {
+            content: counter(page);
+            position: absolute;
+            bottom: 0.5in;
+            right: 0.5in;
+            font-size: 10pt;
+            color: var(--text-secondary);
+        }
+        
+        /* Prominent Text */
+        .prominent-text {
+            font-size: 14pt;
+            font-weight: 500;
+            color: var(--primary);
+            margin: var(--space-5) 0;
+            line-height: 1.4;
+            text-align: center;
+            font-style: italic;
+            padding: var(--space-3);
+            border-left: 4px solid var(--primary);
+            background-color: rgba(93, 92, 222, 0.05);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        }
+        
+        .dark .prominent-text {
+            background-color: rgba(93, 92, 222, 0.1);
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: var(--text-light);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            z-index: 100;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            
+            .document-container {
+                gap: 0;
+            }
+            
+            .paper-page {
+                box-shadow: none;
+                page-break-after: always;
+                margin-bottom: 0;
+            }
+            
+            .theme-toggle {
+                display: none;
+            }
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+            :root {
+                --paper-padding: 0.5in;
+            }
+            
+            body {
+                padding: 0.5rem;
+            }
+            
+            .cover-title {
+                font-size: 24pt;
+            }
+            
+            .cover-subtitle {
+                font-size: 14pt;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .columns {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document-container">
+        <!-- Cover Page -->
+        <div class="paper-page">
+            <div class="cover-page">
+                <div>
+                    <span class="cover-badge">Est. 1975</span>
+                    <span class="cover-badge">Community Guide</span>
+                </div>
+                
+                <div>
+                    <h1 class="cover-title">BLUE MOUNTAIN<br>PROPERTY OWNERS<br>ASSOCIATION</h1>
+                    <p class="cover-subtitle">Your Complete Guide to Mountain Living in Linden, Virginia</p>
+                    <p>A comprehensive resource for new and existing residents</p>
+                </div>
+                
+                <div class="cover-footer">
+                    <p>BMPOA • P.O. Box 114 • Linden, VA 22642</p>
+                    <p>www.bmpoa.org</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction Page -->
+        <div class="paper-page">
+            <div class="page-header">
+                <h1 class="page-title">INTRODUCTION</h1>
+            </div>
+            
+            <p>Welcome to Blue Mountain Property Owners Association (BMPOA)! We're delighted that you've chosen to make our mountain community your home. This welcome booklet is designed to provide residents with essential information about living in our community, local resources, and important contact information.</p>
+            
+            <p>Blue Mountain is a special place with stunning views of the Shenandoah Valley, rich wildlife, and a close-knit community. Our neighborhood is located in Warren County, Virginia, just outside the town of Linden. Whether you're a full-time resident or weekend visitor, we hope this guide helps you settle in and enjoy all that our mountain has to offer.</p>
+            
+            <div class="prominent-text">
+                This guide serves as your introduction to mountain living and community resources.
+            </div>
+            
+            <h3>ABOUT THIS GUIDE</h3>
+            <p>This comprehensive guide contains everything you need to know about living in the Blue Mountain community. It includes:</p>
+            <ul>
+                <li>Community governance and structure</li>
+                <li>Covenants and rules</li>
+                <li>Construction and home improvement guidelines</li>
+                <li>Fire safety and emergency preparedness</li>
+                <li>Community services and amenities</li>
+                <li>Local resources and information</li>
+                <li>Contacts and communication channels</li>
+                <li>Seasonal information and maintenance guidelines</li>
+            </ul>
+            
+            <p>We encourage you to keep this guide handy as a reference throughout your time in Blue Mountain.</p>
+            
+            <h3>HOW TO USE THIS GUIDE</h3>
+            <p>This guide is organized into sections that address different aspects of community life. Throughout the guide, you'll find contact information, important notes, and useful resources highlighted in special boxes.</p>
+                
+            <div class="page-footer">
+                <div>BMPOA Community Guide</div>
+            </div>
+        </div>
+
+        <!-- Table of Contents Page -->
+        <div class="paper-page">
+            <div class="toc-header">
+                <h1 class="toc-title">TABLE OF CONTENTS</h1>
+            </div>
+            
+            <div class="toc-section">
+                <h2 class="toc-section-title">1. Governance &amp; Structure</h2>
+                <div class="toc-item">
+                    <span>BMPOA Overview</span>
+                    <span class="toc-page-num">4</span>
+                </div>
+                <div class="toc-item">
+                    <span>Sanitary District Explained</span>
+                    <span class="toc-page-num">5</span>
+                </div>
+                <div class="toc-item">
+                    <span>Board &amp; Committees Structure</span>
+                    <span class="toc-page-num">6</span>
+                </div>
+                <div class="toc-item">
+                    <span>Membership &amp; Meetings</span>
+                    <span class="toc-page-num">6</span>
+                </div>
+            </div>
+            
+            <div class="toc-section">
+                <h2 class="toc-section-title">2. Fire Safety &amp; Emergency Preparedness</h2>
+                <div class="toc-item">
+                    <span>Wildfire Risk Understanding</span>
+                    <span class="toc-page-num">7</span>
+                </div>
+                <div class="toc-item">
+                    <span>Evacuation Zones &amp; Routes</span>
+                    <span class="toc-page-num">8</span>
+                </div>
+                <div class="toc-item">
+                    <span>Home Fire Protection Strategies</span>
+                    <span class="toc-page-num">9</span>
+                </div>
+                <div class="toc-item">
+                    <span>Family Emergency Planning</span>
+                    <span class="toc-page-num">10</span>
+                </div>
+            </div>
+            
+            <div class="toc-section">
+                <h2 class="toc-section-title">3. Community Services &amp; Amenities</h2>
+                <div class="toc-item">
+                    <span>Roads &amp; Maintenance</span>
+                    <span class="toc-page-num">11</span>
+                </div>
+                <div class="toc-item">
+                    <span>Recreation Areas</span>
+                    <span class="toc-page-num">11</span>
+                </div>
+                <div class="toc-item">
+                    <span>Refuse Collection &amp; Disposal</span>
+                    <span class="toc-page-num">12</span>
+                </div>
+            </div>
+            
+            <div class="toc-section">
+                <h2 class="toc-section-title">4. Seasonal Considerations</h2>
+                <div class="toc-item">
+                    <span>Spring Guidelines</span>
+                    <span class="toc-page-num">13</span>
+                </div>
+                <div class="toc-item">
+                    <span>Summer Guidelines</span>
+                    <span class="toc-page-num">13</span>
+                </div>
+                <div class="toc-item">
+                    <span>Fall Guidelines</span>
+                    <span class="toc-page-num">14</span>
+                </div>
+                <div class="toc-item">
+                    <span>Winter Guidelines</span>
+                    <span class="toc-page-num">14</span>
+                </div>
+            </div>
+            
+            <div class="toc-section">
+                <h2 class="toc-section-title">5. Contacts &amp; Communication</h2>
+                <div class="toc-item">
+                    <span>BMPOA Contact Directory</span>
+                    <span class="toc-page-num">15</span>
+                </div>
+                <div class="toc-item">
+                    <span>Emergency Numbers</span>
+                    <span class="toc-page-num">16</span>
+                </div>
+                <div class="toc-item">
+                    <span>Community Resources</span>
+                    <span class="toc-page-num">16</span>
+                </div>
+            </div>
+                
+            <div class="page-footer">
+                <div>BMPOA Community Guide</div>
+            </div>
+        </div>
+
+        <!-- Governance Page -->
+        <div class="paper-page">
+            <div class="section-header">
+                <h2 class="section-title">1. GOVERNANCE &amp; STRUCTURE</h2>
+                <p class="section-subtitle">Understanding our community organization</p>
+            </div>
+            
+            <div class="page-header">
+                <h3 class="page-title">BMPOA OVERVIEW</h3>
+            </div>
+            
+            <p>The Blue Mountain Property Owners Association (BMPOA) serves as the governing body for our mountain community. As a homeowner in Blue Mountain, you are automatically a member of this association, which is dedicated to preserving and enhancing our unique mountain lifestyle.</p>
+            
+            <h3>PURPOSE &amp; MISSION</h3>
+            <p>As outlined in our bylaws, the purpose of the BMPOA is:</p>
+            <ul>
+                <li>To promote the health, safety, and general welfare of its members</li>
+                <li>To preserve the natural beauty of the subdivision and its environment</li>
+                <li>To assist members with matters relating to both internal roads and public roads</li>
+                <li>To oversee community recreation facilities</li>
+                <li>To enforce the Covenants</li>
+                <li>To assist members with federal, state, and local matters affecting their property</li>
+            </ul>
+            
+            <h3>LEGAL STATUS</h3>
+            <p>The BMPOA is a legally established non-profit organization incorporated under Virginia law. The Association operates according to its bylaws and the Blue Mountain Subdivision Declaration of Protective Covenants, Conditions &amp; Restrictions, which run with the land and are binding on all property owners.</p>
+            
+            <div class="highlight-box">
+                <h4 class="highlight-box-title">YOUR RELATIONSHIP WITH BMPOA</h4>
+                <p>As a Blue Mountain property owner, you are automatically a member of the Association. There are no additional dues required for membership, as community maintenance and services are funded through the Blue Mountain Sanitary District tax, which is collected with your Warren County property taxes.</p>
+            </div>
+            
+            <div class="page-footer">
+                <div>BMPOA Community Guide</div>
+            </div>
+        </div>
+
+        <!-- Sanitary District Page -->
+        <div class="paper-page">
+            <div class="page-header">
+                <h3 class="page-title">SANITARY DISTRICT EXPLAINED</h3>
+            </div>
+            
+            <p>One of the most important aspects of Blue Mountain's governance is its designation as a Sanitary District. This special status provides significant benefits to our community and is essential to understand as a property owner.</p>
+            
+            <h3>WHAT IS A SANITARY DISTRICT?</h3>
+            <p>A Sanitary District is a special taxing district allowed by the Code of Virginia. It provides a mechanism for communities like ours to fund necessary infrastructure and services through a dedicated tax assessment on properties within the district.</p>
+            
+            <div class="highlight-box">
+                <h4 class="highlight-box-title">Key Benefit</h4>
+                <p>Our Sanitary District status ensures that all property owners, including developers, contribute fairly to the maintenance of our roads and community assets.</p>
+            </div>
+            
+            <h3>BLUE MOUNTAIN SANITARY DISTRICT</h3>
+            <p>The Blue Mountain Subdivision Sanitary District was created by Order of the Circuit Court of Warren County. By agreement with the Warren County Board of Supervisors, the BMPOA Executive Board serves as the managing agent of the Sanitary District.</p>
+            
+            <h3>KEY BENEFITS OF SANITARY DISTRICT STATUS</h3>
+            <p>Our Sanitary District status provides numerous advantages:</p>
+            <ul>
+                <li><strong>Uniform Funding:</strong> Establishes consistent fees throughout the entire subdivision</li>
+                <li><strong>Reliable Collection:</strong> Taxes are collected by the Warren County Treasurer's Office, ensuring a high collection rate</li>
+                <li><strong>Tax Deductibility:</strong> Sanitary district taxes may be deductible on federal income tax returns (consult your tax advisor)</li>
+                <li><strong>Universal Participation:</strong> All lots, including those owned by developers, are subject to the tax</li>
+                <li><strong>Property Value Protection:</strong> Unpaid taxes must be satisfied before property sales, protecting community resources</li>
+                <li><strong>Disaster Relief Eligibility:</strong> Qualifies the community for various state and federal disaster relief funds</li>
+                <li><strong>Private Road Protection:</strong> Sanitary district status does not affect the privacy of our roads or other amenities</li>
+            </ul>
+            
+            <div class="page-footer">
+                <div>BMPOA Community Guide</div>
+            </div>
+        </div>
+
+        <!-- Board & Membership Page -->
+        <div class="paper-page">
+            <div class="page-header">
+                <h3 class="page-title">BOARD &amp; COMMITTEES STRUCTURE</h3>
+            </div>
+            
+            <p>The BMPOA is managed by an elected Board of Officers and Directors who volunteer their time to serve the community. The Board consists of:</p>
+            <ul>
+                <li>Five Officers (President, First Vice President, Second Vice President, Secretary, and Treasurer)</li>
+                <li>Four Directors-at-Large</li>
+            </ul>
+            
+            <p>All Board members are Blue Mountain property owners elected at the Annual Meeting for two-year terms. The Board operates with several standing committees that focus on specific areas of community management:</p>
+            
+            <ul>
+                <li><strong>Roads Committee:</strong> Oversees maintenance and improvement of our private road network</li>
+                <li><strong>Architectural Review Committee (ARC):</strong> Reviews and approves all construction and exterior modifications</li>
+                <li><strong>Recreation Committee:</strong> Manages community recreational facilities and events</li>
+                <li><strong>Communications Committee:</strong> Handles newsletters, website, and other community communications</li>
+            </ul>
+            
+            <div class="page-header">
+                <h3 class="page-title">MEMBERSHIP &amp; MEETINGS</h3>
+            </div>
+            
+            <p>All property owners within the Blue Mountain Subdivision are automatically members of the BMPOA. Membership provides you with voting rights and the ability to participate in community decision-making.</p>
+            
+            <h4>Annual Meeting</h4>
+            <p>The BMPOA holds an Annual Meeting, typically in May, where members elect Board members, review the annual budget, and address important community matters. All property owners are encouraged to attend.</p>
+            
+            <h4>Board Meetings</h4>
+            <p>The Board of Directors meets regularly throughout the year. These meetings are open to all members. Meeting dates and times are posted on the website and in community newsletters.</p>
+            
+            <h4>Special Meetings</h4>
+            <p>Occasionally, special meetings may be called to address urgent or significant matters. Notice of these meetings will be provided in accordance with the bylaws.</p>
+            
+            <div class="info-box">
+                <h4 class="info-box-title">GET INVOLVED</h4>
+                <p>Your participation strengthens our community! Consider attending meetings, joining a committee, or running for a Board position. Contact any Board member to learn about current volunteer opportunities.</p>
+            </div>
+            
+            <div class="page-footer">
+                <div>BMPOA Community Guide</div>
+            </div>
+        </div>
+
+        <!-- Fire Safety Page -->
+        <div class="paper-page">
+            <div class="section-header">
+                <h2 class="section-title">2. FIRE SAFETY &amp; EMERGENCY PREPAREDNESS</h2>
+                <p class="section-subtitle">Critical information to keep your family and property safe</p>
+            </div>
+            
+            <div class="page-header">
+                <h3 class="page-title">WILDFIRE RISK UNDERSTANDING</h3>
+            </div>
+            
+            <p>Blue Mountain's wooded environment, while beautiful, presents significant wildfire risks that all community members should be aware of. Our location in a Wildland-Urban Interface (WUI) area means homes are interspersed with forests, increasing vulnerability to wildfires.</p>
+            
+            <h3>FIRE SEASON</h3>
+            <ul>
+                <li><strong>Spring Fire Season:</strong> February 15 - April 30</li>
+                <li><strong>Fall Fire Season:</strong> October 15 - November 30</li>
+                <li>Summer drought conditions can extend risk periods</li>
+            </ul>
+            
+            <div class="alert-box">
+                <h4 class="alert-box-title">BURN BAN INFORMATION</h4>
+                <p>During designated fire seasons, Virginia law restricts open burning before 4:00 PM. All fires must be attended at all times and completely extinguished before leaving. Check with Warren County Fire &amp; Rescue for current burn restrictions before burning anything outdoors.</p>
+            </div>
+            
+            <h3>UNDERSTANDING RISK LEVELS</h3>
+            <p><strong>High Risk Areas</strong><br>
+            Steep slopes, areas with dense vegetation, properties with unmaintained defensible space, and homes with wooden decks/roofs are at highest risk.</p>
+            
+            <p><strong>Moderate Risk Areas</strong><br>
+            Properties with partial defensible space, some vegetation management, and homes with some fire-resistant features but remaining vulnerabilities.</p>
+            
+            <p><strong>Lower Risk Areas</strong><br>
+            Properties with well-maintained defensible space (at least 30ft), fire-resistant landscaping, and homes with fire-resistant roofing and construction.</p>
+            
+            <h3>COMMUNITY FIRE PREVENTION EFFORTS</h3>
+            <p>The BMPOA works with local fire authorities and the Virginia Department of Forestry to implement fire prevention measures:</p>
+            <ul>
+                <li>Annual wood-chipping program to reduce fuel loads</li>
+                <li>Community-wide evacuation planning</li>
+                <li>Educational programs on defensible space</li>
+                <li>Participation in the Firewise USA program</li>
+            </ul>
+            
+            <div class="page-footer">
+                <div>BMPOA Community Guide</div>
+            </div>
+        </div>
+
+        <!-- Evacuation Routes Page -->
+        <div class="paper-page">
+            <div class="page-header">
+                <h3 class="page-title">EVACUATION ZONES &amp; ROUTES</h3>
+            </div>
+            
+            <p>Blue Mountain has developed a comprehensive evacuation plan divided into zones to ensure an orderly and safe evacuation if needed. Familiarize yourself with these zones and routes before an emergency occurs.</p>
+            
+            <h3>EVACUATION ZONES &amp; PRIMARY ROUTES</h3>
+            
+            <p><strong>ZONE 1:</strong></p>
+            <ul>
+                <li>FAR VIEW, SHADY TREE, BLACK WALNUT: To Blue Mt Rd, then as directed</li>
+                <li>BLUE MOUNTAIN RD, DOGWOOD BLOSSOM: To Blue Mt Rd, then as directed</li>
+                <li>LITTLE INDIAN, LONESOME PINE, WOODCHUCK: To Blue Mt Rd, then as directed</li>
+                <li>HAWK HILL, LOST CREEK: Old Sawmill to Blue Mt Rd, then as directed</li>
+                <li>MOONSHINER, OLD SAWMILL: Old Sawmill to Blue Mt Rd, then as directed</li>
+            </ul>
+            
+            <p><strong>ZONE 2:</strong></p>
+            <ul>
+                <li>BLOOD ROOT, FERN TRAIL, JASPER: Old Sawmill to Blue Mt Rd, then as directed</li>
+                <li>MOCKINGBIRD, SPRING HILL, MOSSY ROCK: Spring Hill to Blue Mt Rd to Freezeland</li>
+                <li>PEE WEE: Uphill to Blue Mt Rd, L to Freezeland</li>
+                <li>ROCKY BOULDER, ROCK SPRING: Uphill to Firetrail, R to Freezeland</li>
+                <li>INDIAN PIPES, PARADISE, WOODHAVEN: Fire Trail, R to Freezeland</li>
+            </ul>
+            
+            <p><strong>ZONE 3:</strong></p>
+            <ul>
+                <li>BLUE MOUNTAIN RD: Uphill on Blue Mt Rd to Freezeland</li>
+                <li>CHIPMUNK TRAIL: Cliff to Blue Mt Rd, R to Freezeland</li>
+                <li>CLIFF: Down to Blue Mt Rd, R to Freezeland</li>
+                <li>HENRY, OLD DOMINION: Down to cliff, R to Blue Mt Rd, R to Freezeland</li>
+                <li>TRILLIUM TRAIL: Up to Blue Mt Rd, R to Freezeland</li>
+            </ul>
+            
+            <div class="alert-box">
+                <h4 class="alert-box-title">IMPORTANT EVACUATION GUIDELINES</h4>
+                <ul>
+                    <li>You do not need to wait for official notices to evacuate if you feel unsafe</li>
+                    <li>Always follow directions from law enforcement and fire personnel</li>
+                    <li>Yield immediately to emergency equipment, especially on narrow roads</li>
+                    <li>Do not drive over fire hoses (violation of Virginia law)</li>
+                    <li>If you see a wildfire, call 911 immediately</li>
+                </ul>
+            </div>
+            
+            <div class="page-footer">
+                <div>BMPOA Community Guide</div>
+            </div>
+        </div>
+
+        <!-- Home Fire Protection Page -->
+        <div class="paper-page">
+            <div class="page-header">
+                <h3 class="page-title">HOME FIRE PROTECTION STRATEGIES</h3>
+            </div>
+            
+            <p>Creating a defensible space around your home is essential to reducing wildfire risk. These strategies can significantly increase your home's chances of surviving a wildfire.</p>
+            
+            <h3>DEFENSIBLE SPACE ZONES</h3>
+            
+            <p><strong>Zone 1: 0-30 feet from structures</strong></p>
+            <ul>
+                <li>Remove all flammable materials including dead vegetation, woodpiles, and propane tanks</li>
+                <li>Keep grass mowed and irrigated if possible</li>
+                <li>Prune tree branches up 6-10 feet from the ground</li>
+                <li>Space trees so crowns are at least 10 feet apart</li>
+                <li>Choose fire-resistant plants for landscaping</li>
+                <li>Keep gutters and roof clear of leaves and debris</li>
+                <li>Move patio furniture, doormats, and decorative items away during high fire danger</li>
+            </ul>
+            
+            <p><strong>Zone 2: 30-100 feet from structures</strong></p>
+            <ul>
+                <li>Reduce and space vegetation</li>
+                <li>Remove ladder fuels (vegetation that allows fire to climb from ground into tree canopy)</li>
+                <li>Create fuel breaks with driveways, walkways, and lawns</li>
+                <li>Keep firewood stacks at least 30 feet from structures</li>
+            </ul>
+            
+            <h3>HOME HARDENING MEASURES</h3>
+            
+            <p><strong>Roof &amp; Gutters:</strong></p>
+            <ul>
+                <li>Install Class A fire-rated roofing materials (metal recommended)</li>
+                <li>Use non-combustible gutter covers</li>
+                <li>Regularly clean gutters and roof of debris</li>
+            </ul>
+            
+            <p><strong>Vents &amp; Openings:</strong></p>
+            <ul>
+                <li>Cover all vents with 1/8-inch metal mesh</li>
+                <li>Box in eaves with non-combustible materials</li>
+                <li>Install weather stripping around garage doors</li>
+            </ul>
+            
+            <div class="info-box">
+                <h4 class="info-box-title">WOOD-CHIPPING PROGRAM</h4>
+                <p>BMPOA offers an annual wood-chipping program to help residents reduce fuel loads and improve defensible space. This is an excellent opportunity to clear branches and brush from your property to maintain defensible space.</p>
+            </div>
+            
+            <div class="page-footer">
+                <div>BMPOA Community Guide</div>
+            </div>
+        </div>
+
+        <!-- Family Emergency Planning Page -->
+        <div class="paper-page">
+            <div class="page-header">
+                <h3 class="page-title">FAMILY EMERGENCY PLANNING</h3>
+            </div>
+            
+            <p>Creating a family emergency plan specifically for wildfire events is essential for all Blue Mountain residents. This preparation can make all the difference during an evacuation situation.</p>
+            
+            <h3>DEVELOP YOUR EVACUATION PLAN</h3>
+            <p>Your family's evacuation plan should be:</p>
+            <ul>
+                <li>Simple enough to be followed when under stress</li>
+                <li>Detailed enough to cover key elements</li>
+                <li>Understood by everyone residing in your home</li>
+                <li>Practiced regularly to ensure familiarity</li>
+                <li>Updated as your family situation changes</li>
+            </ul>
+            
+            <div class="checklist-container">
+                <h4 class="checklist-title">FAMILY EVACUATION PLAN CHECKLIST</h4>
+                <div class="checklist-item">Identify two escape routes from each room</div>
+                <div class="checklist-item">Choose multiple evacuation routes from your neighborhood</div>
+                <div class="checklist-item">Establish meeting places: near your home and outside the area</div>
+                <div class="checklist-item">Designate an out-of-area contact person</div>
+                <div class="checklist-item">Plan for pets and livestock evacuation</div>
+                <div class="checklist-item">Prepare an emergency supply kit</div>
+                <div class="checklist-item">Create a home inventory with photos for insurance</div>
+                <div class="checklist-item">Identify special needs (elderly, disabled, children)</div>
+            </div>
+            
+            <h3>EVACUATION ALERT LEVELS</h3>
+            <p><strong>Level 1 – READY:</strong> Be aware of danger in your area. Monitor emergency services websites and local media. Pack essential items and prepare to leave if necessary.</p>
+            
+            <p><strong>Level 2 – SET:</strong> There is significant danger in your area. Be prepared to leave at a moment's notice. Consider voluntarily relocating to a safe area.</p>
+            
+            <p><strong>Level 3 – GO:</strong> Imminent danger exists. Leave immediately. Delay puts your life at risk. Do not return until officials declare the area safe.</p>
+            
+            <div class="alert-box">
+                <h4 class="alert-box-title">STAY INFORMED</h4>
+                <p>Sign up for emergency notifications through Smart911.com and monitor local radio stations WZRV 95.3 FM and WFTR 1450 AM during emergencies.</p>
+            </div>
+            
+            <div class="page-footer">
+                <div>BMPOA Community Guide</div>
+            </div>
+        </div>
+
+        <!-- Community Services Page -->
+        <div class="paper-page">
+            <div class="section-header">
+                <h2 class="section-title">3. COMMUNITY SERVICES &amp; AMENITIES</h2>
+                <p class="section-subtitle">Features and services available to residents</p>
+            </div>
+            
+            <div class="page-header">
+                <h3 class="page-title">ROADS &amp; MAINTENANCE</h3>
+            </div>
+            
+            <p>The private roads within Blue Mountain are maintained by the BMPOA through Sanitary District taxes. Our Roads Committee oversees maintenance, snow removal, and improvements to our extensive road network. Key points:</p>
+            <ul>
+                <li>Regular grading and maintenance occurs throughout the year</li>
+                <li>Snow removal is prioritized by road usage and steepness</li>
+                <li>Culverts and drainage systems are maintained to prevent washouts</li>
+                <li>Major repairs and improvements are scheduled based on available funding</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <h4 class="highlight-box-title">REPORT ROAD ISSUES</h4>
+                <p>If you notice a road hazard or damage that needs attention, please contact the Roads Committee Chair. For emergency road issues that affect access or safety, call 911.</p>
+            </div>
+            
+            <div class="page-header">
+                <h3 class="page-title">RECREATION AREAS</h3>
+            </div>
+            
+            <p>Blue Mountain offers several recreational facilities for residents to enjoy:</p>
+            
+            <ul>
+                <li><strong>The Lodge:</strong> Community building available for resident use and rental located at 540 Cliff Road. Great for gatherings and events.</li>
+                <li><strong>Deer Lake:</strong> Small lake open for fishing, non-motorized boating, and swimming during warmer months.</li>
+                <li><strong>Hiking Trails:</strong> Several designated hiking trails offer opportunities to enjoy our natural surroundings.</li>
+            </ul>
+            
+            <div class="page-header">
+                <h3 class="page-title">REFUSE COLLECTION &amp; DISPOSAL</h3>
+            </div>
+            
+            <p>Garbage and recycling services are available through private vendors in our area. The BMPOA does not provide refuse collection. Residents are responsible for contracting their own service or taking trash to the Warren County Transfer Station.</p>
+            
+            <p>Please note these important guidelines:</p>
+            <ul>
+                <li>Store trash in bear-resistant containers to prevent wildlife conflicts</li>
+                <li>Recycle according to Warren County guidelines</li>
+                <li>Large item disposal is available at the county transfer station</li>
+                <li>Burning of trash is prohibited by county ordinance</li>
+            </ul>
+            
+            <div class="page-footer">
+                <div>BMPOA Community Guide</div>
+            </div>
+        </div>
+
+        <!-- Seasonal Page -->
+        <div class="paper-page">
+            <div class="section-header">
+                <h2 class="section-title">4. SEASONAL CONSIDERATIONS</h2>
+                <p class="section-subtitle">Be prepared for each season on Blue Mountain</p>
+            </div>
+            
+            <div class="columns">
+                <div class="themed-card spring-card">
+                    <h3>SPRING (March-May)</h3>
+                    <ul>
+                        <li>Participate in wood-chipping program</li>
+                        <li>Clear culverts and drainage of winter debris</li>
+                        <li>Watch for bears emerging from hibernation</li>
+                        <li>Begin maintaining defensible space</li>
+                        <li>Check for road damage after winter</li>
+                        <li>Inspect roof, gutters, and foundation after winter</li>
+                        <li>Test outdoor water systems</li>
+                    </ul>
+                </div>
+                
+                <div class="themed-card summer-card">
+                    <h3>SUMMER (June-August)</h3>
+                    <ul>
+                        <li>Maintain defensible space as vegetation grows</li>
+                        <li>Be vigilant with fire safety during dry periods</li>
+                        <li>Secure all food sources to avoid bear encounters</li>
+                        <li>Watch for summer thunderstorms and lightning</li>
+                        <li>Enjoy community activities and recreation areas</li>
+                        <li>Keep emergency water supply available</li>
+                        <li>Watch for ticks and other pests</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="columns">
+                <div class="themed-card fall-card">
+                    <h3>FALL (September-November)</h3>
+                    <ul>
+                        <li>Clean gutters of falling leaves regularly</li>
+                        <li>Prepare your home for winter</li>
+                        <li>Stock emergency supplies</li>
+                        <li>Watch for increased deer activity during rut season</li>
+                        <li>Follow fall fire season burning restrictions</li>
+                        <li>Winterize outdoor water systems</li>
+                        <li>Ensure heating systems are serviced</li>
+                    </ul>
+                </div>
+                
+                <div class="themed-card winter-card">
+                    <h3>WINTER (December-February)</h3>
+                    <ul>
+                        <li>Keep an emergency kit in your vehicle</li>
+                        <li>Have alternate heating sources available</li>
+                        <li>Know snow removal priorities and plan accordingly</li>
+                        <li>Watch for ice on roads, especially in shaded areas</li>
+                        <li>Check on elderly neighbors during storms</li>
+                        <li>Keep adequate food and water supplies</li>
+                        <li>Have backup power options available</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="alert-box mt-5">
+                <h4 class="alert-box-title">WINTER DRIVING PREPARATION</h4>
+                <p>Mountain roads can be particularly challenging during winter. Always:</p>
+                <ul>
+                    <li>Maintain a 4-wheel or all-wheel drive vehicle if possible</li>
+                    <li>Keep tire chains or cables in your vehicle</li>
+                    <li>Have a full tank of gas during winter weather events</li>
+                    <li>Pack emergency supplies (blankets, water, food, flashlight)</li>
+                    <li>Avoid unnecessary travel during winter storms</li>
+                </ul>
+            </div>
+            
+            <div class="page-footer">
+                <div>BMPOA Community Guide</div>
+            </div>
+        </div>
+
+        <!-- Contacts Page -->
+        <div class="paper-page">
+            <div class="section-header">
+                <h2 class="section-title">5. CONTACTS &amp; COMMUNICATION</h2>
+                <p class="section-subtitle">Important contact information for community resources</p>
+            </div>
+            
+            <div class="page-header">
+                <h3 class="page-title">BMPOA CONTACT DIRECTORY</h3>
+            </div>
+            
+            <p>Knowing who to contact for various community matters will help you quickly address questions or concerns as they arise.</p>
+            
+            <h3>BOARD OF DIRECTORS</h3>
+            
+            <div class="contact-card">
+                <h4 class="contact-name">John Smith</h4>
+                <p class="contact-role">President</p>
+                <div class="contact-info">
+                    <p>📞 (555) 123-4567</p>
+                    <p>✉️ president@bmpoa.org</p>
+                </div>
+            </div>
+            
+            <div class="contact-card">
+                <h4 class="contact-name">Jane Doe</h4>
+                <p class="contact-role">First Vice President</p>
+                <div class="contact-info">
+                    <p>📞 (555) 234-5678</p>
+                    <p>✉️ vicepresident@bmpoa.org</p>
+                </div>
+            </div>
+            
+            <h3>GENERAL ASSOCIATION CONTACT</h3>
+            <p><strong>Mailing Address:</strong><br>
+            Blue Mountain Property Owners Association<br>
+            P.O. Box 114<br>
+            Linden, VA 22642</p>
+            <p><strong>Email:</strong> info@bmpoa.org</p>
+            <p><strong>Website:</strong> www.bmpoa.org</p>
+            
+            <div class="highlight-box">
+                <h4 class="highlight-box-title">LODGE RENTAL</h4>
+                <p><strong>Lodge Coordinator:</strong><br>
+                Email: bluemountainlodgebooking@gmail.com<br>
+                Address: 540 Cliff Road, Linden VA</p>
+            </div>
+            
+            <div class="page-footer">
+                <div>BMPOA Community Guide</div>
+            </div>
+        </div>
+
+        <!-- Emergency Numbers Page -->
+        <div class="paper-page">
+            <div class="page-header">
+                <h3 class="page-title">EMERGENCY NUMBERS</h3>
+            </div>
+            
+            <div class="alert-box">
+                <h4 class="alert-box-title text-center">EMERGENCY: 911</h4>
+                <p class="text-center">Call for all urgent police, fire, or medical emergencies</p>
+            </div>
+            
+            <h3>FIRE DEPARTMENTS</h3>
+            <p><strong>Warren County Fire &amp; Rescue:</strong><br>
+            Emergency: 911<br>
+            Non-Emergency: (540) 636-3830</p>
+            
+            <p><strong>Linden Volunteer Fire Department:</strong><br>
+            Emergency: 911<br>
+            Non-Emergency: (540) 635-6759</p>
+            
+            <h3>LAW ENFORCEMENT</h3>
+            <p><strong>Warren County Sheriff's Office:</strong><br>
+            Emergency: 911<br>
+            Non-Emergency: (540) 635-4128</p>
+            
+            <p><strong>Virginia State Police:</strong><br>
+            Emergency: 911<br>
+            Non-Emergency: (540) 829-7771</p>
+            
+            <h3>MEDICAL SERVICES</h3>
+            <p><strong>Warren Memorial Hospital:</strong><br>
+            Emergency Room: (540) 636-0300<br>
+            Main Number: (540) 636-0300</p>
+            
+            <p><strong>Poison Control Center:</strong><br>
+            1-800-222-1222</p>
+            
+            <div class="page-header">
+                <h3 class="page-title">COMMUNITY RESOURCES</h3>
+            </div>
+            
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://pfst.cf2.poecdn.net/base/image/5a98f2e228668863a785c40ad446f3df3a722a8610ebebcd0f6f4e4c60c851d2?w=1170&amp;h=880" alt="Scenic Mountain View" class="gallery-img">
+                    <div class="gallery-caption">Breathtaking views from Blue Mountain</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://pfst.cf2.poecdn.net/base/image/3437c8697485e62fff2dedb0268fb7c59e61ec0ad627a44dc486251760394339?w=640&amp;h=428" alt="Modern Cabin with Glass Windows" class="gallery-img">
+                    <div class="gallery-caption">Modern architecture with stunning views</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://pfst.cf2.poecdn.net/base/image/466f185ee00b0bdf71b1717db6d8f9a0451c7ef7c3c1a81bc2c9dfd6ae3529b3?w=1170&amp;h=757" alt="Mountain Home with Deck" class="gallery-img">
+                    <div class="gallery-caption">Elevated mountain homes with expansive decks</div>
+                </div>
+            </div>
+            
+            <div class="page-footer">
+                <div>BMPOA Community Guide</div>
+            </div>
+        </div>
+        
+        <!-- Conclusion Page -->
+        <div class="paper-page">
+            <div class="page-header text-center">
+                <h2 class="page-title">CONCLUSION</h2>
+            </div>
+            
+            <p>We hope this welcome booklet helps you settle into life on Blue Mountain. Our community thrives when residents actively participate and communicate with one another. We encourage you to attend Board meetings, join a committee, or simply get to know your neighbors.</p>
+            
+            <p>Living in Blue Mountain offers a unique combination of natural beauty, privacy, and community. The spectacular views, abundant wildlife, and peaceful environment make our mountain home special. While mountain living presents certain challenges – from winter weather to wildfire preparedness – these are balanced by the rewards of our magnificent setting and supportive community.</p>
+            
+            <div class="prominent-text">
+                "Welcome to the mountain!"
+            </div>
+            
+            <div style="margin-top: var(--space-8); margin-bottom: var(--space-8); text-align: center;">
+                <h3>ACKNOWLEDGMENTS</h3>
+                
+                <p>This welcome booklet was created through the efforts of many dedicated community members who contributed their knowledge, time, and expertise. Special thanks to the BMPOA Board of Directors, Communications Committee, Roads Committee, Architectural Review Committee, Public Safety Committee, and all community members who provided information and feedback.</p>
+            </div>
+            
+            <hr style="border: 0; height: 1px; background-color: var(--neutral-300); margin: var(--space-5) 0;">
+            
+            <div style="text-align: center; margin-top: var(--space-5);">
+                <p><strong>Blue Mountain Property Owners Association</strong><br>
+                P.O. Box 114 • Linden, VA 22642<br>
+                www.bmpoa.org</p>
+            </div>
+            
+            <div class="page-footer">
+                <div>BMPOA Community Guide</div>
+            </div>
+        </div>
+    </div>
+    
+    <button id="theme-toggle" class="theme-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    </button>
+    
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            
+            // Update icon
+            if (document.body.classList.contains('dark')) {
+                themeToggle.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                `;
+            } else {
+                themeToggle.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                `;
+            }
+        });
+        
+        // Check if user prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark');
+            themeToggle.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            `;
+        }
+        
+        // Listen for changes in color scheme
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.body.classList.add('dark');
+                themeToggle.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                `;
+            } else {
+                document.body.classList.remove('dark');
+                themeToggle.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                `;
+            }
+        });
+    </script>
+
+
+</body></html>

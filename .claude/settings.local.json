@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(vercel:*)",
+      "Bash(grep:*)",
+      "Bash(mkdir:*)",
+      "Bash(npm run pdf:*)",
+      "Bash(ls:*)",
+      "Bash(npm run generate-pdf:*)",
+      "Bash(npm run:*)",
+      "Bash(open output/BMPOA-Guide.pdf)",
+      "Bash(chmod:*)",
+      "Bash(cat:*)",
+      "Bash(/opt/homebrew/bin/tailwindcss --version)",
+      "Bash(npm uninstall:*)",
+      "Bash(node test-each-component.js)",
+      "Bash(rm:*)",
+      "Bash(node test-cover-simple.js)",
+      "Bash(node:*)",
+      "Bash(mv:*)",
+      "Bash(rg:*)",
+      "Bash(find:*)"
+    ],
+    "deny": []
+  }
+}

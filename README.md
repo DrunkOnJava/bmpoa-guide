@@ -1,4 +1,4 @@
-# BMPOA Community Guide
+# BMPOA Community Guide - PDF Generation Project
 
 [![Version](https://img.shields.io/badge/version-1.1.1-blue.svg)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
@@ -6,26 +6,29 @@
 
 ## 📘 Overview
 
-The Blue Mountain Property Owners Association (BMPOA) Community Guide is a comprehensive resource for new and existing residents of the Blue Mountain community in Linden, Virginia. This digital guide is designed to be viewed online and printed for distribution.
+The Blue Mountain Property Owners Association (BMPOA) Community Guide is a comprehensive 95-page PDF document for residents of the Blue Mountain community in Linden, Virginia. This project uses React with @react-pdf/renderer and Tailwind CSS to generate a professionally formatted PDF with strict pagination and print optimization.
 
-### Features
+### Key Features
 
-- 📱 **Responsive Design** - Works on desktop, tablet, and mobile devices
-- 🖨️ **Print-Ready** - Optimized for high-quality printing
-- ♿ **Accessible** - WCAG compliant with screen reader support
-- 🌙 **Dark Mode** - Automatic dark mode for comfortable reading
-- 🚀 **Fast Loading** - Progressive loading with visual feedback
-- 🛠️ **Developer Friendly** - Comprehensive tooling and documentation
+- 📄 **React PDF Generation** - Uses @react-pdf/renderer for precise PDF control
+- 🎨 **Tailwind CSS Styling** - Component-based styling with Tailwind utilities
+- 📖 **Two-Pass TOC Generation** - Accurate table of contents with page numbers
+- 🖼️ **Optimized Images** - 17 pre-optimized images for fast rendering
+- 📐 **Strict Pagination** - Ensures proper page breaks and formatting
+- 🏗️ **Modular Architecture** - Each section is a separate React component
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
-- Python 3.x or any web server
-- Modern web browser (Chrome, Firefox, Safari, Edge)
+- Node.js 16+ and npm
 - Git (for cloning the repository)
+- Poppler utilities (for PNG generation):
+  - macOS: `brew install poppler`
+  - Ubuntu/Debian: `sudo apt-get install poppler-utils`
+  - RHEL/CentOS: `sudo yum install poppler-utils`
 
-### Installation
+### Installation & Build
 
 1. **Clone the repository**:
    ```bash
@@ -33,200 +36,405 @@ The Blue Mountain Property Owners Association (BMPOA) Community Guide is a compr
    cd bmpoa-guide
    ```
 
-2. **Make scripts executable** (first time only):
+2. **Install dependencies**:
    ```bash
-   chmod +x scripts/*.sh
+   npm install
    ```
 
-3. **Start the local server**:
+3. **Generate the PDF**:
    ```bash
-   ./scripts/serve.sh
+   npm run pdf
    ```
 
-4. **Open in browser**:
-   - The script will automatically open your browser
-   - Or manually visit: http://localhost:8080
+4. **Find your build output**:
+   - Latest build: `output/builds/[timestamp]/`
+   - PDF: `output/builds/[timestamp]/BMPOA-Guide.pdf`
+   - View builds: `npm run builds`
 
-### Building for Print
+## 🏗️ How It Works
 
-1. **Run the build script**:
-   ```bash
-   ./scripts/build.sh
-   ```
+### PDF Generation Process
 
-2. **Open the print version**:
-   - Open `build/bmpoa-guide-print.html` in your browser
-   - Press Ctrl+P (or Cmd+P on Mac) to print
+The project uses a sophisticated two-pass generation process:
+
+1. **Asset Scanning** (`scripts/scan-assets.js`)
+   - Scans the `images/optimized/` directory
+   - Creates `src/assetMap.json` mapping image names to paths
+   - Ensures all images are available for components
+
+2. **Preliminary TOC Generation** (`scripts/generate-prelim-toc.js`)
+   - Renders the entire document without page numbers
+   - Counts actual pages for each section
+   - Saves page mapping to `pageNumberMap.json`
+
+3. **Final PDF Generation** (`generate-with-toc.js`)
+   - Reads the page number mapping
+   - Renders the final PDF with accurate TOC page references
+   - Outputs to `output/BMPOA-Guide.pdf`
+
+4. **PNG Screenshot Generation** (`scripts/generate-pdf-screenshots.js`)
+   - Automatically runs after PDF creation
+   - Uses `pdftoppm` to convert each PDF page to PNG
+   - Saves to `output/PDF-Screenshots/` with 150 DPI resolution
+   - Overwrites existing screenshots on each build
+
+### Layout System Overview
+
+The project offers multiple layout systems for different needs:
+
+1. **Classic Layouts** - Original single-column layouts with standard spacing
+2. **Dense Layouts** - Two-column layouts with sidebars for maximum content density
+3. **Advanced Layouts** - Professional patterns inspired by ComponentGarden examples:
+   - Card grids for services and features
+   - Hierarchical lists for complex information
+   - Timelines for processes and history
+   - Feature boxes with icons
+   - Professional quote styling
+   - Badge elements for labels and metadata
+
+See `PageTemplates.md` for complete documentation of all available layouts.
+
+### Architecture Overview
+
+```
+Core Components:
+├── src/generate-pdf.js         # Main PDF generation logic
+├── src/FullAppNoJSX.js        # Root component assembling all pages
+├── config.js                   # Theme colors and page definitions
+└── src/components/            # Individual page components
+    ├── CoverPageNoJSX.js
+    ├── TOCPageNoJSX.js        # Table of Contents with dynamic page numbers
+    ├── IntroductionPageNoJSX.js
+    ├── GovernancePageNoJSX-Enhanced.js
+    ├── MountainHomePageNoJSX.js
+    ├── WoodChippingPageNoJSX.js
+    ├── FireSafetyPageNoJSX-Enhanced.js
+    ├── CommunityServicesPageNoJSX-Enhanced.js
+    ├── DeerLakePageNoJSX.js
+    ├── LodgePageNoJSX.js
+    ├── CommunicationPageNoJSX.js
+    ├── ContactsPageNoJSX.js
+    ├── NaturalAttractionsPageNoJSX.js
+    ├── ConstructionPageNoJSX.js
+    ├── BearSafetyPageNoJSX.js
+    └── BackCoverPageNoJSX.js
+```
+
+### Component Pattern
+
+All components follow a similar pattern, returning arrays of Page elements:
+
+```javascript
+export default function SectionNamePageNoJSX({ pageNumberMap }) {
+  return [
+    e(Page, { size: "LETTER", style: pageStyles },
+      e(View, { style: styles.page },
+        // Page content here
+      )
+    ),
+    // Additional pages if needed
+  ];
+}
+```
+
+### Advanced Layout Components (NEW)
+
+The project now includes advanced layout components inspired by professional document design:
+
+#### Available Advanced Components:
+- **CardGrid**: 2x2 or 3x2 grid layouts for services, features, or contact cards
+- **HierarchicalList**: Multi-level lists with proper indentation and styling
+- **Timeline**: Visual timeline for historical events or processes
+- **FeatureBox**: Highlighted boxes with icons for key features
+- **SidebarBox**: Colored sidebar boxes for tips, warnings, or highlights
+- **QuoteBox**: Professional quote styling with attribution
+- **Badge**: Corner badges or inline badges for labels
+- **MixedLayout**: Container for combining different layout patterns
+- **CoverHeader**: Professional header badges for cover pages
+- **TOCEntry**: Structured table of contents entries with hierarchy
+
+See `src/components/AdvancedLayoutComponents.js` for implementation details and `src/components/ExampleAdvancedLayouts.js` for usage examples.
+
+### Styling Approach
+
+- Uses inline styles with React PDF's StyleSheet API
+- Tailwind-inspired utility classes converted to React PDF styles
+- Consistent theme colors from `config.js`
+- Responsive layouts that work well in PDF format
 
 ## 📁 Project Structure
 
 ```
 bmpoa-guide/
-├── index.html              # Main entry point for web viewing
-├── css/
-│   └── styles.css         # All styling for the guide
-├── js/
-│   └── load-sections.js   # Dynamic section loading
-├── images/                # All images used in the guide
-├── sections/              # Individual HTML files for each section
-│   ├── cover-page.html
-│   ├── introduction-page.html
-│   ├── table-of-contents.html
-│   ├── section-1-governance.html
-│   ├── section-2-mountain-home.html
-│   ├── section-3-wood-chipping.html
-│   ├── section-4-fire-safety.html
-│   ├── section-5-community-services.html
-│   ├── section-6-deer-lake.html
-│   ├── section-7-lodge.html
-│   ├── section-8-communication.html
-│   ├── section-9-contacts.html
-│   ├── section-10-natural-attractions.html
-│   ├── section-11-construction.html
-│   ├── section-12-bear-safety.html
-│   └── back-cover.html
+├── package.json           # Node.js dependencies and scripts
+├── config.js             # Theme configuration and page definitions
+├── generate-with-toc.js  # Final PDF generation entry point
+├── tailwind.config.js    # Tailwind CSS configuration
+├── PageTemplates.md      # Single source of truth for layout designs
+├── src/
+│   ├── generate-pdf.js   # Core PDF generation logic
+│   ├── FullAppNoJSX.js  # Main app component
+│   ├── assetMap.json    # Generated image asset mapping
+│   ├── theme.js         # Theme utilities
+│   ├── imageStyles.js   # Image styling utilities
+│   └── components/      # React components for each section
+│       ├── EnhancedLayoutComponents.js  # Dense layout components
+│       ├── AdvancedLayoutComponents.js  # Professional patterns
+│       ├── SectionDivider.js           # Standardized dividers
+│       └── [Section]PageNoJSX.js       # Individual sections
 ├── scripts/
-│   ├── serve.sh           # Local development server
-│   └── build.sh           # Build script for print version
-└── build/                 # Generated files for printing
+│   ├── scan-assets.js   # Image asset scanner
+│   ├── generate-prelim-toc.js  # TOC page number calculator
+│   └── optimize-images.js      # Image optimization utility
+├── images/
+│   └── optimized/       # Pre-optimized images (17 files)
+├── css/
+│   ├── input.css        # Tailwind CSS input
+│   └── tailwind-output.css  # Generated Tailwind output
+├── ComponentFarm/       # Layout inspiration library
+│   └── ComponentGarden/ # Professional layout examples
+├── output/              # Generated output
+│   ├── BMPOA-Guide.pdf  # Latest PDF (legacy location)
+│   └── builds/          # Timestamped builds
+│       └── YYYY-MM-DDTHH-MM-SS/
+│           ├── BMPOA-Guide.pdf
+│           ├── png-highres/     # High-quality PNGs
+│           ├── jpg-efficient/   # Efficient JPEGs
+│           └── png-renamed/     # Renamed files
+└── Archive/             # Archived files from previous implementations
+    ├── html-implementation/    # Previous HTML-based approach
+    ├── unused-components/      # Alternative component versions
+    ├── test-files/            # Test and development files
+    ├── documentation/         # Additional docs
+    └── alternative-implementations/  # Other approaches
 ```
 
-## 🖨️ Printing Instructions
+## 📋 Available Scripts
 
-### Quick Print
-
-1. Run `./scripts/build.sh` to create print version
-2. Open `build/bmpoa-guide-print.html` in Chrome/Firefox
-3. Press Ctrl+P (or Cmd+P on Mac)
-4. Use recommended settings below
-
-### Recommended Settings
-
-1. **Paper Size**: Letter (8.5" × 11")
-2. **Margins**: None or Minimum
-3. **Scale**: Fit to page width
-4. **Background Graphics**: ✅ Enabled (important for colored boxes)
-5. **Page Orientation**: Portrait
-6. **Print Quality**: High/Best
-
-### Print Options
-
-- **Digital PDF**: Save as PDF for digital distribution
-- **Professional Printing**: Export as PDF and send to print shop
-- **Home Printing**: Use high-quality paper (24-28 lb) for best results
-
-### Deployment
-
-For production deployment:
+### Main Build Command
 ```bash
-./scripts/deploy.sh [web|pdf|both]
+npm run pdf
+```
+This runs the complete PDF generation process:
+1. Scans and maps image assets
+2. Generates preliminary TOC with page counting
+3. Creates final PDF with accurate page references
+4. Creates timestamped build folder with:
+   - PDF file
+   - High-resolution PNG screenshots (150 DPI)
+   - Efficient JPEG versions (50% size)
+5. Automatically analyzes pages for content and layout issues
+
+**New Build System**: Each build is saved in `output/builds/YYYY-MM-DDTHH-MM-SS/` to preserve your work. See [BUILD-SYSTEM.md](BUILD-SYSTEM.md) for details.
+
+**Style Analysis**: Advanced style guide compliance checking with scoring. See [STYLE-ANALYSIS.md](STYLE-ANALYSIS.md) for details.
+
+### Build Management & Analysis
+```bash
+npm run builds              # List all builds with details
+npm run builds:latest       # Show latest build info
+npm run builds:clean        # Remove old builds (keeps 3 most recent)
+npm run builds:analyze      # Run/resume content analysis on latest build
+npm run build:status        # Check status of all automated processes
+npm run build:monitor       # Launch real-time activity monitor (new window)
+npm run build:restart       # Restart failed analysis processes
 ```
 
-This creates a deployment package with all necessary files.
+### Automated Analysis Features (NEW)
+
+The build system now includes **two automated Claude analysis bots** that run after PDF generation:
+
+1. **Content Analysis Bot** (Claude 3.5 Haiku)
+   - Analyzes each page for content and layout issues
+   - Generates descriptive filenames with issue flags
+   - Identifies: BLANK, ORPHAN, WIDOW, MISALIGNED, OVERFLOW, CUTOFF, etc.
+   - Output: `suggested-filenames.txt` and `layout-issues.txt`
+
+2. **Style Analysis Bot** (Claude 3.5 Sonnet)
+   - Deep analysis against the enhanced style guide
+   - Scores each page on professionalism and presentation
+   - Identifies critical/major/minor violations with specific fixes
+   - **NEW**: Outputs results iteratively as each page is analyzed
+   - Output: `style-analysis-report.md` and `style-violations.json`
+
+Both bots run automatically in the background after PDF generation. Monitor with:
+```bash
+npm run build:monitor    # Real-time activity monitor
+npm run build:status     # Quick status check
+```
+
+### Style Analysis Scripts
+```bash
+npm run style:analyze       # Run complete style guide analysis
+npm run style:extract       # Extract React/Tailwind suggestions
+npm run style:report        # Generate HTML report
+npm run screenshots:rename  # Auto-rename PDF screenshots
+```
+
+### Individual Scripts
+```bash
+npm run scan:assets         # Scan images and create asset map
+npm run generate:pdf:pre    # Generate preliminary PDF for page counting
+npm run generate:pdf:final  # Generate final PDF with TOC
+npm run build:css          # Build Tailwind CSS (with watch mode)
+npm run build:css:prod     # Build minified Tailwind CSS
+```
 
 ## 🛠️ Development
 
-### Development Scripts
+### 📋 Current Development Plan
 
-The project includes several utility scripts in the `scripts/` directory:
+**IMPORTANT**: Before making any changes to this project, please refer to:
+- **[ProjectPlan.txt](ProjectPlan.txt)** - Comprehensive enhancement plan for pages 27-95
+- **[CLAUDE.md](CLAUDE.md)** - Detailed technical guidance for AI assistants
+- **[EnhancementPlanPages1to26.txt](EnhancementPlanPages1to26.txt)** - Completed enhancements (pages 1-26)
+- **[EnhancementPlanPages27to95.txt](EnhancementPlanPages27to95.txt)** - Source enhancement requirements
 
-#### Core Scripts
-- **`serve.sh`** - Starts local development server
-- **`build.sh`** - Builds the print-ready version
-- **`deploy.sh`** - Prepares deployment packages for web/PDF
+The project is currently in **Phase 1** of a 4-phase enhancement plan. See ProjectPlan.txt for:
+- Detailed task breakdown by phase and priority
+- Global style guidelines and consistency requirements
+- Implementation notes and success metrics
+- ~73 specific enhancement tasks to be completed
 
-#### Utility Scripts
-- **`validate.sh`** - Validates the guide for common issues
-- **`optimize-images.sh`** - Checks image sizes and optimization
-- **`image-audit.sh`** - Audits image references and finds missing files
+### 🎨 Enhanced Style Guide (NEW)
+
+**Important**: The project now uses an enhanced dense layout system to maximize information per page:
+
+**CRITICAL DESIGN DECISION**: Section dividers must be KEPT. Do not remove or merge section divider pages with content pages. Each section should maintain its full-page divider for visual separation and navigation clarity.
+
+### Design Resources
+- **[PageTemplates.md](PageTemplates.md)** - Single source of truth for all page layout designs and styling options
+- **[enhanced-style-guide.md](enhanced-style-guide.md)** - Complete specifications for dense layouts
+- **[page-density-recommendations.md](page-density-recommendations.md)** - Specific implementation guidance
+
+### Component Libraries
+- **Enhanced Components**: `src/components/EnhancedLayoutComponents.js` - Dense layout components
+- **Advanced Components**: `src/components/AdvancedLayoutComponents.js` - Professional layout patterns
+- **Example Implementations**: 
+  - `src/components/ExampleDensePageRefactor.js` - Dense layout examples
+  - `src/components/ExampleAdvancedLayouts.js` - Advanced layout examples
+
+### Layout Options
+1. **Classic Layouts**: Single column, traditional spacing
+2. **Dense Layouts**: Two-column with sidebars, maximized content
+3. **Advanced Layouts**: Card grids, timelines, hierarchical lists
+4. **Mixed Layouts**: Combination of different patterns on same page
+
+Key targets:
+- 85-90% page space utilization (vs current ~60%)
+- Two-column layouts with sidebars
+- 25-30% reduction in total page count
+- Compact tables, lists, and spacing throughout
 
 ### Adding New Sections
 
-1. Create a new HTML file in `sections/`
-2. Follow the existing section template structure
-3. Add the section to `index.html` and `js/load-sections.js`
-4. Run `./scripts/validate.sh` to check for issues
+1. Create a new component in `src/components/`
+2. **Use the enhanced layout components** for dense, professional layouts:
+   ```javascript
+   import React from 'react';
+   import { Page, View, Text, StyleSheet } from '@react-pdf/renderer';
+   import {
+     TwoColumnLayout,
+     QuickFactsBox,
+     InfoBox,
+     CompactTable,
+     DenseText,
+     CompactSectionHeader
+   } from './EnhancedLayoutComponents';
+   
+   export default function NewSectionPageNoJSX({ pageNumberMap }) {
+     const e = React.createElement;
+     
+     // Create sidebar content
+     const sidebarContent = [
+       e(QuickFactsBox, { facts: [...] }),
+       e(InfoBox, { title: 'Hours' }, ...)
+     ];
+     
+     return [
+       e(Page, { size: "LETTER", style: { padding: '0.75in' } },
+         e(TwoColumnLayout, { sidebarContent },
+           // Main content with dense spacing
+         )
+       )
+     ];
+   }
+   ```
+3. Follow the pattern in `ExampleDensePageRefactor.js` for optimal layouts
+3. Import and add it to `src/FullAppNoJSX.js`
+4. Add the section to `config.js` pages array
+5. Run `npm run pdf` to test
 
-### Modifying Styles
+### Working with Images
 
-- All styles are in `css/styles.css`
-- Uses CSS variables for consistent theming
-- Includes print-specific styles
-- Supports dark mode for digital viewing
-- Accessibility features (high contrast, reduced motion)
+1. Add optimized images to `images/optimized/`
+2. Run `npm run scan:assets` to update the asset map
+3. Import and use in components:
+   ```javascript
+   import assetMap from '../assetMap.json';
+   import { Image } from '@react-pdf/renderer';
+   
+   e(Image, { 
+     src: assetMap['your-image.jpg'], 
+     style: styles.image 
+   })
+   ```
 
-### Adding Images
+### Styling Guidelines
 
-1. Add images to the `images/` directory
-2. Use relative paths in HTML: `src="images/filename.jpg"`
-3. Optimize images for web (< 1MB recommended)
-4. Run `./scripts/optimize-images.sh` to check sizes
+- Use React PDF's StyleSheet API for all styles
+- Reference theme colors from `config.js`
+- Common style patterns are in `src/theme.js`
+- Image styling utilities in `src/imageStyles.js`
 
-## 📋 Content Guidelines
+## 🎨 Component Features
 
-### Section Structure
+### Enhanced Components
 
-Each section should follow this pattern:
+Some sections use enhanced versions with additional features:
+- `GovernancePageNoJSX-Enhanced.js` - Multi-page governance structure
+- `FireSafetyPageNoJSX-Enhanced.js` - Detailed fire safety guidelines
+- `CommunityServicesPageNoJSX-Enhanced.js` - Comprehensive services listing
 
-```html
-<div class="page">
-    <div class="content-page">
-        <div class="page-header">
-            <h2 class="page-title">Section Title</h2>
-        </div>
-        <div class="content-body">
-            <!-- Content here -->
-        </div>
-        <div class="page-footer">
-            <div>BMPOA Community Guide</div>
-            <div class="page-number">XX</div>
-        </div>
-    </div>
-</div>
-```
+### Common Design Patterns
 
-### Typography
-
-- **Headings**: Use h1-h6 consistently
-- **Body Text**: Keep paragraphs concise
-- **Lists**: Use for easy scanning
-- **Emphasis**: Use info boxes for important content
+- **Page Headers**: Consistent section headers with styling
+- **Info Boxes**: Highlighted important information
+- **Contact Cards**: Structured contact information display
+- **Image Captions**: Consistent image presentation
+- **Multi-column Layouts**: For lists and side-by-side content
 
 ## 🐛 Troubleshooting
 
-### Quick Diagnostics
+### PDF Generation Issues
 
-Run the validation script to check for common issues:
+**Build fails with module errors:**
 ```bash
-./scripts/validate.sh
+rm -rf node_modules package-lock.json
+npm install
+npm run pdf
 ```
 
-### Server Won't Start
+**Images not appearing in PDF:**
+- Ensure images are in `images/optimized/`
+- Run `npm run scan:assets` to update mapping
+- Check console for image loading errors
 
-- Ensure Python 3 is installed: `python3 --version`
-- Try alternate port: Edit `PORT=8080` in `serve.sh`
-- Check for port conflicts: `lsof -i :8080`
+**TOC page numbers incorrect:**
+- Delete `pageNumberMap.json`
+- Run `npm run pdf` again for fresh generation
 
-### Images Not Loading
+**Memory issues with large PDFs:**
+```bash
+NODE_OPTIONS="--max-old-space-size=4096" npm run pdf
+```
 
-- Run `./scripts/image-audit.sh` to find missing images
-- Check image filenames (case-sensitive)
-- Verify images exist in `images/` directory
-- Clear browser cache
+### Development Tips
 
-### Print Layout Issues
-
-- Use Chrome or Firefox for best results
-- Enable background graphics in print settings
-- Check for CSS print media queries
-- Ensure all sections loaded before printing
-
-### JavaScript Errors
-
-- Check browser console for errors
-- Verify all section files exist
-- Clear cache and reload
-- Loading indicator shows progress
+- The two-pass generation ensures accurate page numbers
+- Each component returns an array of pages
+- Use `console.log` in components for debugging
+- Check `output/` folder for the generated PDF
 
 ## 📞 Support
 
@@ -234,29 +442,17 @@ For questions about the guide content:
 - Email: secretary@bmpoa.org
 - Website: www.bmpoa.org
 
-For technical issues with this digital guide:
+For technical issues with PDF generation:
 - Check the troubleshooting section above
-- Review browser console for errors
+- Review console output for detailed error messages
+- Ensure all dependencies are properly installed
 
-## 🔧 Advanced Features
+## 🚀 Performance
 
-### Accessibility
-
-- Full keyboard navigation support
-- Screen reader announcements
-- High contrast mode support
-- Reduced motion preferences respected
-
-### Performance
-
-- Progressive section loading with visual feedback
-- Optimized image loading
-- Print preparation ensures all content loaded
-- Performance metrics logged to console
-
-### URL Parameters
-
-- `?print=true` - Auto-opens print dialog after loading
+- **Generation Time**: ~2-3 seconds for 95-page PDF
+- **File Size**: ~3.4MB with 17 optimized images
+- **Memory Usage**: Typically under 1GB
+- **Image Optimization**: Pre-optimized for fast rendering
 
 ## 📄 License
 

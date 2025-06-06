@@ -1,0 +1,393 @@
+/* Print-Optimized Styles for BMPOA Guide */
+
+/* ===== CSS VARIABLES FOR PRINT ===== */
+:root {
+    /* Page dimensions with safe margins */
+    --print-page-width: 8.5in;
+    --print-page-height: 11in;
+    --print-margin-top: 0.75in;
+    --print-margin-bottom: 0.75in;
+    --print-margin-left: 0.75in;
+    --print-margin-right: 0.75in;
+    --print-content-width: 7in;
+    --print-content-height: 9.5in;
+    
+    /* Typography for print */
+    --print-base-font-size: 11pt;
+    --print-line-height: 1.5;
+    
+    /* Safe spacing */
+    --print-paragraph-spacing: 0.75em;
+    --print-heading-spacing: 1em;
+}
+
+/* ===== PRINT MEDIA QUERIES ===== */
+@media print {
+    /* Page setup */
+    @page {
+        size: letter portrait;
+        margin: 0.75in;
+        
+        /* Header and footer in page margins */
+        @bottom-center {
+            content: counter(page);
+            font-size: 10pt;
+        }
+    }
+    
+    /* Reset body for print */
+    body {
+        margin: 0;
+        padding: 0;
+        background: white;
+        font-size: var(--print-base-font-size);
+        line-height: var(--print-line-height);
+        color: black;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    
+    /* Hide screen-only elements */
+    .navigation-bar,
+    .screen-only,
+    button,
+    .no-print {
+        display: none !important;
+    }
+    
+    /* ===== PAGE CONTAINER FIXES ===== */
+    .page {
+        width: auto !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        page-break-after: always;
+        page-break-inside: avoid;
+        position: relative;
+        overflow: visible !important; /* Critical for print */
+    }
+    
+    .page-content {
+        padding: 0 !important;
+        margin: 0 !important;
+        height: auto !important;
+        overflow: visible !important;
+        position: relative;
+    }
+    
+    .content-page {
+        padding: 0 !important;
+        height: auto !important;
+        min-height: 0 !important;
+        position: relative;
+    }
+    
+    /* ===== TYPOGRAPHY OPTIMIZATION ===== */
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        page-break-inside: avoid;
+        margin-top: var(--print-heading-spacing);
+        margin-bottom: 0.5em;
+        orphans: 3;
+        widows: 3;
+    }
+    
+    /* Keep headings with following content */
+    h1 + *,
+    h2 + *,
+    h3 + *,
+    h4 + *,
+    h5 + *,
+    h6 + * {
+        page-break-before: avoid;
+    }
+    
+    /* Paragraph optimization */
+    p {
+        margin-bottom: var(--print-paragraph-spacing);
+        orphans: 3;
+        widows: 3;
+        text-align: left; /* Better for print readability */
+        hyphens: manual; /* Avoid automatic hyphenation issues */
+    }
+    
+    /* List optimization */
+    ul, ol {
+        page-break-inside: avoid;
+        margin-bottom: var(--print-paragraph-spacing);
+    }
+    
+    li {
+        page-break-inside: avoid;
+        margin-bottom: 0.25em;
+    }
+    
+    /* Keep list items together */
+    li:last-child {
+        page-break-after: avoid;
+    }
+    
+    /* ===== SPECIAL CONTAINERS ===== */
+    .highlight-box,
+    .alert-box,
+    .info-box,
+    .checklist-container,
+    .contact-card,
+    .winery-card,
+    .trail-card {
+        page-break-inside: avoid;
+        margin: 1em 0;
+        padding: 0.75em !important;
+        border-width: 2pt !important;
+        background-color: #f5f5f5 !important;
+    }
+    
+    /* ===== TWO-COLUMN LAYOUT FIX ===== */
+    .two-column {
+        column-count: 1 !important; /* Single column for print */
+        column-gap: 0 !important;
+        page-break-inside: auto;
+    }
+    
+    /* ===== TABLE FIXES ===== */
+    table {
+        page-break-inside: avoid;
+        border-collapse: collapse;
+        width: 100%;
+        margin: 1em 0;
+    }
+    
+    thead {
+        display: table-header-group;
+    }
+    
+    tr {
+        page-break-inside: avoid;
+    }
+    
+    /* ===== IMAGE HANDLING ===== */
+    img,
+    .page-image {
+        max-width: 100% !important;
+        height: auto !important;
+        page-break-inside: avoid;
+        page-break-after: avoid;
+        display: block;
+        margin: 1em auto;
+    }
+    
+    /* Keep images with captions */
+    .image-with-caption {
+        page-break-inside: avoid;
+    }
+    
+    .image-caption {
+        page-break-before: avoid;
+        margin-top: 0.5em;
+        margin-bottom: 1em;
+    }
+    
+    /* ===== COVER PAGE OPTIMIZATION ===== */
+    .cover-page {
+        page-break-after: always;
+        page-break-inside: avoid;
+        height: auto !important;
+        min-height: 9in;
+        padding: 0 !important;
+    }
+    
+    .cover-with-background {
+        background-size: cover !important;
+        background-position: center !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    
+    .cover-overlay {
+        padding: 1in !important;
+        height: auto !important;
+        min-height: 9in;
+    }
+    
+    /* ===== SECTION DIVIDERS ===== */
+    .section-divider {
+        page-break-after: always;
+        page-break-inside: avoid;
+        height: auto !important;
+        min-height: 9in;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2in 1in;
+    }
+    
+    .section-number {
+        font-size: 48pt !important;
+        margin-bottom: 0.5em;
+    }
+    
+    .section-title {
+        font-size: 24pt !important;
+        margin-bottom: 0.5em;
+    }
+    
+    /* ===== PAGE FOOTER POSITIONING ===== */
+    .page-footer {
+        position: relative !important;
+        bottom: auto !important;
+        margin-top: 2em;
+        padding-top: 1em;
+        border-top: 1pt solid #ccc;
+        page-break-inside: avoid;
+    }
+    
+    /* ===== TABLE OF CONTENTS ===== */
+    .toc-item {
+        page-break-inside: avoid;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5em;
+        padding-bottom: 0.25em;
+        border-bottom: 1pt dotted #ccc;
+    }
+    
+    .toc-section {
+        page-break-inside: avoid;
+        margin-bottom: 1.5em;
+    }
+    
+    /* ===== OVERFLOW PREVENTION ===== */
+    * {
+        max-width: 100% !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+    
+    /* Long URLs or text */
+    a {
+        word-break: break-all;
+    }
+    
+    /* ===== COLOR OPTIMIZATION ===== */
+    /* Convert colors for better print quality */
+    .text-primary { color: black !important; }
+    .text-secondary { color: #333 !important; }
+    .text-accent { color: #666 !important; }
+    .text-muted { color: #999 !important; }
+    
+    /* Borders and backgrounds */
+    .highlight-box { 
+        border-color: #333 !important; 
+        background-color: #f0f0f0 !important;
+    }
+    
+    .alert-box { 
+        border-color: #666 !important; 
+        background-color: #f5f5f5 !important;
+    }
+    
+    .info-box { 
+        border-color: #999 !important; 
+        background-color: #fafafa !important;
+    }
+    
+    /* ===== CHECKLIST OPTIMIZATION ===== */
+    .checklist-item {
+        page-break-inside: avoid;
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 0.5em;
+    }
+    
+    .checklist-item:before {
+        content: "□ ";
+        color: black;
+        font-size: 14pt;
+        margin-right: 0.5em;
+        flex-shrink: 0;
+    }
+    
+    /* ===== CONTACT CARDS ===== */
+    .contact-card {
+        page-break-inside: avoid;
+        border: 1pt solid #333 !important;
+        padding: 0.5em !important;
+        margin-bottom: 0.75em;
+        background: white !important;
+    }
+    
+    /* ===== CONTINUATION NOTICES ===== */
+    .continuation-notice {
+        font-style: italic;
+        color: #666;
+        margin-bottom: 0.5em;
+        font-size: 9pt;
+        page-break-after: avoid;
+    }
+    
+    /* ===== EMERGENCY FIXES ===== */
+    /* Prevent content from being cut off */
+    .content-body {
+        overflow: visible !important;
+        height: auto !important;
+        min-height: 0 !important;
+    }
+    
+    /* Force page breaks where needed */
+    .force-page-break {
+        page-break-before: always;
+    }
+    
+    /* Keep content together */
+    .keep-together {
+        page-break-inside: avoid;
+    }
+    
+    /* ===== BACK COVER ===== */
+    .back-cover {
+        page-break-before: always;
+        page-break-inside: avoid;
+        text-align: center;
+        padding: 2in 1in;
+    }
+}
+
+/* ===== UTILITY CLASSES FOR PRINT ===== */
+@media print {
+    .print-only {
+        display: block !important;
+    }
+    
+    .print-page-break {
+        page-break-after: always;
+    }
+    
+    .print-no-break {
+        page-break-inside: avoid;
+    }
+    
+    .print-keep-with-next {
+        page-break-after: avoid;
+    }
+    
+    .print-column-avoid {
+        column-break-inside: avoid;
+        break-inside: avoid;
+    }
+}
+
+/* ===== DEBUG MODE FOR PRINT PREVIEW ===== */
+@media print and (min-resolution: 300dpi) {
+    /* High-quality print settings */
+    body {
+        font-smoothing: antialiased;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+    }
+    
+    img {
+        image-rendering: high-quality;
+        image-rendering: -webkit-optimize-contrast;
+    }
+}

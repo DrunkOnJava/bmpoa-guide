@@ -1,0 +1,163 @@
+{
+  "projectName": "BMPOA Community Guide",
+  "version": "1.0.0",
+  "description": "Style guide rules for automated page analysis",
+  
+  "typography": {
+    "fonts": {
+      "primary": "System default serif",
+      "headings": "System default sans-serif"
+    },
+    "sizes": {
+      "coverTitle": "48pt",
+      "sectionTitle": "24pt",
+      "subsectionTitle": "18pt",
+      "bodyText": "11pt",
+      "caption": "9pt",
+      "footer": "9pt"
+    },
+    "lineSpacing": {
+      "body": "1.5",
+      "lists": "1.3",
+      "captions": "1.2"
+    }
+  },
+  
+  "colors": {
+    "primary": "#2C5282",
+    "secondary": "#2D3748",
+    "accent": "#38A169",
+    "warning": "#D69E2E",
+    "error": "#E53E3E",
+    "background": "#FFFFFF",
+    "lightGray": "#F7FAFC",
+    "borderGray": "#E2E8F0"
+  },
+  
+  "layout": {
+    "margins": {
+      "top": "0.75in",
+      "bottom": "0.75in",
+      "left": "1in",
+      "right": "1in"
+    },
+    "spacing": {
+      "sectionGap": "24pt",
+      "paragraphGap": "12pt",
+      "itemGap": "6pt",
+      "captionGap": "6pt"
+    },
+    "alignment": {
+      "headers": "left",
+      "body": "justified",
+      "captions": "center",
+      "pageNumbers": "center"
+    }
+  },
+  
+  "components": {
+    "headers": {
+      "rules": [
+        "Must have consistent spacing above and below",
+        "Section headers should be 24pt",
+        "Subsection headers should be 18pt",
+        "No orphaned headers at bottom of page",
+        "Headers must have at least 2 lines of content following"
+      ]
+    },
+    "paragraphs": {
+      "rules": [
+        "No orphaned single lines at page top",
+        "No widow lines at page bottom",
+        "Minimum 3 lines per paragraph",
+        "Consistent indentation for first line",
+        "Proper spacing between paragraphs"
+      ]
+    },
+    "lists": {
+      "rules": [
+        "Consistent bullet style throughout document",
+        "Proper indentation for nested lists",
+        "No split list items across pages",
+        "Consistent spacing between items",
+        "Parallel grammatical structure"
+      ]
+    },
+    "tables": {
+      "rules": [
+        "Header row must be on same page as first data row",
+        "No tables split across pages unless necessary",
+        "Consistent cell padding",
+        "Borders must be complete and aligned",
+        "Alternating row colors for readability"
+      ]
+    },
+    "images": {
+      "rules": [
+        "Centered alignment with proper margins",
+        "Captions must be on same page as image",
+        "Consistent spacing above and below",
+        "No text overflow around images",
+        "Proper resolution (minimum 150 DPI)"
+      ]
+    },
+    "calloutBoxes": {
+      "rules": [
+        "Consistent border style and color",
+        "Proper padding inside boxes",
+        "Clear visual hierarchy",
+        "No content overflow",
+        "Icon alignment with text"
+      ]
+    },
+    "pageNumbers": {
+      "rules": [
+        "Consistent position on all pages",
+        "Not on cover or back cover",
+        "Clear and readable font size",
+        "Proper alignment in footer",
+        "Sequential numbering"
+      ]
+    },
+    "footers": {
+      "rules": [
+        "Consistent across all pages",
+        "Proper spacing from body content",
+        "Contains 'BMPOA Community Guide' text",
+        "Page numbers properly aligned",
+        "No overlap with main content"
+      ]
+    }
+  },
+  
+  "violations": {
+    "critical": [
+      "Content cut off at margins",
+      "Text overflow outside boundaries",
+      "Missing page numbers",
+      "Unreadable text due to size/contrast",
+      "Broken table layouts"
+    ],
+    "major": [
+      "Inconsistent header styles",
+      "Orphaned/widow text",
+      "Misaligned elements",
+      "Inconsistent spacing",
+      "Split tables unnecessarily"
+    ],
+    "minor": [
+      "Slight spacing variations",
+      "Minor alignment issues",
+      "Inconsistent caption styles",
+      "Varied list indentation"
+    ]
+  },
+  
+  "globalRules": [
+    "Maintain consistent visual hierarchy throughout",
+    "Ensure professional appearance suitable for print",
+    "Follow accessibility guidelines for contrast",
+    "Keep consistent spacing patterns",
+    "Maintain brand consistency with BMPOA colors"
+  ]
+}
