@@ -96,4 +96,4 @@ output/style-validation-report.json
 Archive/old-app-versions*/
 Archive/old-docs*/
 Archive/misc*/
-EOF < /dev/null
+EOF < /dev/nulloutput/*.css
