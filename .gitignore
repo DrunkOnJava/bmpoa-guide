@@ -78,3 +78,22 @@ src/assetMap.json
 # Temporary space character file
 " "
 Archive/builds-archive-*/
+
+# Build outputs and montages
+output/*.jpg
+output/*.png
+output/*.html
+output/montage*.jpg
+output/BMPOA-Guide-*.jpg
+output/BMPOA-Guide-*.png
+output/BMPOA-Montage-*.jpg
+output/montages/
+output/BMPOA-Package-*/
+output/migration-report.json
+output/style-validation-report.json
+
+# Archive directories with old versions
+Archive/old-app-versions*/
+Archive/old-docs*/
+Archive/misc*/
+EOF < /dev/null

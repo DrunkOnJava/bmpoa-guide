@@ -97,24 +97,28 @@ function primitiveToHTML(element, context = {}) {
   const { style, children } = props;
   const componentName = type.displayName || type.name || type;
 
-  // Handle different React-PDF components
+  // Handle different React-PDF components (uppercase from primitives)
   switch (componentName) {
     case 'Document':
+    case 'DOCUMENT':
       const resolvedChildren = resolveChildren(children, context);
       return `<div class="document">${resolvedChildren}</div>`;
 
     case 'Page':
+    case 'PAGE':
       context.pageNumber = (context.pageNumber || 0) + 1;
       const pageChildren = resolveChildren(children, context);
       return `<section class="page" id="page-${context.pageNumber}" style="${stylesToCSS(style)}">${pageChildren}</section>`;
 
     case 'View':
+    case 'VIEW':
       const viewStyle = stylesToCSS(style);
       const viewClass = getViewClass(style);
       const viewChildren = resolveChildren(children, context);
       return `<div class="${viewClass}" ${viewStyle ? `style="${viewStyle}"` : ''}>${viewChildren}</div>`;
 
     case 'Text':
+    case 'TEXT':
       const textStyle = stylesToCSS(style);
       const textContent = resolveChildren(children, context);
       // Determine if it's a header based on fontSize
@@ -128,11 +132,13 @@ function primitiveToHTML(element, context = {}) {
       return `<p style="${textStyle}">${textContent}</p>`;
 
     case 'Image':
+    case 'IMAGE':
       const src = props.src || props.source;
       const imagePath = src.startsWith('images/') ? src : `images/${path.basename(src)}`;
       return `<img src="${imagePath}" alt="${props.alt || ''}" style="${stylesToCSS(style)}" />`;
 
     case 'Link':
+    case 'LINK':
       const linkChildren = resolveChildren(children, context);
       return `<a href="${props.src || '#'}" style="${stylesToCSS(style)}">${linkChildren}</a>`;
 
