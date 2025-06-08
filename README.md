@@ -155,6 +155,26 @@ The project now includes advanced layout components inspired by professional doc
 
 See `src/components/AdvancedLayoutComponents.js` for implementation details and `src/components/ExampleAdvancedLayouts.js` for usage examples.
 
+### Extended Layout Components (NEW)
+
+Additional components extracted from ComponentGarden analysis:
+
+#### Available Extended Components:
+- **DecorativeStars**: Visual section separator with star symbols
+- **ImageCaptionBox**: Image container with centered italic captions
+- **FullWidthInfoBox**: Full-width colored boxes for important information
+- **ChecklistBox**: Enhanced checklist with yellow background and green checkmarks
+- **NumberedRequirements**: Formatted numbered lists for requirements
+- **SectionHeaderUnderlined**: Headers with blue underline accent
+- **RiskLevelBox**: Categorized risk information display
+- **ContactCard**: Card-style contact information with icons
+- **BurnBanBox**: Red alert box for fire safety warnings
+- **MeetingPlaces**: Numbered location listings
+- **SeasonalInfo**: Inline seasonal date information
+- **SpecificationList**: Bulleted technical specifications
+
+See `src/components/ExtendedLayoutComponents.js` for implementation details and `src/components/ExampleExtendedLayouts.js` for usage examples.
+
 ### Styling Approach
 
 - Uses inline styles with React PDF's StyleSheet API
@@ -180,7 +200,10 @@ bmpoa-guide/
 │   └── components/      # React components for each section
 │       ├── EnhancedLayoutComponents.js  # Dense layout components
 │       ├── AdvancedLayoutComponents.js  # Professional patterns
+│       ├── ExtendedLayoutComponents.js  # Additional extracted patterns
 │       ├── SectionDivider.js           # Standardized dividers
+│       ├── ExampleAdvancedLayouts.js   # Advanced component examples
+│       ├── ExampleExtendedLayouts.js   # Extended component examples
 │       └── [Section]PageNoJSX.js       # Individual sections
 ├── scripts/
 │   ├── scan-assets.js   # Image asset scanner
@@ -279,6 +302,22 @@ npm run generate:pdf:final  # Generate final PDF with TOC
 npm run build:css          # Build Tailwind CSS (with watch mode)
 npm run build:css:prod     # Build minified Tailwind CSS
 ```
+
+## 📚 Component Documentation (NEW!)
+
+Before developing any pages, review our comprehensive component documentation:
+
+### Essential Developer Resources
+- **[COMPONENT-CATALOG.md](COMPONENT-CATALOG.md)** - Complete documentation of all 20+ components
+- **[VISUAL-COMPONENT-GUIDE.md](VISUAL-COMPONENT-GUIDE.md)** - Visual reference showing what each component looks like
+- **[COMPONENT-QUICK-REFERENCE.md](COMPONENT-QUICK-REFERENCE.md)** - Printable cheat sheet for quick lookups
+- **[SECTION-IMPLEMENTATION-GUIDE.md](SECTION-IMPLEMENTATION-GUIDE.md)** - Specific recommendations for each section
+
+### Why Use Pre-Built Components?
+- ✅ **Save Time** - Don't reinvent the wheel
+- ✅ **Stay Consistent** - Maintain visual cohesion
+- ✅ **Professional Quality** - Tested and refined designs
+- ✅ **Easy to Use** - Simple import and implement
 
 ## 🛠️ Development
 
