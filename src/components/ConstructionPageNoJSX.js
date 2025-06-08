@@ -1,10 +1,12 @@
 import React from 'react';
 import { Page, View, Text, StyleSheet, Image } from '@react-pdf/renderer';
-import { styles, colors, spacing } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { styles, spacing } from '../theme.js';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import SectionDivider from './SectionDivider.js';
+import { SectionBannerNoJSX } from './DesignComponents.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -21,133 +23,133 @@ export default function ConstructionPageNoJSX({ pageNumberMap = {} }) {
       justifyContent: 'center',
       alignItems: 'center',
       minHeight: '100%',
-    },
+  },
     sectionNumber: {
-      fontSize: 72,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.dividerNumber,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.lg,
       opacity: 0.9,
-    },
+  },
     sectionTitle: {
-      fontSize: 36,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.dividerTitle,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.lg,
       textAlign: 'center',
-    },
+  },
     sectionDescription: {
-      fontSize: 16,
+      fontSize: typography.sizes.h3,
       textAlign: 'center',
       maxWidth: '80%',
-      lineHeight: 1.6,
-    },
+      lineHeight: typography.lineHeights.relaxed,
+  },
     alertBox: {
       backgroundColor: '#FFE4E1',
       borderLeft: `4px solid #DC143C`,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     alertTitle: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.xs,
-      color: '#DC143C',
-    },
+      color: colors.danger,
+  },
     infoBox: {
       borderWidth: 1,
       borderColor: colors.accent,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     highlightBox: {
       backgroundColor: colors.background,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     highlightTitle: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.xs,
       color: colors.primary,
-    },
+  },
     checklistContainer: {
       borderWidth: 1,
       borderColor: colors.accent,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     checklistTitle: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.sm,
       color: colors.primary,
-    },
+  },
     checklistItem: {
       marginBottom: spacing.xs,
       paddingLeft: spacing.md,
-    },
+  },
     paragraph: {
       marginBottom: spacing.sm,
       textAlign: 'justify',
-    },
+  },
     listItem: {
       marginBottom: spacing.xs,
       paddingLeft: spacing.sm,
-    },
+  },
     nestedListItem: {
       marginBottom: spacing.xs,
       paddingLeft: spacing.lg,
-      fontSize: 11,
-    },
+      fontSize: typography.sizes.base,
+  },
     h3: {
-      fontSize: 16,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.h3,
+      fontWeight: typography.weights.bold,
       marginTop: spacing.md,
       marginBottom: spacing.sm,
       color: colors.accent,
-    },
+  },
     h4: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginTop: spacing.sm,
       marginBottom: spacing.xs,
-    },
+  },
     twoColumn: {
       marginBottom: spacing.md,
       columnGap: 22,  // 0.3 inch = 22pt gutter between columns
-    },
+  },
     resourceList: {
       marginTop: spacing.md,
       padding: spacing.md,
       backgroundColor: colors.background,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     prominentText: {
       backgroundColor: colors.background,
       padding: spacing.md,
       marginVertical: spacing.md,
       borderLeft: `4px solid ${colors.primary}`,
-      fontSize: 14,
+      fontSize: typography.sizes.medium,
       fontStyle: 'italic',
       color: colors.primary,
-    },
+  },
     pageImage: {
       width: '100%',
       height: 200,
       marginBottom: spacing.sm,
       objectFit: 'cover',
-    },
+  },
     imageCaption: {
-      fontSize: 10,
+      fontSize: typography.sizes.sm,
       fontStyle: 'italic',
       color: colors.lightText,
       textAlign: 'center',
       marginBottom: spacing.md,
-    }
-  });
+  }
+});
 
   return [
     // Section Divider Page
@@ -156,20 +158,22 @@ export default function ConstructionPageNoJSX({ pageNumberMap = {} }) {
       title: 'NEW HOME CONSTRUCTION',
       description: 'Building or renovating in Blue Mountain requires adherence to specific guidelines that preserve our community\'s character and natural beauty. This section outlines the requirements and approval process for all construction projects.',
       backgroundColor: colors.primary
-    }),
+  }),
 
     // Pre-Construction Requirements Page
     e(
       Page,
       { size: 'LETTER', style: styles.page },
-      e(
-        View,
-        { style: styles.pageHeader },
-        e(Text, { style: styles.pageTitle }, 'PRE-CONSTRUCTION REQUIREMENTS')
-      ),
+      // Section Banner
+      e(SectionBannerNoJSX, {
+        number: 'SECTION 11',
+        title: 'CONSTRUCTION',
+        subtitle: 'Building guidelines and architectural standards'
+    }),
       e(
         View,
         null,
+        e(Text, { style: styles.h1 }, 'PRE-CONSTRUCTION REQUIREMENTS'),
         e(Text, { style: constructionStyles.paragraph },
           'These requirements work in conjunction with the Blue Mountain Declaration of Protective Covenants, Conditions & Restrictions and BMPOA Bylaws. All construction projects must receive approval from the Architectural Review Committee (ARC) before any work begins.'
         ),
@@ -195,7 +199,7 @@ export default function ConstructionPageNoJSX({ pageNumberMap = {} }) {
           e(Text, { style: constructionStyles.listItem }, '• Materials list with colors and samples'),
           e(Text, { style: constructionStyles.listItem }, '• Site plan showing setbacks and tree removal'),
           
-          e(Text, { style: { ...constructionStyles.paragraph, fontWeight: 'bold', marginTop: spacing.sm } }, 
+          e(Text, { style: { ...constructionStyles.paragraph, fontWeight: typography.weights.bold, marginTop: spacing.sm } }, 
             'Response Timeline:'
           ),
           e(Text, { style: constructionStyles.listItem }, '• ARC Chair will respond within 30 days with:'),
@@ -215,13 +219,13 @@ export default function ConstructionPageNoJSX({ pageNumberMap = {} }) {
           padding: spacing.sm,
           marginTop: spacing.md,
           marginBottom: spacing.md,
-          borderRadius: 4
-        } },
+          borderRadius: callout.radius
+      } },
           e(View, { style: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.xs } },
-            e(Text, { style: { fontSize: 12, marginRight: spacing.xs } }, '🏠'),
-            e(Text, { style: { fontSize: 11, fontWeight: 'bold', color: colors.forestGreen } }, 'SITE VISIT')
+            e(Text, { style: { fontSize: typography.sizes.base, marginRight: spacing.xs } }, '🏠'),
+            e(Text, { style: { fontSize: typography.sizes.base, fontWeight: typography.weights.bold, color: colors.forestGreen } }, 'SITE VISIT')
           ),
-          e(Text, { style: { fontSize: 10, color: colors.darkCharcoal } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, color: colors.darkCharcoal } }, 
             'The ARC may require a site visit before final approval to ensure proper siting and minimal environmental impact. This helps verify that plans align with the actual topography and existing vegetation.'
           )
         ),
@@ -303,7 +307,7 @@ export default function ConstructionPageNoJSX({ pageNumberMap = {} }) {
           )
         ),
 
-        e(Text, { style: { ...constructionStyles.paragraph, fontWeight: 'bold' } },
+        e(Text, { style: { ...constructionStyles.paragraph, fontWeight: typography.weights.bold } },
           'Color Requirements:'
         ),
         e(Text, { style: constructionStyles.paragraph },
@@ -332,7 +336,7 @@ export default function ConstructionPageNoJSX({ pageNumberMap = {} }) {
         e(Text, { style: constructionStyles.h3 }, 'SITE CONSIDERATIONS'),
 
         e(View, { style: constructionStyles.twoColumn },
-          e(Text, { style: { ...constructionStyles.paragraph, fontWeight: 'bold' } },
+          e(Text, { style: { ...constructionStyles.paragraph, fontWeight: typography.weights.bold } },
             'Construction must be sited unobtrusively:'
           ),
           e(Text, { style: constructionStyles.listItem }, '• Use natural flora to screen from access roads'),
@@ -342,7 +346,7 @@ export default function ConstructionPageNoJSX({ pageNumberMap = {} }) {
           e(Text, { style: constructionStyles.nestedListItem }, '- Driveway access'),
           e(Text, { style: constructionStyles.listItem }, '• Additional clearing requires specific ARC approval'),
           
-          e(Text, { style: { ...constructionStyles.paragraph, fontWeight: 'bold', marginTop: spacing.sm } },
+          e(Text, { style: { ...constructionStyles.paragraph, fontWeight: typography.weights.bold, marginTop: spacing.sm } },
             'Tree and vegetation management:'
           ),
           e(Text, { style: constructionStyles.listItem }, '• Trees felled during construction must be:'),
@@ -358,6 +362,24 @@ export default function ConstructionPageNoJSX({ pageNumberMap = {} }) {
           e(Text, null,
             'Fire-resistant materials are strongly advised for all exterior components including roofing, siding, and decking. This helps protect your investment and our community from wildfire risks.'
           )
+        ),
+        
+        // Add building image to fill space
+        assetMap.Building1 && e(
+          View,
+          { style: { marginTop: spacing.lg, alignItems: 'center' } },
+          e(Image, { 
+            src: assetMap.Building1, 
+            style: { 
+              width: '80%', 
+              height: 250, 
+              objectFit: 'contain',
+              borderRadius: 6,
+              borderWidth: 0.5,
+              borderColor: colors.forestGreen
+          } 
+        }),
+          e(Text, { style: constructionStyles.imageCaption }, 'Example of mountain home architecture')
         )
       ),
       e(
@@ -418,11 +440,11 @@ export default function ConstructionPageNoJSX({ pageNumberMap = {} }) {
         e(Text, { style: constructionStyles.h3 }, 'FENCE REQUIREMENTS'),
 
         e(View, { style: constructionStyles.twoColumn },
-          e(Text, { style: { ...constructionStyles.paragraph, fontWeight: 'bold' } },
+          e(Text, { style: { ...constructionStyles.paragraph, fontWeight: typography.weights.bold } },
             'Standard requirement: Only split-rail fences are allowed'
           ),
           
-          e(Text, { style: { ...constructionStyles.paragraph, fontWeight: 'bold' } }, 'Approval process:'),
+          e(Text, { style: { ...constructionStyles.paragraph, fontWeight: typography.weights.bold } }, 'Approval process:'),
           e(Text, { style: constructionStyles.listItem }, '• Submit design and materials plan to ARC'),
           e(Text, { style: constructionStyles.listItem }, '• Receive written approval before installation'),
           e(Text, { style: constructionStyles.listItem }, '• Exceptions considered case-by-case based on compatibility')

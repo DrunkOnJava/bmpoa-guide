@@ -1,6 +1,7 @@
 import React from 'react';
 import { Page, View, Text, StyleSheet } from '@react-pdf/renderer';
-import { styles, colors, spacing, typography } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { styles, spacing } from '../theme.js';
 import { 
   PageFooterNoJSX, 
   SectionBannerNoJSX,
@@ -21,7 +22,7 @@ export default function GovernancePageNoJSXEnhanced({ pageNumberMap = {} }) {
       number: '01',
       title: 'GOVERNANCE & STRUCTURE',
       description: 'Understanding how our mountain community is organized and governed'
-    }),
+  }),
     
     // BMPOA Overview Page
     e(
@@ -33,7 +34,7 @@ export default function GovernancePageNoJSXEnhanced({ pageNumberMap = {} }) {
         number: 'SECTION 1',
         title: 'GOVERNANCE & STRUCTURE',
         subtitle: 'Understanding how our mountain community is organized and governed'
-      }),
+    }),
       
       // Two-column layout
       e(TwoColumnLayoutNoJSX, {
@@ -50,7 +51,7 @@ export default function GovernancePageNoJSXEnhanced({ pageNumberMap = {} }) {
           e(
             CalloutBoxNoJSX,
             { type: 'info' },
-            e(Text, { style: { fontWeight: 'bold', fontSize: 12, marginBottom: spacing.xs } }, 'BMPOA Mission:'),
+            e(Text, { style: { fontWeight: typography.weights.bold, fontSize: typography.sizes.base, marginBottom: spacing.xs } }, 'BMPOA Mission:'),
             e(View, { style: styles.bulletList },
               ['Promote the health, safety, and general welfare of its members',
                'Preserve the natural beauty of the subdivision',
@@ -84,7 +85,7 @@ export default function GovernancePageNoJSXEnhanced({ pageNumberMap = {} }) {
           e(Text, { style: styles.paragraph }, 
             'The BMPOA is managed by an elected Board of Officers and Directors who volunteer their time to serve the community.'
           ),
-          e(Text, { style: { fontWeight: 'bold', marginTop: spacing.sm } }, 'The Board consists of:'),
+          e(Text, { style: { fontWeight: typography.weights.bold, marginTop: spacing.sm } }, 'The Board consists of:'),
           e(View, { style: styles.bulletList },
             e(Text, { style: styles.bulletItem }, '• Five Officers:'),
             e(View, { style: { paddingLeft: spacing.md } },
@@ -100,7 +101,7 @@ export default function GovernancePageNoJSXEnhanced({ pageNumberMap = {} }) {
             'All Board members are Blue Mountain property owners elected at the Annual Meeting for two-year terms.'
           )
         )
-      }),
+    }),
       
       // Footer
       e(PageFooterNoJSX, { pageNumber: 4 })
@@ -172,7 +173,7 @@ export default function GovernancePageNoJSXEnhanced({ pageNumberMap = {} }) {
             )
           )
         )
-      }),
+    }),
       
       // Footer
       e(PageFooterNoJSX, { pageNumber: 5 })
@@ -201,7 +202,7 @@ export default function GovernancePageNoJSXEnhanced({ pageNumberMap = {} }) {
           e(Text, { style: styles.paragraph },
             'The primary focus of our Sanitary District funding is road maintenance and snow removal for our extensive network of private roads.'
           ),
-          e(Text, { style: { fontWeight: 'bold', marginTop: spacing.sm } }, 
+          e(Text, { style: { fontWeight: typography.weights.bold, marginTop: spacing.sm } }, 
             'Additional responsibilities may include:'
           ),
           e(View, { style: styles.bulletList },
@@ -238,7 +239,7 @@ export default function GovernancePageNoJSXEnhanced({ pageNumberMap = {} }) {
             'This transparent process ensures that all property owners understand how their tax dollars are being used to maintain and improve our community.'
           )
         )
-      }),
+    }),
       
       // Footer
       e(PageFooterNoJSX, { pageNumber: 6 })

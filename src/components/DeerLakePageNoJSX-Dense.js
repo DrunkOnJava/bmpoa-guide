@@ -1,14 +1,17 @@
 import React from 'react';
 import { Page, View, Text, Image, StyleSheet } from '@react-pdf/renderer';
-import { styles, colors, spacing, typography } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { styles, spacing } from '../theme.js';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { largeProportionalImage, captionStyle } from '../imageStyles.js';
 import { 
   TwoColumnLayout, 
   QuickFactsBox, 
   InfoBox, 
   CompactTable,
+  ForestGreenTable,
   DenseText,
   CompactSectionHeader,
   CompactSubsectionHeader,
@@ -28,44 +31,44 @@ export default function DeerLakePageNoJSXDense({ pageNumberMap = {} }) {
     sectionTitle: {
       textTransform: 'uppercase',
       letterSpacing: 1,
-    },
+  },
     sectionDescription: {
-      fontSize: 12,
+      fontSize: typography.sizes.base,
       textAlign: 'center',
       maxWidth: '80%',
-      lineHeight: 1.5,
+      lineHeight: typography.lineHeights.relaxed,
       fontStyle: 'italic',
-    },
+  },
     facilityIcon: {
       width: 24,
       height: 24,
-      marginBottom: 4,
-    },
+      marginBottom: layout.spacing.xs,
+  },
     facilityGrid: {
       flexDirection: 'row',
       flexWrap: 'wrap',
       gap: 12,
       marginVertical: 8,
-    },
+  },
     facilityItem: {
       alignItems: 'center',
       width: '22%',
-    },
+  },
     compactImage: {
       width: '100%',
       height: 120,
       marginVertical: 6,
-      borderRadius: 4,
+      borderRadius: callout.radius,
       borderWidth: 0.5,
       borderColor: colors.forestGreen,
-    },
+  },
     passBox: {
       backgroundColor: colors.lightGray,
       padding: 6,
       marginVertical: 6,
       borderRadius: 3,
-    }
-  });
+  }
+});
 
   // Sidebar content for page 1
   const page1Sidebar = [
@@ -76,28 +79,28 @@ export default function DeerLakePageNoJSXDense({ pageNumberMap = {} }) {
         { label: 'Season', value: 'May-Sept' },
         { label: 'Hours', value: 'Dawn-Dusk' }
       ]
-    }),
+  }),
     e(InfoBox, { title: '📋 Pass Info' },
-      e(Text, { style: { fontSize: 9, fontWeight: 'bold', marginBottom: 2 } }, 'To Get Passes:'),
-      e(Text, { style: { fontSize: 8, marginBottom: 3 } }, 'bmpoadeerlake@gmail.com'),
-      e(Text, { style: { fontSize: 8, lineHeight: 1.3 } }, 
+      e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, marginBottom: 2 } }, 'To Get Passes:'),
+      e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 3 } }, 'bmpoadeerlake@gmail.com'),
+      e(Text, { style: { fontSize: typography.sizes.sm, lineHeight: typography.lineHeights.normal } }, 
         'Include proof of property ownership. Passes mailed annually in May.'
       )
     ),
     e(InfoBox, { title: '🏖️ Amenities' },
       e(View, null,
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Sandy beach area'),
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Swimming dock'),
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Picnic tables/grills'),
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Parking area'),
-        e(Text, { style: { fontSize: 9 } }, '• Seasonal restrooms')
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Sandy beach area'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Swimming dock'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Picnic tables/grills'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Parking area'),
+        e(Text, { style: { fontSize: typography.sizes.sm } }, '• Seasonal restrooms')
       )
     )
   ];
 
   // Sidebar content for page 2
   const page2Sidebar = [
-    e(CompactTable, {
+    e(ForestGreenTable, {
       headers: ['Rule', 'Details'],
       rows: [
         ['Swimming', 'At own risk'],
@@ -108,12 +111,12 @@ export default function DeerLakePageNoJSXDense({ pageNumberMap = {} }) {
         ['Fishing', 'Catch & release'],
         ['Quiet', 'After 10 PM']
       ]
-    }),
+  }),
     e(InfoBox, { title: '⚠️ Safety' },
-      e(Text, { style: { fontSize: 9, fontWeight: 'bold', color: '#DC2626', marginBottom: 3 } }, 
+      e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, color: colors.danger, marginBottom: 3 } }, 
         'NO LIFEGUARD ON DUTY'
       ),
-      e(Text, { style: { fontSize: 8, lineHeight: 1.3 } }, 
+      e(Text, { style: { fontSize: typography.sizes.sm, lineHeight: typography.lineHeights.normal } }, 
         'Swimming is at your own risk. Children under 12 must be supervised by an adult at all times.'
       )
     )
@@ -125,8 +128,9 @@ export default function DeerLakePageNoJSXDense({ pageNumberMap = {} }) {
       number: '06',
       title: 'DEER LAKE\nRECREATION AREA',
       description: 'Private recreational area exclusively for Blue Mountain property owners and their guests',
-      backgroundColor: colors.primary
-    }),
+      backgroundColor: colors.primary,
+      backgroundImage: assetMap.deerlakedock
+  }),
     
     // Page 1: Location & Access (Dense)
     e(
@@ -138,12 +142,12 @@ export default function DeerLakePageNoJSXDense({ pageNumberMap = {} }) {
         // Deer Lake dock image
         assetMap.deerlakedock && e(
           View,
-          { style: { marginBottom: 6 } },
+          { style: { marginVertical: 12 } },
           e(Image, { 
             src: assetMap.deerlakedock, 
-            style: lakeStyles.compactImage 
-          }),
-          e(Text, { style: { fontSize: 9, fontStyle: 'italic', textAlign: 'center' } }, 
+            style: largeProportionalImage 
+        }),
+          e(Text, { style: captionStyle }, 
             'The Deer Lake dock — seasonal swimming and relaxation'
           )
         ),
@@ -163,7 +167,7 @@ export default function DeerLakePageNoJSXDense({ pageNumberMap = {} }) {
             'Valid property ownership required',
             'Passes non-transferable'
           ]
-        }),
+      }),
         
         e(CompactSubsectionHeader, null, 'SEASONAL HOURS'),
         e(InlineInfo, {
@@ -171,8 +175,8 @@ export default function DeerLakePageNoJSXDense({ pageNumberMap = {} }) {
             { label: 'Summer', value: 'Dawn to Dusk' },
             { label: 'Off-season', value: 'Weather permitting' }
           ]
-        }),
-        e(DenseText, { style: { fontSize: 9, fontStyle: 'italic' } },
+      }),
+        e(DenseText, { style: { fontSize: typography.sizes.sm, fontStyle: 'italic' } },
           'Swimming permitted when safe. Beach hours may be restricted during summer and posted at entrance.'
         )
       ),
@@ -201,10 +205,10 @@ export default function DeerLakePageNoJSXDense({ pageNumberMap = {} }) {
         ),
         
         e(View, { style: lakeStyles.passBox },
-          e(Text, { style: { fontSize: 10, fontWeight: 'bold', color: colors.forestGreen, marginBottom: 2 } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, color: colors.forestGreen, marginBottom: 2 } }, 
             '📧 Haven\'t received passes by June 1?'
           ),
-          e(Text, { style: { fontSize: 9 } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm } }, 
             'Contact bmpoadeerlake@gmail.com with ownership verification'
           )
         ),
@@ -212,16 +216,16 @@ export default function DeerLakePageNoJSXDense({ pageNumberMap = {} }) {
         e(CompactSubsectionHeader, null, 'GENERAL RULES'),
         e(View, { style: { flexDirection: 'row', gap: 12 } },
           e(View, { style: { flex: 1 } },
-            e(Text, { style: { fontSize: 10, fontWeight: 'bold', marginBottom: 2 } }, 'Water Safety'),
-            e(Text, { style: { fontSize: 9, marginBottom: 1 } }, '• No lifeguard'),
-            e(Text, { style: { fontSize: 9, marginBottom: 1 } }, '• Supervise kids'),
-            e(Text, { style: { fontSize: 9 } }, '• No glass')
+            e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, marginBottom: 2 } }, 'Water Safety'),
+            e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, '• No lifeguard'),
+            e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, '• Supervise kids'),
+            e(Text, { style: { fontSize: typography.sizes.sm } }, '• No glass')
           ),
           e(View, { style: { flex: 1 } },
-            e(Text, { style: { fontSize: 10, fontWeight: 'bold', marginBottom: 2 } }, 'Activities'),
-            e(Text, { style: { fontSize: 9, marginBottom: 1 } }, '• No motors'),
-            e(Text, { style: { fontSize: 9, marginBottom: 1 } }, '• Catch & release'),
-            e(Text, { style: { fontSize: 9 } }, '• Quiet after 10pm')
+            e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, marginBottom: 2 } }, 'Activities'),
+            e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, '• No motors'),
+            e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, '• Catch & release'),
+            e(Text, { style: { fontSize: typography.sizes.sm } }, '• Quiet after 10pm')
           )
         ),
         
@@ -230,41 +234,41 @@ export default function DeerLakePageNoJSXDense({ pageNumberMap = {} }) {
         // Facility icons grid
         e(View, { style: lakeStyles.facilityGrid },
           e(View, { style: lakeStyles.facilityItem },
-            e(Text, { style: { fontSize: 24 } }, '🏖️'),
-            e(Text, { style: { fontSize: 9, textAlign: 'center' } }, 'Beach')
+            e(Text, { style: { fontSize: typography.sizes.h2 } }, '🏖️'),
+            e(Text, { style: { fontSize: typography.sizes.sm, textAlign: 'center' } }, 'Beach')
           ),
           e(View, { style: lakeStyles.facilityItem },
-            e(Text, { style: { fontSize: 24 } }, '🏊'),
-            e(Text, { style: { fontSize: 9, textAlign: 'center' } }, 'Swimming')
+            e(Text, { style: { fontSize: typography.sizes.h2 } }, '🏊'),
+            e(Text, { style: { fontSize: typography.sizes.sm, textAlign: 'center' } }, 'Swimming')
           ),
           e(View, { style: lakeStyles.facilityItem },
-            e(Text, { style: { fontSize: 24 } }, '🧺'),
-            e(Text, { style: { fontSize: 9, textAlign: 'center' } }, 'Picnic')
+            e(Text, { style: { fontSize: typography.sizes.h2 } }, '🧺'),
+            e(Text, { style: { fontSize: typography.sizes.sm, textAlign: 'center' } }, 'Picnic')
           ),
           e(View, { style: lakeStyles.facilityItem },
-            e(Text, { style: { fontSize: 24 } }, '🎣'),
-            e(Text, { style: { fontSize: 9, textAlign: 'center' } }, 'Fishing')
+            e(Text, { style: { fontSize: typography.sizes.h2 } }, '🎣'),
+            e(Text, { style: { fontSize: typography.sizes.sm, textAlign: 'center' } }, 'Fishing')
           ),
           e(View, { style: lakeStyles.facilityItem },
-            e(Text, { style: { fontSize: 24 } }, '🚻'),
-            e(Text, { style: { fontSize: 9, textAlign: 'center' } }, 'Restroom')
+            e(Text, { style: { fontSize: typography.sizes.h2 } }, '🚻'),
+            e(Text, { style: { fontSize: typography.sizes.sm, textAlign: 'center' } }, 'Restroom')
           ),
           e(View, { style: lakeStyles.facilityItem },
-            e(Text, { style: { fontSize: 24 } }, '🚗'),
-            e(Text, { style: { fontSize: 9, textAlign: 'center' } }, 'Parking')
+            e(Text, { style: { fontSize: typography.sizes.h2 } }, '🚗'),
+            e(Text, { style: { fontSize: typography.sizes.sm, textAlign: 'center' } }, 'Parking')
           ),
           e(View, { style: lakeStyles.facilityItem },
-            e(Text, { style: { fontSize: 24 } }, '🗑️'),
-            e(Text, { style: { fontSize: 9, textAlign: 'center' } }, 'Trash')
+            e(Text, { style: { fontSize: typography.sizes.h2 } }, '🗑️'),
+            e(Text, { style: { fontSize: typography.sizes.sm, textAlign: 'center' } }, 'Trash')
           ),
           e(View, { style: lakeStyles.facilityItem },
-            e(Text, { style: { fontSize: 24 } }, '🦮'),
-            e(Text, { style: { fontSize: 9, textAlign: 'center' } }, 'Pets OK')
+            e(Text, { style: { fontSize: typography.sizes.h2 } }, '🦮'),
+            e(Text, { style: { fontSize: typography.sizes.sm, textAlign: 'center' } }, 'Pets OK')
           )
         ),
         
-        e(View, { style: { backgroundColor: colors.lightGray, padding: 8, marginTop: 8, borderRadius: 4 } },
-          e(Text, { style: { fontSize: 10, fontWeight: 'bold', fontStyle: 'italic', textAlign: 'center' } }, 
+        e(View, { style: { backgroundColor: colors.lightGray, padding: layout.spacing.sm, marginTop: layout.spacing.sm, borderRadius: callout.radius } },
+          e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, fontStyle: 'italic', textAlign: 'center' } }, 
             'Deer Lake is a shared community resource. Please respect the facilities, follow all rules, and help keep the area clean for everyone to enjoy.'
           )
         )

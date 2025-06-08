@@ -1,10 +1,12 @@
 import React from 'react';
 import { Page, View, Text, StyleSheet, Image } from '@react-pdf/renderer';
-import { styles, colors, spacing } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { styles, spacing } from '../theme.js';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import SectionDivider from './SectionDivider.js';
+import { SectionBannerNoJSX } from './DesignComponents.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -21,168 +23,168 @@ export default function NaturalAttractionsPageNoJSX({ pageNumberMap = {} }) {
       justifyContent: 'center',
       alignItems: 'center',
       minHeight: '100%',
-    },
+  },
     sectionNumber: {
-      fontSize: 72,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.dividerNumber,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.lg,
       opacity: 0.9,
-    },
+  },
     sectionTitle: {
-      fontSize: 36,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.dividerTitle,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.lg,
       textAlign: 'center',
-    },
+  },
     sectionDescription: {
-      fontSize: 16,
+      fontSize: typography.sizes.h3,
       textAlign: 'center',
       maxWidth: '80%',
-      lineHeight: 1.6,
-    },
+      lineHeight: typography.lineHeights.relaxed,
+  },
     alertBox: {
       backgroundColor: '#FFE4E1',
       borderLeft: `4px solid #DC143C`,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     alertTitle: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.xs,
-      color: '#DC143C',
-    },
+      color: colors.danger,
+  },
     infoBox: {
       borderWidth: 1,
       borderColor: colors.accent,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     highlightBox: {
       backgroundColor: colors.background,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     highlightTitle: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.xs,
       color: colors.primary,
-    },
+  },
     paragraph: {
       marginBottom: spacing.sm,
       textAlign: 'justify',
-    },
+  },
     listItem: {
       marginBottom: spacing.xs,
       paddingLeft: spacing.sm,
-    },
+  },
     h3: {
-      fontSize: 16,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.h3,
+      fontWeight: typography.weights.bold,
       marginTop: spacing.md,
       marginBottom: spacing.sm,
       color: colors.accent,
-    },
+  },
     h4: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginTop: spacing.sm,
       marginBottom: spacing.xs,
-    },
+  },
     wineryContainer: {
       borderWidth: 1,
       borderColor: colors.background,
       backgroundColor: '#FAFAFA',
       padding: spacing.md,
       marginBottom: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     wineryName: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       color: colors.primary,
       marginBottom: 2,
-    },
+  },
     wineryAddress: {
-      fontSize: 11,
+      fontSize: typography.sizes.base,
       marginBottom: spacing.xs,
-    },
+  },
     wineryInfo: {
-      fontSize: 11,
-      lineHeight: 1.4,
-    },
+      fontSize: typography.sizes.base,
+      lineHeight: typography.lineHeights.relaxed,
+  },
     trailContainer: {
       borderLeft: `3px solid ${colors.primary}`,
       paddingLeft: 18,  // 0.25 inch = 18pt for proper indentation
       marginBottom: spacing.md,
-    },
+  },
     trailName: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       color: colors.accent,
       marginBottom: 2,
-    },
+  },
     trailInfo: {
-      fontSize: 11,
-      lineHeight: 1.4,
+      fontSize: typography.sizes.base,
+      lineHeight: typography.lineHeights.relaxed,
       marginBottom: spacing.xs,  // Proper spacing between items
-    },
+  },
     prominentText: {
       backgroundColor: colors.background,
       padding: spacing.md,
       marginVertical: spacing.md,
       borderLeft: `4px solid ${colors.primary}`,
-      fontSize: 14,
+      fontSize: typography.sizes.medium,
       fontStyle: 'italic',
       color: colors.primary,
-    },
+  },
     plantList: {
       marginTop: spacing.xs,
       paddingLeft: spacing.sm,
-    },
+  },
     plantCategory: {
-      fontSize: 12,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.base,
+      fontWeight: typography.weights.bold,
       marginTop: spacing.sm,
       marginBottom: spacing.xs,
       color: colors.accent,
-    },
+  },
     pageImage: {
       width: '100%',
       height: 200,
       marginBottom: spacing.sm,
       objectFit: 'cover',
-    },
+  },
     imageFloat: {
       width: 180,
       height: 120,
       marginRight: spacing.md,
       marginBottom: spacing.sm,
       objectFit: 'cover',
-    },
+  },
     imageCaption: {
-      fontSize: 10,
+      fontSize: typography.sizes.sm,
       fontStyle: 'italic',
       color: colors.lightText,
       textAlign: 'center',
       marginTop: 6,  // Increased to 6pt per enhancement plan
       marginBottom: spacing.md,
-    },
+  },
     imageGrid: {
       flexDirection: 'row',
       justifyContent: 'space-between',
       marginVertical: spacing.md,
-    },
+  },
     gridImage: {
       width: '48%',
       height: 150,
       objectFit: 'cover',
-    }
-  });
+  }
+});
 
   return [
     // Section Divider Page
@@ -190,21 +192,24 @@ export default function NaturalAttractionsPageNoJSX({ pageNumberMap = {} }) {
       number: '10',
       title: 'NATURAL ATTRACTIONS',
       description: 'Blue Mountain\'s natural beauty is one of its greatest assets. From spectacular spring wildflower displays to scenic hiking trails and award-winning wineries, our community offers year-round opportunities to connect with nature and enjoy the mountain lifestyle.',
-      backgroundColor: colors.primary
-    }),
+      backgroundColor: colors.primary,
+      backgroundImage: assetMap.virginiabluebells
+  }),
 
     // Trilliums & Spring Wildflowers Page 1
     e(
       Page,
       { size: 'LETTER', style: styles.page },
-      e(
-        View,
-        { style: styles.pageHeader },
-        e(Text, { style: styles.pageTitle }, 'TRILLIUMS & SPRING WILDFLOWERS')
-      ),
+      // Section Banner
+      e(SectionBannerNoJSX, {
+        number: 'SECTION 10',
+        title: 'NATURAL ATTRACTIONS',
+        subtitle: 'Discover the natural beauty of Blue Mountain'
+    }),
       e(
         View,
         null,
+        e(Text, { style: styles.h1 }, 'TRILLIUMS & SPRING WILDFLOWERS'),
         e(Text, { style: attractionStyles.paragraph },
           'Each spring, Blue Mountain transforms into a botanical wonderland as thousands of wildflowers carpet the forest floor. The star of our spring show is the large-flowered trillium (Trillium grandiflorum), whose brilliant white blooms create breathtaking displays throughout our community.'
         ),
@@ -499,7 +504,7 @@ export default function NaturalAttractionsPageNoJSX({ pageNumberMap = {} }) {
             {
               src: assetMap.VineyardGreen,
               style: attractionStyles.pageImage
-            }
+          }
           ),
           e(
             Text,
@@ -601,7 +606,7 @@ export default function NaturalAttractionsPageNoJSX({ pageNumberMap = {} }) {
             {
               src: assetMap.winery3,
               style: attractionStyles.pageImage
-            }
+          }
           ),
           e(
             Text,
@@ -676,8 +681,8 @@ export default function NaturalAttractionsPageNoJSX({ pageNumberMap = {} }) {
               style: {
                 ...attractionStyles.pageImage,
                 height: 200  // Slightly lower so text can appear below
-              }
             }
+          }
           ),
           e(
             Text,

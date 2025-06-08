@@ -1,6 +1,7 @@
 import React from 'react';
 import { Page, View, Text, StyleSheet } from '@react-pdf/renderer';
-import { styles, colors } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { styles } from '../theme.js';
 import SectionDivider from './SectionDivider.js';
 import {
   CardGrid,
@@ -26,19 +27,19 @@ export default function CommunityServicesPageNoJSXAdvanced({ pageNumberMap = {} 
     {
       title: 'Roads & Maintenance',
       content: 'Year-round road maintenance including snow removal, grading, and pothole repair.'
-    },
+  },
     {
       title: 'Refuse Collection',
       content: 'Weekly trash pickup and access to the county convenience site for bulk disposal.'
-    },
+  },
     {
       title: 'Internet Services',
       content: 'Multiple high-speed options including fiber optic and satellite providers.'
-    },
+  },
     {
       title: 'Emergency Response',
       content: '24/7 fire and EMS services with average response time under 10 minutes.'
-    }
+  }
   ];
   
   // Timeline for service schedule
@@ -58,26 +59,26 @@ export default function CommunityServicesPageNoJSXAdvanced({ pageNumberMap = {} 
         {
           title: 'Comcast/Xfinity',
           subItems: ['Cable internet up to 1200 Mbps', 'Bundle packages available', '1-800-XFINITY']
-        },
+      },
         {
           title: 'Hughes Network Systems',
           subItems: ['Satellite internet service', 'Available mountain-wide', '1-866-347-3292']
-        },
+      },
         {
           title: 'Shentel',
           subItems: ['Fiber optic service (select areas)', 'Speeds up to 1 Gbps', '1-800-SHENTEL']
-        }
+      }
       ]
-    },
+  },
     {
       title: 'Electric Service',
       subItems: [
         {
           title: 'Rappahannock Electric Cooperative',
           subItems: ['Primary provider for Blue Mountain', '24/7 outage reporting', '1-800-552-3904']
-        }
+      }
       ]
-    }
+  }
   ];
   
   // Sidebar content for page 2
@@ -89,12 +90,12 @@ export default function CommunityServicesPageNoJSXAdvanced({ pageNumberMap = {} 
         { label: 'Recycling', value: 'At convenience site' },
         { label: 'Hours', value: '7am - 4pm' }
       ]
-    }),
+  }),
     e(SidebarBox, {
       title: 'Reminder',
       content: 'Place trash cans at road by 6:30 AM on collection day. Secure lids to prevent wildlife access.',
       type: 'warning'
-    })
+  })
   ];
   
   return [
@@ -104,7 +105,7 @@ export default function CommunityServicesPageNoJSXAdvanced({ pageNumberMap = {} 
       title: 'COMMUNITY SERVICES',
       description: 'Essential services, utilities, and infrastructure that support mountain living',
       backgroundColor: colors.forestGreen
-    }),
+  }),
     
     // Page 1: Service Overview with Card Grid
     e(Page, { size: 'LETTER', style: styles.page },
@@ -114,7 +115,7 @@ export default function CommunityServicesPageNoJSXAdvanced({ pageNumberMap = {} 
         e(QuoteBox, {
           quote: 'Our community services are designed to provide urban conveniences while preserving our rural mountain character.',
           attribution: 'BMPOA Board of Directors'
-        }),
+      }),
         
         e(DenseText, null,
           'Blue Mountain residents enjoy a comprehensive range of services that make mountain living comfortable and convenient. From reliable road maintenance to modern internet connectivity, our community infrastructure supports both full-time residents and weekend property owners.'
@@ -126,7 +127,7 @@ export default function CommunityServicesPageNoJSXAdvanced({ pageNumberMap = {} 
         e(FeatureBox, {
           title: 'Sanitary District Funding',
           content: 'All community services are funded through the Blue Mountain Sanitary District tax, included in your Warren County property tax bill. No additional HOA fees required.'
-        })
+      })
       )
     ),
     
@@ -149,7 +150,7 @@ export default function CommunityServicesPageNoJSXAdvanced({ pageNumberMap = {} 
           title: 'Bear-Proof Your Trash',
           content: 'Use bear-resistant containers or store trash indoors until collection morning. Never leave bags outside overnight.',
           type: 'warning'
-        })
+      })
       )
     ),
     
@@ -164,7 +165,7 @@ export default function CommunityServicesPageNoJSXAdvanced({ pageNumberMap = {} 
         
         e(HierarchicalList, { items: utilityProviders }),
         
-        e(View, { style: { marginTop: 16 } },
+        e(View, { style: { marginTop: layout.spacing.lg } },
           e(CompactSubsectionHeader, null, 'Service Recommendations'),
           e(View, { style: { flexDirection: 'row', gap: 8 } },
             e(View, { style: { flex: 1 } },
@@ -172,14 +173,14 @@ export default function CommunityServicesPageNoJSXAdvanced({ pageNumberMap = {} 
                 title: 'Best for Streaming',
                 content: 'Comcast cable or Shentel fiber offer the fastest speeds for HD/4K streaming.',
                 type: 'info'
-              })
+            })
             ),
             e(View, { style: { flex: 1 } },
               e(SidebarBox, {
                 title: 'Best Coverage',
                 content: 'Hughes satellite works everywhere on the mountain, though with higher latency.',
                 type: 'success'
-              })
+            })
             )
           )
         )

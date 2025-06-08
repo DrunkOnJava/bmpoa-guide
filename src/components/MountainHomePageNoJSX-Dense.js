@@ -1,6 +1,7 @@
 import React from 'react';
 import { Page, View, Text, Image, StyleSheet } from '@react-pdf/renderer';
-import { styles, colors, spacing, typography } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { styles, spacing } from '../theme.js';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -10,13 +11,14 @@ import {
   QuickFactsBox, 
   InfoBox, 
   CompactTable,
+  ForestGreenTable,
   DenseText,
   CompactSectionHeader,
   CompactSubsectionHeader,
   TwoColumnList,
   InlineInfo
 } from './EnhancedLayoutComponents.js';
-import SectionDivider from './SectionDivider.js';
+// import SectionDivider from './SectionDivider.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -29,19 +31,19 @@ export default function MountainHomePageNoJSXDense({ pageNumberMap = {} }) {
     compactImage: {
       width: '100%',
       height: 120,
-      marginBottom: 4,
+      marginBottom: layout.spacing.xs,
       borderWidth: 0.5,
       borderColor: colors.forestGreen,
-    },
+  },
     bearAlert: {
-      backgroundColor: '#FEE2E2',
+      backgroundColor: colors.backgroundDanger,
       borderWidth: 1,
       borderColor: '#DC2626',
-      borderRadius: 4,
+      borderRadius: callout.radius,
       padding: 6,
-      marginTop: 8,
-    }
-  });
+      marginTop: layout.spacing.sm,
+  }
+});
 
   // Sidebar content for page 1
   const page1Sidebar = [
@@ -52,25 +54,25 @@ export default function MountainHomePageNoJSXDense({ pageNumberMap = {} }) {
         { label: 'Elevation', value: '1,800 ft' },
         { label: 'County', value: 'Warren' }
       ]
-    }),
+  }),
     e(InfoBox, { title: '🏔️ Name Origin' },
-      e(Text, { style: { fontSize: 9, fontStyle: 'italic' } }, 
+      e(Text, { style: { fontSize: typography.sizes.sm, fontStyle: 'italic' } }, 
         'Blue haze from tree isoprene emissions scatters blue light, creating our mountain\'s signature appearance.'
       )
     ),
     e(InfoBox, { title: '📋 Principles' },
       e(View, null,
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Respect nature'),
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Privacy between homes'),
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Wildlife habitat'),
-        e(Text, { style: { fontSize: 9 } }, '• Community spaces')
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Respect nature'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Privacy between homes'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Wildlife habitat'),
+        e(Text, { style: { fontSize: typography.sizes.sm } }, '• Community spaces')
       )
     )
   ];
 
   // Sidebar content for page 2
   const page2Sidebar = [
-    e(CompactTable, {
+    e(ForestGreenTable, {
       headers: ['Season', 'Highlights'],
       rows: [
         ['Spring', 'Wildflowers, dogwood'],
@@ -78,35 +80,27 @@ export default function MountainHomePageNoJSXDense({ pageNumberMap = {} }) {
         ['Fall', 'Foliage: red, orange, gold'],
         ['Winter', 'Snow-covered serenity']
       ]
-    }),
+  }),
     e(InfoBox, { title: '🦌 Wildlife' },
       e(View, null,
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• White-tailed deer'),
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Wild turkeys'),
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Black bears'),
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Red & gray foxes'),
-        e(Text, { style: { fontSize: 9 } }, '• Songbirds & raptors')
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• White-tailed deer'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Wild turkeys'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Black bears'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Red & gray foxes'),
+        e(Text, { style: { fontSize: typography.sizes.sm } }, '• Songbirds & raptors')
       )
     ),
     e(View, { style: mountainStyles.bearAlert },
-      e(Text, { style: { fontSize: 10, fontWeight: 'bold', color: '#B91C1C', marginBottom: 3 } }, 
+      e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, color: colors.dangerDark, marginBottom: 3 } }, 
         '🐻 Bear Safety'
       ),
-      e(Text, { style: { fontSize: 9, lineHeight: 1.3 } }, 
+      e(Text, { style: { fontSize: typography.sizes.sm, lineHeight: typography.lineHeights.normal } }, 
         'Secure trash, remove feeders, clean grills. See Section 12.'
       )
     )
   ];
 
   return [
-    // Section Divider Page
-    e(SectionDivider, {
-      number: '02',
-      title: 'A MOUNTAIN HOME',
-      description: 'Living on Blue Mountain offers a unique combination of natural beauty, privacy, and community',
-      backgroundColor: colors.forestGreen
-    }),
-    
     // Page 1: Community Origins & Character (Dense)
     e(
       Page,
@@ -134,7 +128,7 @@ export default function MountainHomePageNoJSXDense({ pageNumberMap = {} }) {
             { label: 'Full-time', value: '~60%' },
             { label: 'Seasonal', value: '~40%' }
           ]
-        }),
+      }),
         
         e(TwoColumnList, {
           items: [
@@ -145,13 +139,13 @@ export default function MountainHomePageNoJSXDense({ pageNumberMap = {} }) {
             'Seasonal residents',
             'Future retirees'
           ]
-        }),
+      }),
         
-        e(View, { style: { backgroundColor: '#F5F5F5', padding: 6, marginTop: 8, borderRadius: 4 } },
-          e(Text, { style: { fontSize: 10, fontWeight: 'bold', color: colors.forestGreen, marginBottom: 3 } }, 
+        e(View, { style: { backgroundColor: colors.backgroundAlt, padding: 6, marginTop: layout.spacing.sm, borderRadius: callout.radius } },
+          e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, color: colors.forestGreen, marginBottom: 3 } }, 
             '🏠 RENTAL PROPERTIES'
           ),
-          e(Text, { style: { fontSize: 9, lineHeight: 1.4 } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, lineHeight: typography.lineHeights.relaxed } }, 
             'Owners renting properties must ensure tenants follow community rules. Provide key documents and notify Board of rental status.'
           )
         )
@@ -188,11 +182,11 @@ export default function MountainHomePageNoJSXDense({ pageNumberMap = {} }) {
             {
               src: assetMap.mountainvista,
               style: mountainStyles.compactImage
-            }
+          }
           ),
           e(
             Text,
-            { style: { fontSize: 9, fontStyle: 'italic', textAlign: 'center' } },
+            { style: { fontSize: typography.sizes.sm, fontStyle: 'italic', textAlign: 'center' } },
             'Blue Ridge views showcase nature\'s renewal'
           )
         ),
@@ -205,15 +199,15 @@ export default function MountainHomePageNoJSXDense({ pageNumberMap = {} }) {
             'Dramatic sunrises/sunsets',
             'Dark sky star viewing'
           ]
-        }),
+      }),
         
         e(CompactSubsectionHeader, null, 'COMMUNITY PARTICIPATION'),
         e(DenseText, null,
           'Whether full-time resident or occasional visitor, participate in community activities and know your neighbors. Our blend of perspectives enriches Blue Mountain life.'
         ),
         
-        e(View, { style: { backgroundColor: colors.lightGray, padding: 8, marginTop: 8, borderRadius: 4 } },
-          e(Text, { style: { fontSize: 10, fontWeight: 'bold', fontStyle: 'italic', textAlign: 'center' } }, 
+        e(View, { style: { backgroundColor: colors.lightGray, padding: layout.spacing.sm, marginTop: layout.spacing.sm, borderRadius: callout.radius } },
+          e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, fontStyle: 'italic', textAlign: 'center' } }, 
             'The natural beauty and wildlife of Blue Mountain are precious resources that all residents help protect through mindful living practices.'
           )
         )

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Page, View, Text, StyleSheet } from '@react-pdf/renderer';
-import { styles, colors, spacing, typography } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { styles, spacing } from '../theme.js';
 import { TableNoJSX } from './DesignComponents.js';
 import SectionDivider from './SectionDivider.js';
 
@@ -15,131 +16,131 @@ export default function CommunicationPageNoJSX({ pageNumberMap = {} }) {
       justifyContent: 'center',
       alignItems: 'center',
       minHeight: '100%',
-    },
+  },
     sectionNumber: {
-      fontSize: 72,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.dividerNumber,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.lg,
       opacity: 0.9,
-    },
+  },
     sectionTitle: {
-      fontSize: 36,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.dividerTitle,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.lg,
       textAlign: 'center',
-    },
+  },
     sectionDescription: {
-      fontSize: 16,
+      fontSize: typography.sizes.h3,
       textAlign: 'center',
       maxWidth: '80%',
-      lineHeight: 1.6,
-    },
+      lineHeight: typography.lineHeights.relaxed,
+  },
     alertBox: {
       backgroundColor: '#FFE4E1',
       borderLeft: `4px solid #DC143C`,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     alertTitle: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.xs,
-      color: '#DC143C',
-    },
+      color: colors.danger,
+  },
     infoBox: {
       borderWidth: 1,
       borderColor: colors.accent,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     highlightBox: {
       backgroundColor: colors.background,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     highlightTitle: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.xs,
       color: colors.primary,
-    },
+  },
     contactCard: {
       borderWidth: 1,
       borderColor: colors.background,
       backgroundColor: '#FAFAFA',
       padding: spacing.md,
       marginBottom: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     contactName: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       color: colors.primary,
       marginBottom: 2,
-    },
+  },
     contactRole: {
-      fontSize: 12,
+      fontSize: typography.sizes.base,
       color: colors.accent,
       marginBottom: spacing.xs,
-    },
+  },
     contactInfo: {
-      fontSize: 11,
-      lineHeight: 1.4,
-    },
+      fontSize: typography.sizes.base,
+      lineHeight: typography.lineHeights.relaxed,
+  },
     paragraph: {
       marginBottom: spacing.sm,
       textAlign: 'justify',
-    },
+  },
     listItem: {
       marginBottom: spacing.xs,
       paddingLeft: spacing.sm,
-    },
+  },
     h3: {
-      fontSize: 16,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.h3,
+      fontWeight: typography.weights.bold,
       marginTop: spacing.md,
       marginBottom: spacing.sm,
       color: colors.accent,
-    },
+  },
     h4: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginTop: spacing.sm,
       marginBottom: spacing.xs,
-    },
+  },
     nestedList: {
       paddingLeft: spacing.md,
-    },
+  },
     nestedListItem: {
       marginBottom: spacing.xs,
       paddingLeft: spacing.sm,
-      fontSize: 11,
-    },
+      fontSize: typography.sizes.base,
+  },
     resourceList: {
       marginTop: spacing.sm,
-    },
+  },
     prominentText: {
       backgroundColor: colors.background,
       padding: spacing.md,
       marginVertical: spacing.md,
       borderLeft: `4px solid ${colors.primary}`,
-      fontSize: 14,
+      fontSize: typography.sizes.medium,
       fontStyle: 'italic',
       color: colors.primary,
-    }
-  });
+  }
+});
 
   return [
     // Section Divider Page
     e(SectionDivider, {
       number: '08',
-      title: 'COMMUNITY COMMUNICATION',
+      title: 'COMMUNITY\nCOMMUNICATION',
       description: 'Staying connected with your neighbors and informed about community matters is essential to mountain living. This section covers our various communication channels, social activities, and ways to get involved.',
       backgroundColor: colors.primary
-    }),
+  }),
     
     // Social Events & Activities Page
     e(
@@ -188,12 +189,12 @@ export default function CommunicationPageNoJSX({ pageNumberMap = {} }) {
         e(Text, { style: commStyles.h3 }, 'EVENT CALENDAR'),
         e(View, { style: { marginTop: spacing.sm, marginBottom: spacing.md } },
           // Custom table with specific column widths to prevent 3-line wraps
-          e(View, { style: { borderWidth: 0.5, borderColor: colors.slateGray, borderRadius: 4, overflow: 'hidden' } },
+          e(View, { style: { borderWidth: 0.5, borderColor: colors.slateGray, borderRadius: callout.radius, overflow: 'hidden' } },
             // Header row
             e(View, { style: { flexDirection: 'row', backgroundColor: colors.lightGray, borderBottomWidth: 1, borderBottomColor: colors.slateGray, paddingVertical: spacing.xs, paddingHorizontal: spacing.xs } },
-              e(Text, { style: { width: '30%', fontSize: typography.body, fontFamily: 'Helvetica-Bold', fontWeight: 'bold', color: colors.forestGreen, paddingVertical: 4, paddingHorizontal: 6 } }, 'Event'),
-              e(Text, { style: { width: '25%', fontSize: typography.body, fontFamily: 'Helvetica-Bold', fontWeight: 'bold', color: colors.forestGreen, paddingVertical: 4, paddingHorizontal: 6 } }, 'When'),
-              e(Text, { style: { width: '45%', fontSize: typography.body, fontFamily: 'Helvetica-Bold', fontWeight: 'bold', color: colors.forestGreen, paddingVertical: 4, paddingHorizontal: 6 } }, 'Where/Notes')
+              e(Text, { style: { width: '30%', fontSize: typography.body, fontFamily: typography.families.heading, fontWeight: typography.weights.bold, color: colors.forestGreen, paddingVertical: 4, paddingHorizontal: 6 } }, 'Event'),
+              e(Text, { style: { width: '25%', fontSize: typography.body, fontFamily: typography.families.heading, fontWeight: typography.weights.bold, color: colors.forestGreen, paddingVertical: 4, paddingHorizontal: 6 } }, 'When'),
+              e(Text, { style: { width: '45%', fontSize: typography.body, fontFamily: typography.families.heading, fontWeight: typography.weights.bold, color: colors.forestGreen, paddingVertical: 4, paddingHorizontal: 6 } }, 'Where/Notes')
             ),
             // Data rows
             ...[
@@ -213,8 +214,8 @@ export default function CommunicationPageNoJSX({ pageNumberMap = {} }) {
                   backgroundColor: index % 2 === 1 ? colors.lightGray : 'transparent',
                   paddingVertical: spacing.xs,
                   paddingHorizontal: spacing.xs
-                } 
-              },
+              } 
+            },
                 e(Text, { style: { width: '30%', fontSize: typography.caption, color: colors.warmGray, paddingVertical: 4, paddingHorizontal: 6 } }, row[0]),
                 e(Text, { style: { width: '25%', fontSize: typography.caption, color: colors.warmGray, paddingVertical: 4, paddingHorizontal: 6 } }, row[1]),
                 e(Text, { style: { width: '45%', fontSize: typography.caption, color: colors.warmGray, paddingVertical: 4, paddingHorizontal: 6 } }, row[2])
@@ -286,7 +287,7 @@ export default function CommunicationPageNoJSX({ pageNumberMap = {} }) {
           e(Text, { style: commStyles.listItem }, '• Neighbor-to-neighbor assistance'),
           e(Text, { style: commStyles.listItem }, '• Lost and found postings'),
           e(Text, { style: commStyles.listItem }, '• Recommendations for local services'),
-          e(Text, { style: { ...commStyles.paragraph, fontWeight: 'bold', marginTop: spacing.sm } }, 
+          e(Text, { style: { ...commStyles.paragraph, fontWeight: typography.weights.bold, marginTop: spacing.sm } }, 
             'Note: This group is not officially sponsored by BMPOA. For official information, always refer to www.bmpoa.org'
           )
         ),
@@ -312,7 +313,7 @@ export default function CommunicationPageNoJSX({ pageNumberMap = {} }) {
           e(Text, { style: { ...commStyles.paragraph, fontStyle: 'italic' } }, 
             '"Blue Mountain Rescue Brigade...is a group of us who want to do our best to ensure the wealth, life, property and safety of our mountain friends. Be it the 2-legged kind or the 4-legged type. This is intended to HELP local emergency crews and law enforcement, NOT REPLACE IT. Everyone should still dial 911 first. Then \'light-up\' this site."'
           ),
-          e(Text, { style: { ...commStyles.paragraph, fontWeight: 'bold' } }, 
+          e(Text, { style: { ...commStyles.paragraph, fontWeight: typography.weights.bold } }, 
             'Remember: Always call 911 first in emergencies, then post to the Rescue Brigade for additional neighbor support.'
           )
         ),
@@ -402,17 +403,17 @@ export default function CommunicationPageNoJSX({ pageNumberMap = {} }) {
             borderWidth: 0.5, 
             borderColor: '#EA580C',
             padding: spacing.sm,
-            borderRadius: 4
-          } },
+            borderRadius: callout.radius
+        } },
             e(View, { style: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.xs } },
-              e(Text, { style: { fontSize: 12, marginRight: spacing.xs } }, '📰'),
-              e(Text, { style: { fontSize: 11, fontWeight: 'bold', color: colors.darkCharcoal } }, 'NEWSLETTER DEADLINES')
+              e(Text, { style: { fontSize: typography.sizes.base, marginRight: spacing.xs } }, '📰'),
+              e(Text, { style: { fontSize: typography.sizes.base, fontWeight: typography.weights.bold, color: colors.darkCharcoal } }, 'NEWSLETTER DEADLINES')
             ),
-            e(Text, { style: { fontSize: 9, color: colors.warmGray, marginBottom: 4 } }, '• March 15 - Spring Issue'),
-            e(Text, { style: { fontSize: 9, color: colors.warmGray, marginBottom: 4 } }, '• June 15 - Summer Issue'),
-            e(Text, { style: { fontSize: 9, color: colors.warmGray, marginBottom: 4 } }, '• Sept 15 - Fall Issue'),
-            e(Text, { style: { fontSize: 9, color: colors.warmGray, marginBottom: 4 } }, '• Dec 15 - Winter Issue'),
-            e(Text, { style: { fontSize: 9, color: colors.warmGray, marginTop: spacing.xs } }, 
+            e(Text, { style: { fontSize: typography.sizes.sm, color: colors.warmGray, marginBottom: layout.spacing.xs } }, '• March 15 - Spring Issue'),
+            e(Text, { style: { fontSize: typography.sizes.sm, color: colors.warmGray, marginBottom: layout.spacing.xs } }, '• June 15 - Summer Issue'),
+            e(Text, { style: { fontSize: typography.sizes.sm, color: colors.warmGray, marginBottom: layout.spacing.xs } }, '• Sept 15 - Fall Issue'),
+            e(Text, { style: { fontSize: typography.sizes.sm, color: colors.warmGray, marginBottom: layout.spacing.xs } }, '• Dec 15 - Winter Issue'),
+            e(Text, { style: { fontSize: typography.sizes.sm, color: colors.warmGray, marginTop: spacing.xs } }, 
               'Articles: 200-300 words\nImages: JPG ≤ 1MB'
             )
           )
@@ -451,13 +452,13 @@ export default function CommunicationPageNoJSX({ pageNumberMap = {} }) {
           borderColor: '#92400E',      // Brown border
           padding: spacing.sm,
           marginTop: spacing.md,
-          borderRadius: 4
-        } },
+          borderRadius: callout.radius
+      } },
           e(View, { style: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.xs } },
-            e(Text, { style: { fontSize: 12, marginRight: spacing.xs } }, 'ℹ️'),
-            e(Text, { style: { fontSize: 11, fontWeight: 'bold', color: colors.forestGreen } }, 'Contact Updates')
+            e(Text, { style: { fontSize: typography.sizes.base, marginRight: spacing.xs } }, 'ℹ️'),
+            e(Text, { style: { fontSize: typography.sizes.base, fontWeight: typography.weights.bold, color: colors.forestGreen } }, 'Contact Updates')
           ),
-          e(Text, { style: { fontSize: 10, fontStyle: 'italic', color: colors.darkCharcoal } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, fontStyle: 'italic', color: colors.darkCharcoal } }, 
             'If any contact information changes (email, phone, or mailing address), please notify the Secretary at secretary@bmpoa.org to ensure you continue receiving important community communications.'
           )
         )

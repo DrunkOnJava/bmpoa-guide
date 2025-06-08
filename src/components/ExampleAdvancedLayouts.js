@@ -1,6 +1,7 @@
 import React from 'react';
 import { Page, View, Text, StyleSheet } from '@react-pdf/renderer';
-import { styles, colors } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { styles } from '../theme.js';
 import {
   CardGrid,
   HierarchicalList,
@@ -22,19 +23,19 @@ export function ServicesPageCardGrid() {
     {
       title: 'Road Maintenance',
       content: 'Snow removal, pothole repair, and grading services for all community roads.'
-    },
+  },
     {
       title: 'Trash Collection',
       content: 'Weekly pickup service and access to the community convenience site.'
-    },
+  },
     {
       title: 'Internet Access',
       content: 'High-speed fiber and satellite options available throughout the community.'
-    },
+  },
     {
       title: 'Emergency Services',
       content: '24/7 fire and EMS coverage with rapid response times.'
-    }
+  }
   ];
   
   return e(Page, { size: 'LETTER', style: styles.page },
@@ -56,26 +57,26 @@ export function GovernancePageHierarchical() {
         {
           title: 'A. Executive Officers',
           subItems: ['President', 'Vice President', 'Secretary', 'Treasurer']
-        },
+      },
         {
           title: 'B. Directors at Large',
           subItems: ['4 elected positions', '2-year terms']
-        }
+      }
       ]
-    },
+  },
     {
       title: 'II. COMMITTEES',
       subItems: [
         {
           title: 'A. Architectural Review Committee',
           subItems: ['Reviews construction plans', 'Enforces design standards']
-        },
+      },
         {
           title: 'B. Roads Committee',
           subItems: ['Oversees maintenance', 'Plans improvements']
-        }
+      }
       ]
-    }
+  }
   ];
   
   return e(Page, { size: 'LETTER', style: styles.page },
@@ -120,13 +121,13 @@ export function MixedLayoutExample() {
       e(QuoteBox, {
         quote: 'Blue Mountain offers a unique combination of natural beauty, privacy, and community that makes it truly special.',
         attribution: 'Long-time Resident'
-      }),
+    }),
       
       // Feature boxes
       e(FeatureBox, {
         title: 'Natural Beauty',
         content: 'Surrounded by the Shenandoah National Forest with spectacular mountain views and abundant wildlife.'
-      }),
+    }),
       
       // Sidebar boxes in a row
       e(View, { style: { flexDirection: 'row', gap: 8 } },
@@ -135,14 +136,14 @@ export function MixedLayoutExample() {
             title: 'Did You Know?',
             content: 'Blue Mountain is home to over 50 species of native wildflowers.',
             type: 'info'
-          })
+        })
         ),
         e(View, { style: { flex: 1 } },
           e(SidebarBox, {
             title: 'Important',
             content: 'All new construction requires ARC approval before beginning.',
             type: 'warning'
-          })
+        })
         )
       )
     )
@@ -157,15 +158,15 @@ export function EnhancedTOCExample() {
     tocPage: {
       padding: '1in',
       backgroundColor: colors.white,
-    },
+  },
     tocHeader: {
-      fontSize: 24,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.h2,
+      fontWeight: typography.weights.bold,
       color: colors.darkGray,
-      marginBottom: 24,
+      marginBottom: layout.spacing.xl,
       textAlign: 'center',
-    }
-  });
+  }
+});
   
   return e(Page, { size: 'LETTER', style: pageStyles.tocPage },
     e(View, null,
@@ -195,43 +196,43 @@ export function AlternativeCoverPage() {
     coverPage: {
       backgroundColor: colors.white,
       padding: '1in',
-    },
+  },
     titleBlock: {
-      marginTop: 120,
+      marginTop: layout.spacing.md0,
       alignItems: 'center',
-    },
+  },
     mainTitle: {
-      fontSize: 36,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.dividerTitle,
+      fontWeight: typography.weights.bold,
       color: colors.darkGray,
       textAlign: 'center',
-      marginBottom: 8,
-    },
+      marginBottom: layout.spacing.sm,
+  },
     subtitle: {
-      fontSize: 18,
+      fontSize: typography.sizes.toc,
       color: colors.mediumGray,
       textAlign: 'center',
-      marginBottom: 48,
-    },
+      marginBottom: layout.spacing.xl,
+  },
     description: {
-      fontSize: 14,
+      fontSize: typography.sizes.medium,
       color: colors.mediumGray,
       textAlign: 'center',
       fontStyle: 'italic',
-    },
+  },
     footer: {
       position: 'absolute',
       bottom: 72,
       left: 72,
       right: 72,
       alignItems: 'center',
-    },
+  },
     footerText: {
-      fontSize: 12,
+      fontSize: typography.sizes.base,
       color: colors.mediumGray,
-      marginBottom: 4,
-    }
-  });
+      marginBottom: layout.spacing.xs,
+  }
+});
   
   return e(Page, { size: 'LETTER', style: coverStyles.coverPage },
     e(View, null,

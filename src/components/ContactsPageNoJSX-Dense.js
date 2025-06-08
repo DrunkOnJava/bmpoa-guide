@@ -1,11 +1,13 @@
 import React from 'react';
 import { Page, View, Text, StyleSheet } from '@react-pdf/renderer';
-import { styles, colors, spacing, typography } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { styles, spacing } from '../theme.js';
 import { 
   TwoColumnLayout, 
   QuickFactsBox, 
   InfoBox, 
   CompactTable,
+  ForestGreenTable,
   DenseText,
   CompactSectionHeader,
   CompactSubsectionHeader,
@@ -19,14 +21,14 @@ export default function ContactsPageNoJSXDense({ pageNumberMap = {} }) {
   const contactStyles = StyleSheet.create({
     sectionDescription: {
       fontStyle: 'italic',
-    },
+  },
     // Card grid layout
     cardGrid: {
       flexDirection: 'row',
       flexWrap: 'wrap',
       gap: 8,
-      marginBottom: 8,
-    },
+      marginBottom: layout.spacing.sm,
+  },
     contactCard: {
       borderWidth: 1,
       borderColor: colors.lightGray,
@@ -34,7 +36,7 @@ export default function ContactsPageNoJSXDense({ pageNumberMap = {} }) {
       padding: 6,
       borderRadius: 3,
       width: '48%', // Two columns with gap
-    },
+  },
     fullWidthCard: {
       borderWidth: 1,
       borderColor: colors.lightGray,
@@ -43,107 +45,107 @@ export default function ContactsPageNoJSXDense({ pageNumberMap = {} }) {
       borderRadius: 3,
       width: '100%',
       marginBottom: 6,
-    },
+  },
     contactName: {
-      fontSize: 11,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.base,
+      fontWeight: typography.weights.bold,
       color: colors.primary,
       marginBottom: 1,
-    },
+  },
     contactRole: {
-      fontSize: 9,
+      fontSize: typography.sizes.sm,
       color: colors.accent,
       marginBottom: 2,
-    },
+  },
     contactInfo: {
-      fontSize: 9,
-      lineHeight: 1.3,
-    },
+      fontSize: typography.sizes.sm,
+      lineHeight: typography.lineHeights.normal,
+  },
     // Emergency number styling
     emergencyCard: {
       backgroundColor: '#FEF3C7',
       borderWidth: 2,
       borderColor: '#F59E0B',
-      padding: 8,
-      borderRadius: 4,
-      marginBottom: 8,
-    },
+      padding: layout.spacing.sm,
+      borderRadius: callout.radius,
+      marginBottom: layout.spacing.sm,
+  },
     emergencyTitle: {
-      fontSize: 14,
-      fontWeight: 'bold',
-      color: '#92400E',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
+      color: colors.brownDark,
       marginBottom: 2,
-    },
+  },
     emergencyNumber: {
-      fontSize: 18,
-      fontWeight: 'bold',
-      color: '#DC2626',
-    },
+      fontSize: typography.sizes.toc,
+      fontWeight: typography.weights.bold,
+      color: colors.danger,
+  },
     // Service listing
     serviceGrid: {
       flexDirection: 'row',
       flexWrap: 'wrap',
       gap: 6,
-    },
+  },
     serviceItem: {
       width: '48%',
-      marginBottom: 4,
-    },
+      marginBottom: layout.spacing.xs,
+  },
     serviceName: {
-      fontSize: 9,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.sm,
+      fontWeight: typography.weights.bold,
       color: colors.forestGreen,
-    },
+  },
     serviceInfo: {
-      fontSize: 8,
+      fontSize: typography.sizes.sm,
       color: colors.darkCharcoal,
-    },
+  },
     // Compact list
     compactList: {
       backgroundColor: colors.lightGray,
       padding: 6,
       borderRadius: 3,
       marginVertical: 6,
-    },
+  },
     listTitle: {
-      fontSize: 10,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.sm,
+      fontWeight: typography.weights.bold,
       color: colors.forestGreen,
       marginBottom: 3,
-    },
+  },
     listItem: {
-      fontSize: 9,
+      fontSize: typography.sizes.sm,
       marginBottom: 1,
       paddingLeft: 8,
-    }
-  });
+  }
+});
 
   // Sidebar content for page 1
   const page1Sidebar = [
     e(EmergencyBox, null,
-      e(Text, { style: { fontSize: 12, fontWeight: 'bold', textAlign: 'center', marginBottom: 4 } }, 
+      e(Text, { style: { fontSize: typography.sizes.base, fontWeight: typography.weights.bold, textAlign: 'center', marginBottom: layout.spacing.xs } }, 
         'QUICK DIAL'
       ),
-      e(Text, { style: { fontSize: 16, fontWeight: 'bold', color: '#DC2626', textAlign: 'center', marginBottom: 3 } }, '911'),
-      e(Text, { style: { fontSize: 8, textAlign: 'center', marginBottom: 6 } }, 'All Emergencies'),
+      e(Text, { style: { fontSize: typography.sizes.h3, fontWeight: typography.weights.bold, color: colors.danger, textAlign: 'center', marginBottom: 3 } }, '911'),
+      e(Text, { style: { fontSize: typography.sizes.sm, textAlign: 'center', marginBottom: 6 } }, 'All Emergencies'),
       e(View, { style: { borderTopWidth: 1, borderTopColor: '#DC2626', paddingTop: 6 } },
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, 'BMPOA: 540-635-0922'),
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, 'Sheriff: 540-635-4128'),
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, 'Fire: 540-635-4625'),
-        e(Text, { style: { fontSize: 9 } }, 'Power: 800-552-3904')
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, 'BMPOA: 540-635-0922'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, 'Sheriff: 540-635-4128'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, 'Fire: 540-635-4625'),
+        e(Text, { style: { fontSize: typography.sizes.sm } }, 'Power: 800-552-3904')
       )
     ),
     e(InfoBox, { title: '📧 Email Format' },
-      e(Text, { style: { fontSize: 8, marginBottom: 2 } }, 'Board Officers:'),
-      e(Text, { style: { fontSize: 8, fontFamily: 'Courier', marginBottom: 3 } }, 'role@bmpoa.org'),
-      e(Text, { style: { fontSize: 8, marginBottom: 2 } }, 'Committees:'),
-      e(Text, { style: { fontSize: 8, fontFamily: 'Courier' } }, 'committee@bmpoa.org')
+      e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, 'Board Officers:'),
+      e(Text, { style: { fontSize: typography.sizes.sm, fontFamily: 'Courier', marginBottom: 3 } }, 'role@bmpoa.org'),
+      e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, 'Committees:'),
+      e(Text, { style: { fontSize: typography.sizes.sm, fontFamily: 'Courier' } }, 'committee@bmpoa.org')
     )
   ];
 
   // Sidebar content for page 2
   const page2Sidebar = [
-    e(CompactTable, {
+    e(ForestGreenTable, {
       headers: ['Service', 'Contact'],
       rows: [
         ['Lodge', 'booking@...'],
@@ -152,12 +154,12 @@ export default function ContactsPageNoJSXDense({ pageNumberMap = {} }) {
         ['ARC', 'arc@...'],
         ['News', 'newsletter@...']
       ]
-    }),
+  }),
     e(InfoBox, { title: '📍 Address' },
-      e(Text, { style: { fontSize: 9, fontWeight: 'bold', marginBottom: 2 } }, 'BMPOA'),
-      e(Text, { style: { fontSize: 8, marginBottom: 1 } }, 'P.O. Box 114'),
-      e(Text, { style: { fontSize: 8, marginBottom: 3 } }, 'Linden, VA 22642'),
-      e(Text, { style: { fontSize: 8, fontWeight: 'bold' } }, 'www.bmpoa.org')
+      e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, marginBottom: 2 } }, 'BMPOA'),
+      e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, 'P.O. Box 114'),
+      e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 3 } }, 'Linden, VA 22642'),
+      e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold } }, 'www.bmpoa.org')
     )
   ];
 
@@ -168,7 +170,7 @@ export default function ContactsPageNoJSXDense({ pageNumberMap = {} }) {
       title: 'CONTACTS &\nCOMMUNICATION',
       description: 'Essential contact information for board members, committees, emergency services, and community resources',
       backgroundColor: colors.primary
-    }),
+  }),
     
     // Page 1: Board & Committees (Dense)
     e(
@@ -284,7 +286,7 @@ export default function ContactsPageNoJSXDense({ pageNumberMap = {} }) {
         e(View, { style: contactStyles.emergencyCard },
           e(Text, { style: contactStyles.emergencyTitle }, '🔴 EMERGENCY'),
           e(Text, { style: contactStyles.emergencyNumber }, '911'),
-          e(Text, { style: { fontSize: 9, marginTop: 2 } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, marginTop: 2 } }, 
             'Medical • Fire • Police • All Emergencies'
           )
         ),
@@ -316,7 +318,7 @@ export default function ContactsPageNoJSXDense({ pageNumberMap = {} }) {
         e(View, { style: contactStyles.fullWidthCard },
           e(Text, { style: contactStyles.contactName }, 'Rappahannock Electric (REC)'),
           e(Text, { style: contactStyles.contactInfo }, '📞 800-552-3904 • Report outages: myrec.coop/outagecenter'),
-          e(Text, { style: { fontSize: 8, color: '#DC2626', marginTop: 2 } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, color: colors.danger, marginTop: 2 } }, 
             '⚡ Downed lines: Stay back 50 feet!'
           )
         ),

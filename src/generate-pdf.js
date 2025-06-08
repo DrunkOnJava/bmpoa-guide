@@ -4,7 +4,6 @@ import { renderToBuffer, render } from '@react-pdf/renderer';
 import fs from 'fs/promises';
 import { PDFDocument } from 'pdf-lib';
 import FullAppNoJSX from './FullAppNoJSX.js';
-// import FullAppNoJSX from './FullAppNoJSX-NoImages.js';
 import { pages } from '../config.js';
 
 export async function createPrelimTOC() {

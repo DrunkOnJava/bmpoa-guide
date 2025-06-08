@@ -14,6 +14,17 @@ Current Phase: **Phase 4** (Pages 79-100)
 - 11 tasks remaining: 8 for Construction section, 3 for Bear Safety section
 - Focus on flowchart resizing, table headers, compliance call-out boxes, and back cover
 
+## 🚨 CRITICAL: SECTION DIVIDERS ARE REQUIRED
+
+**FULL-PAGE SECTION DIVIDERS MUST NOT BE REMOVED OR REPLACED WITH INLINE HEADERS.**
+
+The green full-page section dividers (using `SectionDivider.js`) are a core design element that:
+- Provides visual hierarchy and professional appearance  
+- Helps users navigate the document structure
+- Maintains brand consistency and user experience
+
+**Reference**: See `SECTION-DIVIDERS-CRITICAL.md` for complete details.
+
 ## 🎨 IMPORTANT: Enhanced Style Guide System
 
 The project now uses an enhanced dense layout system. **ALL new development and fixes should follow these guidelines**:
@@ -184,6 +195,15 @@ export default function ComponentNamePageNoJSX({ pageNumberMap }) {
 
 ## Working with Components
 
+### 📚 MANDATORY: Review Component Documentation First
+
+Before creating or modifying ANY component, you MUST review:
+1. **[COMPONENT-CATALOG.md](COMPONENT-CATALOG.md)** - Complete component documentation
+2. **[VISUAL-COMPONENT-GUIDE.md](VISUAL-COMPONENT-GUIDE.md)** - Visual reference guide
+3. **[COMPONENT-QUICK-REFERENCE.md](COMPONENT-QUICK-REFERENCE.md)** - Quick lookup reference
+
+**NEVER create custom components without first checking if an existing component can meet the need.**
+
 ### Using Enhanced Layout Components (REQUIRED)
 
 When creating or modifying pages, use the appropriate component library:
@@ -201,6 +221,19 @@ import {
   InlineInfo,           // Key-value pairs in single line
   TwoColumnList         // Bullet lists in two columns
 } from './EnhancedLayoutComponents';
+```
+
+**NEW: Mirrored Layout Components (Sidebar Left, Content Right):**
+```javascript
+import {
+  MirroredTwoColumnLayout,  // Sidebar LEFT, content RIGHT
+  TallInfoBox,              // +25% height info boxes
+  ExtraTallInfoBox,         // +50% height info boxes
+  JumboInfoBox,             // +75% height info boxes
+  TallQuickFactsBox,        // Enhanced quick facts
+  ExtendedSidebarBox,       // Multi-section sidebar component
+  TabbedSidebarBox          // Tabbed sidebar interface
+} from './MirroredLayoutComponents';
 ```
 
 **Advanced Components (Professional Patterns):**

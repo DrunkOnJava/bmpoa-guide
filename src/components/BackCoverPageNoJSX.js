@@ -1,6 +1,7 @@
 import React from 'react';
 import { Page, View, Text, StyleSheet } from '@react-pdf/renderer';
-import { styles, colors, spacing } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { styles, spacing } from '../theme.js';
 
 export default function BackCoverPageNoJSX({ pageNumberMap = {} }) {
   const e = React.createElement;
@@ -14,7 +15,7 @@ export default function BackCoverPageNoJSX({ pageNumberMap = {} }) {
       flexDirection: 'column',
       justifyContent: 'space-between',
       minHeight: '100%',
-    },
+  },
     coverContent: {
       flex: 1,
       display: 'flex',
@@ -22,61 +23,61 @@ export default function BackCoverPageNoJSX({ pageNumberMap = {} }) {
       alignItems: 'center',
       justifyContent: 'center',
       textAlign: 'center',
-    },
+  },
     logo: {
       width: 120,
       height: 120,
       marginBottom: spacing.xl,
-    },
+  },
     title: {
-      fontSize: 24,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.h2,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.lg,
       textAlign: 'center',
-    },
+  },
     message: {
-      fontSize: 14,
+      fontSize: typography.sizes.medium,
       marginBottom: spacing.xl,
       textAlign: 'center',
       maxWidth: '80%',
-      lineHeight: 1.6,
-    },
+      lineHeight: typography.lineHeights.relaxed,
+  },
     section: {
       marginBottom: spacing.lg,
       textAlign: 'center',
-    },
+  },
     sectionHeading: {
-      fontSize: 16,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.h3,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.sm,
-    },
+  },
     sectionItem: {
-      fontSize: 14,
+      fontSize: typography.sizes.medium,
       marginBottom: spacing.xs,
-      lineHeight: 1.4,
-    },
+      lineHeight: typography.lineHeights.relaxed,
+  },
     footer: {
       textAlign: 'center',
       borderTop: '1px solid rgba(255,255,255,0.3)',
       paddingTop: spacing.lg,
       marginTop: spacing.xl,
-    },
+  },
     orgName: {
-      fontSize: 16,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.h3,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.xs,
-    },
+  },
     address: {
-      fontSize: 13,
+      fontSize: typography.sizes.base,
       marginBottom: spacing.sm,
-    },
+  },
     copyright: {
-      fontSize: 11,
+      fontSize: typography.sizes.base,
       marginTop: spacing.md,
       opacity: 0.8,
-      lineHeight: 1.4,
-    }
-  });
+      lineHeight: typography.lineHeights.relaxed,
+  }
+});
   
   return e(
     Page,
@@ -92,7 +93,7 @@ export default function BackCoverPageNoJSX({ pageNumberMap = {} }) {
         e(
           View,
           { style: backCoverStyles.logo },
-          e(Text, { style: { fontSize: 48, fontWeight: 'bold', textAlign: 'center' } }, 'BMPOA')
+          e(Text, { style: { fontSize: typography.sizes.jumbo, fontWeight: typography.weights.bold, textAlign: 'center' } }, 'BMPOA')
         ),
         
         e(Text, { style: backCoverStyles.title }, 'Thank You for Being Part of Our Community'),

@@ -1,66 +1,141 @@
 import React from 'react';
-import { Page, View, Text, StyleSheet } from '@react-pdf/renderer';
-import { colors, spacing } from '../theme.js';
+import { Page, View, Text, Image, StyleSheet } from '@react-pdf/renderer';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { spacing } from '../theme.js';
 
 const dividerStyles = StyleSheet.create({
-  sectionDivider: {
-    backgroundColor: colors.forestGreen,
-    color: colors.white,
-    padding: spacing.xl,
+  pageContainer: {
+    position: 'relative',
+    width: '100%',
+    minHeight: '100%',
+    height: '100%',
+},
+  backgroundImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+},
+  contentContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    minHeight: '100%',
-    // Negative margins to break out of page padding for full-bleed effect
-    marginTop: -54,
-    marginHorizontal: -54,
-    marginBottom: -54,
-  },
+},
+  overlayBackground: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: colors.black,
+    opacity: 0.6,
+},
+  textContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: spacing.xl,
+},
   sectionNumber: {
-    fontSize: 72,
-    fontFamily: 'Helvetica-Bold',
-    fontWeight: 'bold',
+    fontSize: typography.sizes.dividerNumber,
+    fontFamily: typography.families.heading,
+    fontWeight: typography.weights.bold,
     marginBottom: spacing.lg,
-    opacity: 0.9,
-  },
+    color: colors.white,
+},
   sectionTitle: {
-    fontSize: 36,
-    fontFamily: 'Helvetica-Bold',
-    fontWeight: 'bold',
+    fontSize: typography.sizes.dividerTitle,
+    fontFamily: typography.families.heading,
+    fontWeight: typography.weights.bold,
     marginBottom: spacing.lg,
     textAlign: 'center',
     textTransform: 'uppercase',
     letterSpacing: 1,
-  },
+    color: colors.white,
+},
   sectionDescription: {
-    fontSize: 12,
+    fontSize: typography.sizes.base,
     textAlign: 'center',
     maxWidth: '80%',
-    lineHeight: 1.5,
+    lineHeight: typography.lineHeights.relaxed,
     fontStyle: 'italic',
     color: colors.white,
-    opacity: 0.9,
-  },
+},
+  // For solid color backgrounds
+  solidBackground: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: spacing.xl,
+},
 });
 
-export default function SectionDivider({ number, title, description, backgroundColor = colors.forestGreen }) {
+export default function SectionDivider({ number, title, description, backgroundColor = colors.forestGreen, backgroundImage = null }) {
   const e = React.createElement;
   
-  const customStyles = StyleSheet.create({
-    customDivider: {
-      ...dividerStyles.sectionDivider,
-      backgroundColor: backgroundColor,
+  // If no background image, use the solid color approach
+  if (!backgroundImage) {
+    const customStyles = StyleSheet.create({
+      solidBackground: {
+        backgroundColor: backgroundColor,
     }
   });
+    
+    return e(
+      Page,
+      { size: 'LETTER' },
+      e(
+        View,
+        { style: [dividerStyles.solidBackground, customStyles.solidBackground] },
+        e(Text, { style: dividerStyles.sectionNumber }, number),
+        e(Text, { style: dividerStyles.sectionTitle }, title),
+        description && e(Text, { style: dividerStyles.sectionDescription }, description)
+      )
+    );
+}
   
+  // With background image - use proper layering
   return e(
     Page,
     { size: 'LETTER' },
     e(
       View,
-      { style: customStyles.customDivider },
-      e(Text, { style: dividerStyles.sectionNumber }, number),
-      e(Text, { style: dividerStyles.sectionTitle }, title),
-      description && e(Text, { style: dividerStyles.sectionDescription }, description)
+      { style: dividerStyles.pageContainer },
+      [
+        // Background image layer (first, so it's behind)
+        e(Image, { 
+          key: 'bgImage',
+          src: backgroundImage, 
+          style: dividerStyles.backgroundImage 
+      }),
+        // Dark overlay for readability
+        e(View, { 
+          key: 'overlay',
+          style: dividerStyles.overlayBackground 
+      }),
+        // Content layer with text
+        e(
+          View,
+          { 
+            key: 'content',
+            style: dividerStyles.contentContainer 
+        },
+          e(Text, { style: dividerStyles.sectionNumber }, number),
+          e(Text, { style: dividerStyles.sectionTitle }, title),
+          description && e(Text, { style: dividerStyles.sectionDescription }, description)
+        )
+      ]
     )
   );
 }

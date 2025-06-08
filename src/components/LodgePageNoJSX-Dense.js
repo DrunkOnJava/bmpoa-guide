@@ -1,6 +1,7 @@
 import React from 'react';
 import { Page, View, Text, Image, StyleSheet } from '@react-pdf/renderer';
-import { styles, colors, spacing, typography } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { styles, spacing } from '../theme.js';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -9,6 +10,7 @@ import {
   QuickFactsBox, 
   InfoBox, 
   CompactTable,
+  ForestGreenTable,
   DenseText,
   CompactSectionHeader,
   CompactSubsectionHeader,
@@ -28,43 +30,43 @@ export default function LodgePageNoJSXDense({ pageNumberMap = {} }) {
     sectionTitle: {
       textTransform: 'uppercase',
       letterSpacing: 1,
-    },
+  },
     sectionDescription: {
-      fontSize: 12,
+      fontSize: typography.sizes.base,
       textAlign: 'center',
       maxWidth: '80%',
-      lineHeight: 1.5,
+      lineHeight: typography.lineHeights.relaxed,
       fontStyle: 'italic',
-    },
+  },
     compactImage: {
       width: '100%',
       height: 100,
       marginVertical: 4,
-      borderRadius: 4,
+      borderRadius: callout.radius,
       borderWidth: 0.5,
       borderColor: colors.forestGreen,
-    },
+  },
     pricingBox: {
       backgroundColor: '#F0F9FF',
       borderWidth: 1,
       borderColor: '#0EA5E9',
-      borderRadius: 4,
+      borderRadius: callout.radius,
       padding: 6,
       marginVertical: 6,
-    },
+  },
     checklistBox: {
       backgroundColor: '#F9FAFB',
       borderWidth: 1,
       borderColor: colors.forestGreen,
-      borderRadius: 4,
-      padding: 8,
+      borderRadius: callout.radius,
+      padding: layout.spacing.sm,
       marginVertical: 8,
-    },
+  },
     checklistItem: {
       flexDirection: 'row',
       marginBottom: 3,
       alignItems: 'flex-start',
-    },
+  },
     checkbox: {
       width: 8,
       height: 8,
@@ -72,16 +74,16 @@ export default function LodgePageNoJSXDense({ pageNumberMap = {} }) {
       borderColor: colors.slateGray,
       marginRight: 6,
       marginTop: 1,
-    },
+  },
     alertBox: {
       backgroundColor: '#FEF3C7',
       borderWidth: 1,
       borderColor: '#F59E0B',
       padding: 6,
-      marginTop: 8,
-      borderRadius: 4,
-    }
-  });
+      marginTop: layout.spacing.sm,
+      borderRadius: callout.radius,
+  }
+});
 
   // Sidebar content for page 1
   const page1Sidebar = [
@@ -92,18 +94,18 @@ export default function LodgePageNoJSXDense({ pageNumberMap = {} }) {
         { label: 'Restrooms', value: '2' },
         { label: 'Parking', value: 'Ample' }
       ]
-    }),
+  }),
     e(InfoBox, { title: '🏠 Features' },
       e(View, null,
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Hardwood floors'),
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Stage area'),
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Tables & chairs'),
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Outdoor deck'),
-        e(Text, { style: { fontSize: 9 } }, '• Mountain views')
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Hardwood floors'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Stage area'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Tables & chairs'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Outdoor deck'),
+        e(Text, { style: { fontSize: typography.sizes.sm } }, '• Mountain views')
       )
     ),
     e(InfoBox, { title: '♿ Accessible' },
-      e(Text, { style: { fontSize: 9, lineHeight: 1.3 } }, 
+      e(Text, { style: { fontSize: typography.sizes.sm, lineHeight: typography.lineHeights.normal } }, 
         'ADA compliant with ramp access, wide doorways, and accessible restroom.'
       )
     )
@@ -111,7 +113,7 @@ export default function LodgePageNoJSXDense({ pageNumberMap = {} }) {
 
   // Sidebar content for page 2
   const page2Sidebar = [
-    e(CompactTable, {
+    e(ForestGreenTable, {
       headers: ['Rental', 'Price'],
       rows: [
         ['Half Day', '$75'],
@@ -119,15 +121,15 @@ export default function LodgePageNoJSXDense({ pageNumberMap = {} }) {
         ['Deposit', '$100'],
         ['Add\u2019l Hour', '$25']
       ]
-    }),
+  }),
     e(InfoBox, { title: '📅 Booking' },
-      e(Text, { style: { fontSize: 9, fontWeight: 'bold', marginBottom: 2 } }, 'To Reserve:'),
-      e(Text, { style: { fontSize: 8, marginBottom: 3 } }, 'bluemountainlodgebooking@gmail.com'),
-      e(Text, { style: { fontSize: 8, lineHeight: 1.3 } }, 
+      e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, marginBottom: 2 } }, 'To Reserve:'),
+      e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 3 } }, 'bluemountainlodgebooking@gmail.com'),
+      e(Text, { style: { fontSize: typography.sizes.sm, lineHeight: typography.lineHeights.normal } }, 
         'Include: dates, times, event type, expected attendance. First-come, first-served.'
       )
     ),
-    e(CompactTable, {
+    e(ForestGreenTable, {
       headers: ['Activity', 'When'],
       rows: [
         ['Potluck', '1st Saturday'],
@@ -135,7 +137,7 @@ export default function LodgePageNoJSXDense({ pageNumberMap = {} }) {
         ['Meetings', 'As scheduled'],
         ['Private', 'By reservation']
       ]
-    })
+  })
   ];
 
   return [
@@ -145,7 +147,7 @@ export default function LodgePageNoJSXDense({ pageNumberMap = {} }) {
       title: 'THE LODGE',
       description: 'Community gathering place for meetings, events, and celebrations',
       backgroundColor: colors.primary
-    }),
+  }),
     
     // Page 1: Location & Features (Dense)
     e(
@@ -161,8 +163,8 @@ export default function LodgePageNoJSXDense({ pageNumberMap = {} }) {
           e(Image, { 
             src: assetMap.TheLodge, 
             style: lodgeStyles.compactImage 
-          }),
-          e(Text, { style: { fontSize: 9, fontStyle: 'italic', textAlign: 'center' } }, 
+        }),
+          e(Text, { style: { fontSize: typography.sizes.sm, fontStyle: 'italic', textAlign: 'center' } }, 
             'The Lodge — our community gathering place'
           )
         ),
@@ -177,7 +179,7 @@ export default function LodgePageNoJSXDense({ pageNumberMap = {} }) {
             { label: 'Address', value: 'Blue Mountain Rd' },
             { label: 'Access', value: 'Key required' }
           ]
-        }),
+      }),
         
         // Lodge interior image
         assetMap.lodgeinterior && e(
@@ -186,8 +188,8 @@ export default function LodgePageNoJSXDense({ pageNumberMap = {} }) {
           e(Image, { 
             src: assetMap.lodgeinterior, 
             style: lodgeStyles.compactImage 
-          }),
-          e(Text, { style: { fontSize: 9, fontStyle: 'italic', textAlign: 'center' } }, 
+        }),
+          e(Text, { style: { fontSize: typography.sizes.sm, fontStyle: 'italic', textAlign: 'center' } }, 
             'Spacious interior with hardwood floors and mountain views'
           )
         ),
@@ -202,7 +204,7 @@ export default function LodgePageNoJSXDense({ pageNumberMap = {} }) {
             'Private events by reservation',
             'Community workshops and classes'
           ]
-        })
+      })
       ),
       e(
         View,
@@ -229,10 +231,10 @@ export default function LodgePageNoJSXDense({ pageNumberMap = {} }) {
         ),
         
         e(View, { style: lodgeStyles.pricingBox },
-          e(Text, { style: { fontSize: 10, fontWeight: 'bold', color: '#0369A1', marginBottom: 2 } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, color: colors.blueAlt, marginBottom: 2 } }, 
             '💵 Pricing Structure'
           ),
-          e(Text, { style: { fontSize: 9, lineHeight: 1.3 } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, lineHeight: typography.lineHeights.normal } }, 
             'Half Day (4 hrs): $75 • Full Day (8 hrs): $150\nRefundable deposit: $100 • Additional hours: $25/hr'
           )
         ),
@@ -240,44 +242,44 @@ export default function LodgePageNoJSXDense({ pageNumberMap = {} }) {
         e(CompactSubsectionHeader, null, 'USAGE GUIDELINES'),
         
         e(View, { style: lodgeStyles.checklistBox },
-          e(Text, { style: { fontSize: 10, fontWeight: 'bold', color: colors.forestGreen, marginBottom: 4 } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, color: colors.forestGreen, marginBottom: layout.spacing.xs } }, 
             'CLEANUP CHECKLIST'
           ),
           e(View, { style: lodgeStyles.checklistItem },
             e(View, { style: lodgeStyles.checkbox }),
-            e(Text, { style: { fontSize: 9, flex: 1 } }, 'Sweep/mop all floors')
+            e(Text, { style: { fontSize: typography.sizes.sm, flex: 1 } }, 'Sweep/mop all floors')
           ),
           e(View, { style: lodgeStyles.checklistItem },
             e(View, { style: lodgeStyles.checkbox }),
-            e(Text, { style: { fontSize: 9, flex: 1 } }, 'Wipe down tables and counters')
+            e(Text, { style: { fontSize: typography.sizes.sm, flex: 1 } }, 'Wipe down tables and counters')
           ),
           e(View, { style: lodgeStyles.checklistItem },
             e(View, { style: lodgeStyles.checkbox }),
-            e(Text, { style: { fontSize: 9, flex: 1 } }, 'Empty trash and replace bags')
+            e(Text, { style: { fontSize: typography.sizes.sm, flex: 1 } }, 'Empty trash and replace bags')
           ),
           e(View, { style: lodgeStyles.checklistItem },
             e(View, { style: lodgeStyles.checkbox }),
-            e(Text, { style: { fontSize: 9, flex: 1 } }, 'Return furniture to original layout')
+            e(Text, { style: { fontSize: typography.sizes.sm, flex: 1 } }, 'Return furniture to original layout')
           ),
           e(View, { style: lodgeStyles.checklistItem },
             e(View, { style: lodgeStyles.checkbox }),
-            e(Text, { style: { fontSize: 9, flex: 1 } }, 'Clean kitchen if used')
+            e(Text, { style: { fontSize: typography.sizes.sm, flex: 1 } }, 'Clean kitchen if used')
           ),
           e(View, { style: lodgeStyles.checklistItem },
             e(View, { style: lodgeStyles.checkbox }),
-            e(Text, { style: { fontSize: 9, flex: 1 } }, 'Turn off all lights and appliances')
+            e(Text, { style: { fontSize: typography.sizes.sm, flex: 1 } }, 'Turn off all lights and appliances')
           ),
           e(View, { style: lodgeStyles.checklistItem },
             e(View, { style: lodgeStyles.checkbox }),
-            e(Text, { style: { fontSize: 9, flex: 1 } }, 'Lock all doors and windows')
+            e(Text, { style: { fontSize: typography.sizes.sm, flex: 1 } }, 'Lock all doors and windows')
           )
         ),
         
         e(View, { style: lodgeStyles.alertBox },
-          e(Text, { style: { fontSize: 10, fontWeight: 'bold', color: '#92400E', marginBottom: 2 } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, color: colors.brownDark, marginBottom: 2 } }, 
             '⚠️ LIABILITY & INSURANCE'
           ),
-          e(Text, { style: { fontSize: 9, lineHeight: 1.3 } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, lineHeight: typography.lineHeights.normal } }, 
             'Renters are liable for damages beyond normal wear. Security deposit withheld for inadequate cleanup. Proof of homeowner\'s insurance required. BMPOA not responsible for injuries during private events.'
           )
         )

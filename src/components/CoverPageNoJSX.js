@@ -1,6 +1,7 @@
 import React from 'react';
 import { Page, View, Text, Image, StyleSheet } from '@react-pdf/renderer';
-import { colors, spacing, typography } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -13,12 +14,15 @@ export default function CoverPageNoJSX({ pageNumberMap = {} }) {
   const e = React.createElement;
   
   const coverStyles = StyleSheet.create({
-    coverPageContainer: {
+    page: {
+      padding: 0,
+  },
+    container: {
       position: 'relative',
       width: '100%',
       height: '100%',
-    },
-    // Full-page background image
+      backgroundColor: colors.black,
+  },
     backgroundImage: {
       position: 'absolute',
       top: 0,
@@ -26,204 +30,156 @@ export default function CoverPageNoJSX({ pageNumberMap = {} }) {
       width: '100%',
       height: '100%',
       objectFit: 'cover',
-    },
-    // Gradient overlay for text contrast
-    overlay: {
+  },
+    darkOverlay: {
       position: 'absolute',
       top: 0,
       left: 0,
       width: '100%',
       height: '100%',
-      backgroundColor: 'rgba(0, 0, 0, 0.5)', // 50% black overlay
-    },
-    // Header badges - positioned at top left and right
-    headerContainer: {
+      backgroundColor: colors.black,
+      opacity: 0.5,
+  },
+    content: {
       position: 'absolute',
-      top: 36,
-      left: 54,
-      right: 54,
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      padding: layout.margins.content,
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+  },
+    badgeRow: {
       flexDirection: 'row',
       justifyContent: 'space-between',
-    },
+      marginBottom: 140,
+  },
     badge: {
       paddingHorizontal: 16,
       paddingVertical: 8,
       borderWidth: 1,
       borderColor: colors.white,
       borderRadius: 20,
-      backgroundColor: 'rgba(255, 255, 255, 0.1)', // Subtle transparent white background
-    },
+  },
     badgeText: {
-      fontSize: 10,
+      fontSize: typography.sizes.sm,
       color: colors.white,
       letterSpacing: 1.5,
-      fontFamily: 'Helvetica',
-      textTransform: 'uppercase',
-      fontWeight: '500',
-    },
-    // Title block - centered on page
-    titleBlock: {
-      position: 'absolute',
-      top: '40%', // Centered vertically
-      left: 0,
-      right: 0,
-      alignItems: 'center',
-      paddingHorizontal: 54,
-      transform: 'translateY(-50%)', // True vertical center
-    },
-    titleLine1: {
-      fontSize: 42,
-      fontFamily: 'Helvetica-Bold',
-      fontWeight: 'bold',
+      fontFamily: typography.families.base,
+  },
+    titleSection: {
+      marginTop: 60,
+      alignItems: 'flex-start',
+  },
+    mainTitle: {
+      fontSize: typography.sizes.jumbo,
+      fontFamily: typography.families.heading,
+      fontWeight: typography.weights.bold,
       color: colors.white,
-      textAlign: 'center',
-      letterSpacing: 3,
-      marginBottom: 8,
-      textTransform: 'uppercase',
-    },
-    titleLine2: {
-      fontSize: 42,
-      fontFamily: 'Helvetica-Bold',
-      fontWeight: 'bold',
-      color: colors.white,
-      textAlign: 'center',
-      letterSpacing: 3,
-      lineHeight: 48,
-      textTransform: 'uppercase',
-    },
+      textAlign: 'left',
+      lineHeight: 1.2,
+      marginBottom: 20,
+  },
     subtitle: {
-      fontSize: 16,
+      fontSize: typography.sizes.toc,
+      fontFamily: typography.families.base,
       color: colors.white,
-      textAlign: 'center',
+      textAlign: 'left',
       marginTop: 32,
-      lineHeight: 22,
-      fontFamily: 'Helvetica',
-      fontWeight: 'normal',
-    },
+      lineHeight: 1.4,
+  },
     description: {
-      fontSize: 13,
-      color: 'rgba(255, 255, 255, 0.9)',
-      textAlign: 'center',
-      marginTop: 16,
-      fontFamily: 'Helvetica',
-      lineHeight: 18,
-    },
-    // Footer
-    footerBlock: {
-      position: 'absolute',
-      bottom: 54,  // Align with interior page footer position
-      left: 54,
-      right: 54,
-      flexDirection: 'column',
+      fontSize: typography.sizes.base,
+      fontFamily: typography.families.base,
+      color: colors.white,
+      textAlign: 'left',
+      marginTop: layout.spacing.lg,
+  },
+    footer: {
       alignItems: 'center',
-    },
-    footerRule: {
-      width: '100%',
-      height: 0.5,
-      backgroundColor: colors.white,
-      marginBottom: 4,
-      opacity: 0.8,
-    },
+      marginTop: 'auto',
+  },
     footerText: {
-      fontSize: 8,  // Match interior footer size
+      fontSize: typography.sizes.sm,
       color: colors.white,
       textAlign: 'center',
-      letterSpacing: 0.5,
-      fontFamily: 'Helvetica',
-    },
-    // Page number
-    pageNumber: {
-      position: 'absolute',
-      bottom: 36,
-      left: 0,
-      right: 0,
-      alignItems: 'center',
-    },
-    pageNumberText: {
-      fontSize: typography.tiny,
-      color: colors.warmGray,
-    },
-    // Removed emblem styles
-  });
+      fontFamily: typography.families.base,
+      lineHeight: typography.lineHeights.relaxed,
+  },
+});
   
   return e(
     Page,
-    { size: 'LETTER' },
+    { size: 'LETTER', style: coverStyles.page },
     e(
       View,
-      { style: coverStyles.coverPageContainer },
+      { style: coverStyles.container },
       
-      // Full-bleed background image
+      // Background Image
       assetMap.bluemountainvistacover && e(
         Image,
-        {
-          src: assetMap.bluemountainvistacover,
-          style: coverStyles.backgroundImage
-        }
+        { src: assetMap.bluemountainvistacover, style: coverStyles.backgroundImage }
       ),
       
-      // Gradient overlay for text contrast
-      e(View, { style: coverStyles.overlay }),
+      // Dark overlay to ensure text readability
+      e(View, { style: coverStyles.darkOverlay }),
       
-      // Header badges - left and right aligned
+      // Content layer
       e(
         View,
-        { style: coverStyles.headerContainer },
-        // Left badge - EST. 1975
+        { style: coverStyles.content },
+        
+        // Top Badges
         e(
           View,
-          { style: coverStyles.badge },
-          e(Text, { style: coverStyles.badgeText }, 'EST. 1975')
+          { style: coverStyles.badgeRow },
+          e(
+            View,
+            { style: coverStyles.badge },
+            e(Text, { style: coverStyles.badgeText }, 'EST. 1975')
+          ),
+          e(
+            View,
+            { style: coverStyles.badge },
+            e(Text, { style: coverStyles.badgeText }, 'COMMUNITY GUIDE')
+          )
         ),
-        // Right badge - COMMUNITY GUIDE
+        
+        // Title Section
         e(
           View,
-          { style: coverStyles.badge },
-          e(Text, { style: coverStyles.badgeText }, 'COMMUNITY GUIDE')
-        )
-      ),
-      
-      // Main title block with two-tone palette
-      e(
-        View,
-        { style: coverStyles.titleBlock },
-        e(
-          Text,
-          { style: coverStyles.titleLine1 },
-          'BLUE MOUNTAIN'
+          { style: coverStyles.titleSection },
+          e(
+            View,
+            null,
+            e(Text, { style: coverStyles.mainTitle }, 'BLUE MOUNTAIN'),
+            e(Text, { style: coverStyles.mainTitle }, 'PROPERTY OWNERS'),
+            e(Text, { style: coverStyles.mainTitle }, 'ASSOCIATION')
+          ),
+          e(
+            Text,
+            { style: coverStyles.subtitle },
+            'Your Complete Guide to Mountain Living in\nLinden, Virginia'
+          ),
+          e(
+            Text,
+            { style: coverStyles.description },
+            'A comprehensive resource for new and existing residents.'
+          )
         ),
+        
+        // Footer
         e(
-          Text,
-          { style: coverStyles.titleLine2 },
-          'PROPERTY OWNERS\nASSOCIATION'
-        ),
-        e(
-          Text,
-          { style: coverStyles.subtitle },
-          'Your Complete Guide to\nMountain Living in Linden, Virginia'
-        ),
-        e(
-          Text,
-          { style: coverStyles.description },
-          'A comprehensive resource for new and existing residents'
+          View,
+          { style: coverStyles.footer },
+          e(
+            Text,
+            { style: coverStyles.footerText },
+            'BMPOA • P.O. Box 114 • Linden, VA 22642\nwww.bmpoa.org'
+          )
         )
-      ),
-      
-      // Emblem removed per request
-      
-      // Footer with rule
-      e(
-        View,
-        { style: coverStyles.footerBlock },
-        e(View, { style: coverStyles.footerRule }),
-        e(
-          Text,
-          { style: coverStyles.footerText },
-          'BMPOA • P.O. Box 114 • Linden, VA 22642 • www.bmpoa.org'
-        )
-      ),
-      
-      // Page number removed - cover page is unnumbered
+      )
     )
   );
 }

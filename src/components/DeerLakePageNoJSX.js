@@ -1,6 +1,7 @@
 import React from 'react';
 import { Page, View, Text, Image, StyleSheet } from '@react-pdf/renderer';
-import { styles, colors, spacing, typography } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { styles, spacing } from '../theme.js';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -22,90 +23,135 @@ export default function DeerLakePageNoJSX({ pageNumberMap = {} }) {
       justifyContent: 'center',
       alignItems: 'center',
       minHeight: '100%',
-    },
+  },
     sectionNumber: {
-      fontSize: 72,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.dividerNumber,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.lg,
       opacity: 0.9,
-    },
+  },
     sectionTitle: {
-      fontSize: 36,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.dividerTitle,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.lg,
       textAlign: 'center',
-    },
+  },
     sectionDescription: {
-      fontSize: 16,
+      fontSize: typography.sizes.h3,
       textAlign: 'center',
       maxWidth: '80%',
-      lineHeight: 1.6,
-    },
+      lineHeight: typography.lineHeights.relaxed,
+  },
     imageFloat: {
       width: 180,
       height: 120,
       marginRight: spacing.md,
       marginBottom: spacing.sm,
       objectFit: 'cover',
-    },
+  },
     highlightBox: {
       backgroundColor: colors.background,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     highlightTitle: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.xs,
       color: colors.primary,
-    },
+  },
     paragraph: {
       marginBottom: spacing.sm,
       textAlign: 'justify',
-    },
+  },
     listItem: {
       marginBottom: spacing.xs,
       paddingLeft: spacing.sm,
-      fontSize: 10,
+      fontSize: typography.sizes.sm,
       color: colors.warmGray,
-    },
+  },
     checklistItem: {
       marginBottom: spacing.xs,
       paddingLeft: spacing.sm,
-      fontSize: 10,
+      fontSize: typography.sizes.sm,
       color: colors.warmGray,
-    },
+  },
     h3: {
-      fontSize: 16,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.h3,
+      fontWeight: typography.weights.bold,
       marginTop: spacing.md,
       marginBottom: spacing.sm,
       color: colors.accent,
-    },
+  },
     iconText: {
       flexDirection: 'row',
       alignItems: 'flex-start',
       marginBottom: spacing.sm,
-    },
+  },
     icon: {
-      fontSize: 16,
+      fontSize: typography.sizes.h3,
       marginRight: spacing.xs,
-    }
-  });
+  }
+});
 
   return [
-    // Section Divider Page
+    // Section Divider Page with full background image
     e(
       Page,
-      { size: 'LETTER', style: styles.page },
+      { size: 'LETTER', style: { padding: 0 } }, // Remove default page padding
       e(
         View,
-        { style: lakeStyles.sectionDivider },
-        e(Text, { style: lakeStyles.sectionNumber }, '06'),
-        e(Text, { style: lakeStyles.sectionTitle }, 'DEER LAKE RECREATION AREA'),
-        e(Text, { style: lakeStyles.sectionDescription }, 
-          'Deer Lake is a private recreational area exclusively for Blue Mountain property owners and their guests. This section outlines access requirements, rules, and amenities available at this beautiful community resource.'
+        { style: { position: 'relative', width: '100%', height: '100%' } },
+        // Full-page background image
+        assetMap.deerlakedock && e(
+          Image,
+          {
+            src: assetMap.deerlakedock,
+            style: {
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+          }
+        }
+        ),
+        // Semi-transparent overlay for better text readability
+        e(
+          View,
+          {
+            style: {
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              backgroundColor: 'rgba(0, 0, 0, 0.4)', // Dark overlay for text contrast
+          }
+        }
+        ),
+        // Content overlay
+        e(
+          View,
+          { 
+            style: {
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+              padding: spacing.xl,
+          }
+        },
+          e(Text, { style: { ...lakeStyles.sectionNumber, color: colors.white } }, '06'),
+          e(Text, { style: { ...lakeStyles.sectionTitle, color: colors.white } }, 'DEER LAKE RECREATION AREA'),
+          e(Text, { style: { ...lakeStyles.sectionDescription, color: colors.white } }, 
+            'Deer Lake is a private recreational area exclusively for Blue Mountain property owners and their guests. This section outlines access requirements, rules, and amenities available at this beautiful community resource.'
+          )
         )
       )
     ),
@@ -133,8 +179,8 @@ export default function DeerLakePageNoJSX({ pageNumberMap = {} }) {
               style: {
                 ...baseImageStyle,
                 height: 180
-              }
             }
+          }
           ),
           e(
             Text,
@@ -158,22 +204,22 @@ export default function DeerLakePageNoJSX({ pageNumberMap = {} }) {
           'Deer Lake is for Blue Mountain property owners, their renters, and guests. Access is restricted to ensure the area remains a private amenity for our community members.'
         ),
         
-        e(Text, { style: { fontWeight: 'bold', marginTop: spacing.sm } }, 'Access Requirements:'),
+        e(Text, { style: { fontWeight: typography.weights.bold, marginTop: spacing.sm } }, 'Access Requirements:'),
         e(View, { style: lakeStyles.iconText },
-          e(Text, { style: { fontSize: 10, color: colors.forestGreen, marginRight: spacing.xs } }, '✓'),
-          e(Text, { style: { fontSize: 10, color: colors.warmGray } }, 'A Blue Mountain Recreational Area Pass is required when using common areas')
+          e(Text, { style: { fontSize: typography.sizes.sm, color: colors.forestGreen, marginRight: spacing.xs } }, '✓'),
+          e(Text, { style: { fontSize: typography.sizes.sm, color: colors.warmGray } }, 'A Blue Mountain Recreational Area Pass is required when using common areas')
         ),
         e(View, { style: lakeStyles.iconText },
-          e(Text, { style: { fontSize: 10, color: colors.forestGreen, marginRight: spacing.xs } }, '✓'),
-          e(Text, { style: { fontSize: 10, color: colors.warmGray } }, 'Guests under 18 must be accompanied by the property owner')
+          e(Text, { style: { fontSize: typography.sizes.sm, color: colors.forestGreen, marginRight: spacing.xs } }, '✓'),
+          e(Text, { style: { fontSize: typography.sizes.sm, color: colors.warmGray } }, 'Guests under 18 must be accompanied by the property owner')
         ),
         e(View, { style: lakeStyles.iconText },
-          e(Text, { style: { fontSize: 10, color: colors.forestGreen, marginRight: spacing.xs } }, '✓'),
-          e(Text, { style: { fontSize: 10, color: colors.warmGray } }, 'Renters must obtain passes from their property owner')
+          e(Text, { style: { fontSize: typography.sizes.sm, color: colors.forestGreen, marginRight: spacing.xs } }, '✓'),
+          e(Text, { style: { fontSize: typography.sizes.sm, color: colors.warmGray } }, 'Renters must obtain passes from their property owner')
         ),
         e(View, { style: lakeStyles.iconText },
-          e(Text, { style: { fontSize: 10, color: colors.forestGreen, marginRight: spacing.xs } }, '✓'),
-          e(Text, { style: { fontSize: 10, color: colors.warmGray } }, 'Those without a pass may be asked to leave or reported for trespassing')
+          e(Text, { style: { fontSize: typography.sizes.sm, color: colors.forestGreen, marginRight: spacing.xs } }, '✓'),
+          e(Text, { style: { fontSize: typography.sizes.sm, color: colors.warmGray } }, 'Those without a pass may be asked to leave or reported for trespassing')
         ),
         
         e(View, { style: lakeStyles.highlightBox },
@@ -193,9 +239,9 @@ export default function DeerLakePageNoJSX({ pageNumberMap = {} }) {
               ['Winter', 'Closed for season'],
               ['Special Events', 'As posted at entrance']
             ]
-          })
+        })
         ),
-        e(Text, { style: { fontSize: 10, fontStyle: 'italic', color: colors.warmGray } },
+        e(Text, { style: { fontSize: typography.sizes.sm, fontStyle: 'italic', color: colors.warmGray } },
           'Swimming is permitted when conditions are safe. Beach area hours may be more restricted during summer and will be posted at the entrance.'
         )
       ),
@@ -231,12 +277,12 @@ export default function DeerLakePageNoJSX({ pageNumberMap = {} }) {
         ),
         
         e(View, { style: { flexDirection: 'row', alignItems: 'center', marginTop: spacing.md, marginBottom: spacing.sm } },
-          e(Text, { style: { fontSize: 16, color: colors.forestGreen, marginRight: 6 } }, '📜'),
-          e(Text, { style: { fontSize: 16, fontWeight: 'bold', color: colors.accent } }, 'RULES & REGULATIONS')
+          e(Text, { style: { fontSize: typography.sizes.h3, color: colors.forestGreen, marginRight: 6 } }, '📜'),
+          e(Text, { style: { fontSize: typography.sizes.h3, fontWeight: typography.weights.bold, color: colors.accent } }, 'RULES & REGULATIONS')
         ),
         e(Text, { style: lakeStyles.paragraph }, 'To ensure everyone can enjoy Deer Lake safely and responsibly:'),
         
-        e(Text, { style: { fontWeight: 'bold', marginTop: spacing.sm } }, 'General Rules:'),
+        e(Text, { style: { fontWeight: typography.weights.bold, marginTop: spacing.sm } }, 'General Rules:'),
         e(Text, { style: lakeStyles.listItem }, '• Swimming is at your own risk - no lifeguard on duty'),
         e(Text, { style: lakeStyles.listItem }, '• Children under 12 must be supervised by an adult at all times'),
         e(Text, { style: lakeStyles.listItem }, '• No glass containers in the beach or swimming areas'),
@@ -246,25 +292,25 @@ export default function DeerLakePageNoJSX({ pageNumberMap = {} }) {
         e(Text, { style: lakeStyles.listItem }, '• No camping or overnight parking'),
         e(Text, { style: lakeStyles.listItem }, '• Quiet hours after 10 PM'),
         
-        e(Text, { style: { fontWeight: 'bold', marginTop: spacing.sm, marginBottom: spacing.sm } }, 'Facilities & Amenities:'),
+        e(Text, { style: { fontWeight: typography.weights.bold, marginTop: spacing.sm, marginBottom: spacing.sm } }, 'Facilities & Amenities:'),
         
         // Amenities icons row
         e(View, { style: { flexDirection: 'row', justifyContent: 'space-around', marginBottom: spacing.md } },
           e(View, { style: { alignItems: 'center' } },
-            e(Text, { style: { fontSize: 36, color: colors.forestGreen } }, '🏖️'),
-            e(Text, { style: { fontSize: 10, color: colors.warmGray, marginTop: 4 } }, 'Beach')
+            e(Text, { style: { fontSize: typography.sizes.dividerTitle, color: colors.forestGreen } }, '🏖️'),
+            e(Text, { style: { fontSize: typography.sizes.sm, color: colors.warmGray, marginTop: layout.spacing.xs } }, 'Beach')
           ),
           e(View, { style: { alignItems: 'center' } },
-            e(Text, { style: { fontSize: 36, color: colors.forestGreen } }, '🏊'),
-            e(Text, { style: { fontSize: 10, color: colors.warmGray, marginTop: 4 } }, 'Swimming')
+            e(Text, { style: { fontSize: typography.sizes.dividerTitle, color: colors.forestGreen } }, '🏊'),
+            e(Text, { style: { fontSize: typography.sizes.sm, color: colors.warmGray, marginTop: layout.spacing.xs } }, 'Swimming')
           ),
           e(View, { style: { alignItems: 'center' } },
-            e(Text, { style: { fontSize: 36, color: colors.forestGreen } }, '🧺'),
-            e(Text, { style: { fontSize: 10, color: colors.warmGray, marginTop: 4 } }, 'Picnic Area')
+            e(Text, { style: { fontSize: typography.sizes.dividerTitle, color: colors.forestGreen } }, '🧺'),
+            e(Text, { style: { fontSize: typography.sizes.sm, color: colors.warmGray, marginTop: layout.spacing.xs } }, 'Picnic Area')
           ),
           e(View, { style: { alignItems: 'center' } },
-            e(Text, { style: { fontSize: 36, color: colors.forestGreen } }, '🎣'),
-            e(Text, { style: { fontSize: 10, color: colors.warmGray, marginTop: 4 } }, 'Fishing')
+            e(Text, { style: { fontSize: typography.sizes.dividerTitle, color: colors.forestGreen } }, '🎣'),
+            e(Text, { style: { fontSize: typography.sizes.sm, color: colors.warmGray, marginTop: layout.spacing.xs } }, 'Fishing')
           )
         ),
         

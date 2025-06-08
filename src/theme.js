@@ -1,5 +1,13 @@
 import { StyleSheet, Font } from '@react-pdf/renderer';
-import { theme as THEME_CONFIG } from '../config.js';
+import { 
+  typography as designTypography, 
+  layout, 
+  colors as designColors, 
+  callout, 
+  footer,
+  compositeStyles 
+} from './designTokens.js';
+import { additionalColors, legacyTypography, spacing } from './themeExtensions.js';
 
 // Register fonts - using Helvetica family for consistency
 Font.register({ family: 'Helvetica' });
@@ -8,67 +16,34 @@ Font.register({
   src: 'Helvetica-Bold'
 });
 
-// Professional color palette
+// Export merged colors (design tokens + legacy)
 export const colors = {
-  // Primary colors
-  forestGreen: '#1B4332',     // Deep forest green for headers
-  slateGray: '#475569',       // Slate gray for sub-headers
-  warmGray: '#6B7280',        // Warm gray for body text
-  
-  // Accent colors
-  mustard: '#D97706',         // Mustard for callouts
-  warmTan: '#F5E6D3',         // Warm tan for info boxes
-  lightGray: '#F3F4F6',       // Light gray for backgrounds
-  
-  // Functional colors
-  darkCharcoal: '#1F2937',    // Dark charcoal for emphasis
-  white: '#FFFFFF',
-  black: '#000000',
-  
-  // Alert colors
-  alertRed: '#DC2626',        // Red for warnings
-  lightPink: '#FEE2E2',       // Light pink for alert backgrounds
-  lightGreen: '#D1FAE5',      // Light green for tips
-  lightOrange: '#FED7AA',     // Light orange for bear safety
-  
-  // Original theme colors (backwards compatibility)
-  primary: THEME_CONFIG.colors.primary || '#1B4332',
-  accent: THEME_CONFIG.colors.accent || '#D97706',
-  text: THEME_CONFIG.colors.text || '#374151',
-  background: THEME_CONFIG.colors.background || '#F9FAFB',
+  ...designColors,
+  ...additionalColors
 };
 
-export const spacing = THEME_CONFIG.spacing;
-
-// Typography sizes
+// Export merged typography
 export const typography = {
-  // Headers
-  sectionBanner: 16,      // Section banner titles
-  sectionTitle: 14,       // Section titles in TOC
-  subtitle: 12,           // Subtitles and subheads
-  body: 11,              // Body text
-  caption: 10,           // Captions and footnotes
-  small: 9,              // Footer text
-  tiny: 8,               // Badges and very small text
-  
-  // Line heights
-  lineHeightTight: 1.2,
-  lineHeightNormal: 1.4,
-  lineHeightRelaxed: 1.5,
-  lineHeightLists: 1.15,  // For bullet lists
+  ...legacyTypography,
+  // Ensure design token values take precedence
+  families: designTypography.families,
+  sizes: designTypography.sizes,
+  lineHeights: designTypography.lineHeights,
+  weights: designTypography.weights,
 };
+
+export { spacing, layout, callout, footer };
 
 export const styles = StyleSheet.create({
   page: {
     backgroundColor: colors.white,
-    paddingTop: 54,    // 0.75" margin
-    paddingBottom: 54,
-    paddingHorizontal: 54,
-    fontFamily: 'Helvetica',
-    fontSize: typography.body,
+    paddingTop: layout.margins.content,
+    paddingBottom: layout.margins.content,
+    paddingHorizontal: layout.margins.content,
+    fontFamily: designTypography.families.base,
+    fontSize: designTypography.sizes.base,
     color: colors.warmGray,
-    lineHeight: typography.lineHeightNormal,
-    // Disable hyphenation globally
+    lineHeight: designTypography.lineHeights.relaxed,
     textBreakStrategy: 'simple',
     wordBreak: 'normal',
   },
@@ -79,17 +54,17 @@ export const styles = StyleSheet.create({
     position: 'relative',
   },
   coverTitle: {
-    fontSize: 28,
-    fontFamily: 'Helvetica-Bold',
-    fontWeight: 'bold',
+    fontSize: typography.sizes.xlarge,
+    fontFamily: designTypography.families.heading,
+    fontWeight: designTypography.weights.bold,
     lineHeight: 34,
     letterSpacing: 0.5,
     marginBottom: spacing.md,
   },
   coverSubtitle: {
-    fontSize: 14,
+    fontSize: typography.sizes.medium,
     marginBottom: spacing.lg,
-    lineHeight: typography.lineHeightNormal,
+    lineHeight: designTypography.lineHeights.relaxed,
   },
   
   // Headers and footers
@@ -114,7 +89,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: 0.5,
     backgroundColor: colors.slateGray,
-    marginBottom: 4,
+    marginBottom: layout.spacing.xs,
   },
   footerContent: {
     flexDirection: 'row',
@@ -122,13 +97,13 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     fontSize: typography.tiny,
     color: colors.warmGray,
-    fontFamily: 'Helvetica',
+    fontFamily: designTypography.families.base,
   },
   footerPageNumber: {
     marginHorizontal: spacing.xs,
     fontSize: typography.tiny,
     color: colors.warmGray,
-    fontFamily: 'Helvetica',
+    fontFamily: designTypography.families.base,
   },
   
   // Section styles
@@ -138,8 +113,8 @@ export const styles = StyleSheet.create({
     padding: spacing.md,
     marginBottom: spacing.lg,
     fontSize: typography.sectionBanner,
-    fontFamily: 'Helvetica-Bold',
-    fontWeight: 'bold',
+    fontFamily: designTypography.families.heading,
+    fontWeight: designTypography.weights.bold,
     textAlign: 'center',
     textTransform: 'uppercase',
     letterSpacing: 1,
@@ -154,64 +129,83 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   
-  // Typography styles
+  // Typography styles (Updated for consistency)
   h1: {
-    fontSize: 14,  // Fixed 14pt for all main headings
-    fontFamily: 'Helvetica-Bold',
-    fontWeight: 'bold',
+    fontSize: typography.pageTitle,
+    fontFamily: designTypography.families.heading,
+    fontWeight: designTypography.weights.bold,
     color: colors.forestGreen,
-    marginTop: 12,  // 12pt above
-    marginBottom: 12,  // 12pt below
+    marginTop: layout.spacing.md,
+    marginBottom: layout.spacing.md,
     textTransform: 'uppercase',
     letterSpacing: 0.5,
   },
   h2: {
-    fontSize: 14,  // Fixed 14pt for subheadings
-    fontFamily: 'Helvetica-Bold',
-    fontWeight: 'bold',
+    fontSize: typography.subtitle,
+    fontFamily: designTypography.families.heading,
+    fontWeight: designTypography.weights.bold,
     color: colors.darkCharcoal,
-    marginTop: 12,  // 12pt above
-    marginBottom: 8,  // 8pt below
+    marginTop: layout.spacing.md,
+    marginBottom: layout.spacing.sm,
   },
   h3: {
-    fontSize: 12,  // 12pt for sub-subheadings
-    fontFamily: 'Helvetica-Bold',
-    fontWeight: 'bold',
+    fontSize: designTypography.sizes.base,
+    fontFamily: designTypography.families.heading,
+    fontWeight: designTypography.weights.bold,
     color: colors.slateGray,
-    marginTop: 8,
+    marginTop: layout.spacing.sm,
     marginBottom: 6,
+  },
+  h4: {
+    fontSize: designTypography.sizes.base,
+    fontFamily: designTypography.families.heading,
+    fontWeight: designTypography.weights.bold,
+    color: colors.slateGray,
+    marginTop: 6,
+    marginBottom: layout.spacing.xs,
+  },
+  
+  // Page titles (standardized)
+  pageTitle: {
+    fontSize: typography.pageTitle,
+    fontFamily: designTypography.families.heading,
+    fontWeight: designTypography.weights.bold,
+    color: colors.forestGreen,
+    textAlign: 'center',
+    marginBottom: layout.spacing.md,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
   
   // Body text
   paragraph: {
     fontSize: typography.body,
-    lineHeight: typography.lineHeightRelaxed,
-    marginBottom: 6,  // 6pt after paragraphs
-    textAlign: 'left',  // Changed from justify to avoid bad word spacing
+    lineHeight: designTypography.lineHeights.relaxed,
+    marginBottom: 6,
+    textAlign: 'left',
     color: colors.warmGray,
-    fontFamily: 'Helvetica',
-    // Prevent hyphenation
+    fontFamily: designTypography.families.base,
     textBreakStrategy: 'simple',
     wordBreak: 'normal',
   },
   
   // Lists
   bulletList: {
-    marginBottom: 12,  // 12pt after lists
-    paddingLeft: 0,  // Reset padding, use on items instead
+    marginBottom: layout.spacing.md,
+    paddingLeft: 0,
   },
   bulletItem: {
     fontSize: typography.body,
-    marginBottom: 12,  // 12pt between list items
-    lineHeight: typography.lineHeightLists,  // 1.15 line spacing
+    marginBottom: layout.spacing.md,
+    lineHeight: typography.lineHeightLists,
     color: colors.warmGray,
-    paddingLeft: 28.8,  // 0.4" indent
+    paddingLeft: 28.8,
     position: 'relative',
-    fontFamily: 'Helvetica',
+    fontFamily: designTypography.families.base,
   },
   bullet: {
     position: 'absolute',
-    left: 14.4,  // Half of indent for bullet position
+    left: 14.4,
     top: 0,
     fontSize: typography.body,
     color: colors.warmGray,
@@ -222,35 +216,35 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.lightGray,
     borderWidth: 0.5,
     borderColor: colors.slateGray,
-    borderRadius: 4,
+    borderRadius: callout.radius,
     padding: spacing.sm,
     marginVertical: spacing.sm,
   },
   calloutTitle: {
     fontSize: typography.body,
-    fontFamily: 'Helvetica-Bold',
-    fontWeight: 'bold',
+    fontFamily: designTypography.families.heading,
+    fontWeight: designTypography.weights.bold,
     marginBottom: spacing.xs,
     color: colors.darkCharcoal,
   },
   
   // Tables
   table: {
-    marginVertical: 12,  // 12pt above and below tables
+    marginVertical: 12,
     borderWidth: 0.5,
     borderColor: colors.slateGray,
   },
   tableHeaderRow: {
-    backgroundColor: '#F3F4F6',  // Light gray background
+    backgroundColor: colors.backgroundAlt,
     borderBottomWidth: 0.5,
     borderBottomColor: colors.slateGray,
   },
   tableHeaderCell: {
-    fontSize: 11,  // 11pt forest green text
-    fontFamily: 'Helvetica-Bold',
-    fontWeight: 'bold',
+    fontSize: designTypography.sizes.base,
+    fontFamily: designTypography.families.heading,
+    fontWeight: designTypography.weights.bold,
     color: colors.forestGreen,
-    padding: 4,  // 4pt cell padding
+    padding: layout.spacing.xs,
   },
   tableRow: {
     borderBottomWidth: 0.5,
@@ -259,14 +253,14 @@ export const styles = StyleSheet.create({
   tableCell: {
     fontSize: typography.body,
     color: colors.warmGray,
-    padding: 4,  // 4pt cell padding
-    fontFamily: 'Helvetica',
+    padding: layout.spacing.xs,
+    fontFamily: designTypography.families.base,
   },
   
   // Two-column layout
   twoColumnContainer: {
     flexDirection: 'row',
-    gap: 21.6, // 0.30" gutter (0.3 * 72)
+    gap: 21.6,
   },
   column: {
     flex: 1,
@@ -274,9 +268,9 @@ export const styles = StyleSheet.create({
   
   // TOC styles
   tocTitle: {
-    fontSize: 32,
-    fontFamily: 'Helvetica-Bold',
-    fontWeight: 'bold',
+    fontSize: designTypography.sizes.h1,
+    fontFamily: designTypography.families.heading,
+    fontWeight: designTypography.weights.bold,
     color: colors.forestGreen,
     textAlign: 'center',
     marginBottom: spacing.xl,
@@ -301,8 +295,8 @@ export const styles = StyleSheet.create({
   tocPageNum: {
     fontSize: typography.subtitle,
     color: colors.forestGreen,
-    fontFamily: 'Helvetica-Bold',
-    fontWeight: 'bold',
+    fontFamily: designTypography.families.heading,
+    fontWeight: designTypography.weights.bold,
   },
   
   // Special callout styles
@@ -310,15 +304,15 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.lightPink,
     borderWidth: 1,
     borderColor: colors.alertRed,
-    borderRadius: 4,
+    borderRadius: callout.radius,
     padding: spacing.sm,
     marginVertical: spacing.sm,
   },
   infoBox: {
-    backgroundColor: '#F5F5F5',
+    backgroundColor: colors.backgroundAlt,
     borderWidth: 0.5,
     borderColor: colors.slateGray,
-    borderRadius: 4,
+    borderRadius: callout.radius,
     padding: spacing.sm,
     marginVertical: spacing.sm,
   },
@@ -338,7 +332,7 @@ export const styles = StyleSheet.create({
   // Quote styles
   quote: {
     fontStyle: 'italic',
-    marginHorizontal: 28.8,  // 0.4" indent
+    marginHorizontal: 28.8,
     marginVertical: spacing.sm,
     paddingLeft: spacing.sm,
     borderLeftWidth: 2,
@@ -348,7 +342,7 @@ export const styles = StyleSheet.create({
   
   // Cover page specific
   coverEstLine: {
-    fontSize: 12,
+    fontSize: designTypography.sizes.base,
     color: colors.white,
     textAlign: 'center',
     letterSpacing: 2,
@@ -365,6 +359,6 @@ export const styles = StyleSheet.create({
     color: colors.slateGray,
     fontStyle: 'italic',
     textAlign: 'center',
-    marginTop: 4,
+    marginTop: layout.spacing.xs,
   },
 });

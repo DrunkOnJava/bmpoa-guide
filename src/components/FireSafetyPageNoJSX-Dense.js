@@ -1,14 +1,17 @@
 import React from 'react';
 import { Page, View, Text, Image, StyleSheet } from '@react-pdf/renderer';
-import { styles, colors, spacing, typography } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { styles, spacing } from '../theme.js';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { largeProportionalImage, captionStyle } from '../imageStyles.js';
 import { 
   TwoColumnLayout, 
   QuickFactsBox, 
   InfoBox, 
   CompactTable,
+  ForestGreenTable,
   DenseText,
   CompactSectionHeader,
   CompactSubsectionHeader,
@@ -29,63 +32,63 @@ export default function FireSafetyPageNoJSXDense({ pageNumberMap = {} }) {
     riskBar: {
       flexDirection: 'row',
       marginVertical: 6,
-      borderRadius: 4,
+      borderRadius: callout.radius,
       overflow: 'hidden',
       width: 200,
       alignSelf: 'center',
       height: 32,
-    },
+  },
     riskLevel: {
-      padding: 4,
+      padding: layout.spacing.xs,
       alignItems: 'center',
       justifyContent: 'center',
       flex: 1,
-    },
+  },
     riskLevelText: {
-      fontSize: 9,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.sm,
+      fontWeight: typography.weights.bold,
       color: colors.white,
-    },
+  },
     riskLevelDesc: {
-      fontSize: 7,
+      fontSize: typography.sizes.tiny,
       color: colors.white,
       opacity: 0.9,
-    },
+  },
     highRisk: {
       backgroundColor: '#DC143C',
-    },
+  },
     moderateRisk: {
       backgroundColor: colors.orange,
-    },
+  },
     lowRisk: {
       backgroundColor: '#228B22',
-    },
+  },
     legalNotice: {
-      backgroundColor: '#FEE2E2',
+      backgroundColor: colors.backgroundDanger,
       borderWidth: 1,
       borderColor: '#DC2626',
-      borderRadius: 4,
+      borderRadius: callout.radius,
       padding: 6,
-      marginTop: 8,
-    },
+      marginTop: layout.spacing.sm,
+  },
     fireImage: {
       width: '100%',
       height: 100,
       marginVertical: 4,
-      borderRadius: 4,
+      borderRadius: callout.radius,
       borderWidth: 0.5,
       borderColor: colors.forestGreen,
-    },
+  },
     evacuationMap: {
-      backgroundColor: '#F5F5F5',
+      backgroundColor: colors.backgroundAlt,
       borderWidth: 2,
       borderColor: colors.orange,
       borderStyle: 'dashed',
-      padding: 24,
+      padding: layout.spacing.xl,
       marginVertical: 8,
       alignItems: 'center',
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     zoneBox: {
       backgroundColor: colors.lightGray,
       padding: 6,
@@ -93,20 +96,20 @@ export default function FireSafetyPageNoJSXDense({ pageNumberMap = {} }) {
       borderLeftWidth: 3,
       borderLeftColor: colors.forestGreen,
       borderRadius: 2,
-    },
+  },
     checklistBox: {
       backgroundColor: '#F9FAFB',
       borderWidth: 1,
       borderColor: colors.forestGreen,
-      borderRadius: 4,
-      padding: 8,
+      borderRadius: callout.radius,
+      padding: layout.spacing.sm,
       marginVertical: 8,
-    },
+  },
     checklistItem: {
       flexDirection: 'row',
       marginBottom: 3,
       alignItems: 'flex-start',
-    },
+  },
     checkbox: {
       width: 8,
       height: 8,
@@ -114,8 +117,8 @@ export default function FireSafetyPageNoJSXDense({ pageNumberMap = {} }) {
       borderColor: colors.slateGray,
       marginRight: 6,
       marginTop: 1,
-    }
-  });
+  }
+});
 
   // Sidebar content for page 1
   const page1Sidebar = [
@@ -126,51 +129,51 @@ export default function FireSafetyPageNoJSXDense({ pageNumberMap = {} }) {
         { label: 'Fire Season', value: 'Feb-Apr' },
         { label: 'Fall Season', value: 'Oct-Nov' }
       ]
-    }),
+  }),
     e(InfoBox, { title: '🚨 4PM LAW' },
-      e(Text, { style: { fontSize: 9, fontWeight: 'bold', color: '#B91C1C', marginBottom: 2 } }, 
+      e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, color: colors.dangerDark, marginBottom: 2 } }, 
         'NO OPEN BURNING'
       ),
-      e(Text, { style: { fontSize: 8, lineHeight: 1.3 } }, 
+      e(Text, { style: { fontSize: typography.sizes.sm, lineHeight: typography.lineHeights.normal } }, 
         'Warren County prohibits burning within 300ft of woods before 4PM. BMPOA prohibits ALL open burning.\n\nViolations: $500 fine + costs'
       )
     ),
     e(EmergencyBox, null,
-      e(Text, { style: { fontSize: 10, fontWeight: 'bold', marginBottom: 3 } }, 
+      e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, marginBottom: 3 } }, 
         'EMERGENCY CONTACTS'
       ),
-      e(Text, { style: { fontSize: 9, marginBottom: 1 } }, '911 - Emergency'),
-      e(Text, { style: { fontSize: 9, marginBottom: 1 } }, '540-635-7100 - Sheriff'),
-      e(Text, { style: { fontSize: 9, marginBottom: 1 } }, '540-636-3830 - Fire'),
-      e(Text, { style: { fontSize: 9 } }, '540-635-3589 - BMPOA')
+      e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, '911 - Emergency'),
+      e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, '540-635-7100 - Sheriff'),
+      e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, '540-636-3830 - Fire'),
+      e(Text, { style: { fontSize: typography.sizes.sm } }, '540-635-3589 - BMPOA')
     )
   ];
 
   // Sidebar content for page 2
   const page2Sidebar = [
-    e(CompactTable, {
+    e(ForestGreenTable, {
       headers: ['Zone', 'Areas'],
       rows: [
         ['1', 'Far View, Shady Tree\nBlue Mt Rd, Dogwood'],
         ['2', 'Blood Root, Fern Trail\nMockingbird, Spring Hill'],
         ['3', 'Blue Mt Rd (upper)\nChipmunk, Cliff, Henry']
       ]
-    }),
+  }),
     e(InfoBox, { title: '🚗 Evacuation Tips' },
       e(View, null,
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Keep gas ≥ half full'),
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Park facing exit'),
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Go-bag ready'),
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Know alt routes'),
-        e(Text, { style: { fontSize: 9 } }, '• Help neighbors')
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Keep gas ≥ half full'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Park facing exit'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Go-bag ready'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Know alt routes'),
+        e(Text, { style: { fontSize: typography.sizes.sm } }, '• Help neighbors')
       )
     ),
     e(InfoBox, { title: '📱 Stay Informed' },
       e(View, null,
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Smart911.com'),
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Warren Alerts'),
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• NOAA Radio'),
-        e(Text, { style: { fontSize: 9 } }, '• BMPOA Facebook')
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Smart911.com'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Warren Alerts'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• NOAA Radio'),
+        e(Text, { style: { fontSize: typography.sizes.sm } }, '• BMPOA Facebook')
       )
     )
   ];
@@ -179,19 +182,19 @@ export default function FireSafetyPageNoJSXDense({ pageNumberMap = {} }) {
   const page3Sidebar = [
     e(InfoBox, { title: '🛡️ Defensible Space' },
       e(View, null,
-        e(Text, { style: { fontSize: 10, fontWeight: 'bold', marginBottom: 2 } }, 'Zone 1: 0-30ft'),
-        e(Text, { style: { fontSize: 8, marginBottom: 1 } }, '• Remove dead plants'),
-        e(Text, { style: { fontSize: 8, marginBottom: 1 } }, '• Mow grass short'),
-        e(Text, { style: { fontSize: 8, marginBottom: 1 } }, '• Prune trees 6-10ft'),
-        e(Text, { style: { fontSize: 8, marginBottom: 4 } }, '• Space crowns 10ft'),
-        e(Text, { style: { fontSize: 10, fontWeight: 'bold', marginBottom: 2 } }, 'Zone 2: 30-100ft'),
-        e(Text, { style: { fontSize: 8, marginBottom: 1 } }, '• Reduce density'),
-        e(Text, { style: { fontSize: 8, marginBottom: 1 } }, '• Remove ladders'),
-        e(Text, { style: { fontSize: 8, marginBottom: 1 } }, '• Create fuel breaks'),
-        e(Text, { style: { fontSize: 8 } }, '• Firewood 30ft+')
+        e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, marginBottom: 2 } }, 'Zone 1: 0-30ft'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, '• Remove dead plants'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, '• Mow grass short'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, '• Prune trees 6-10ft'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: layout.spacing.xs } }, '• Space crowns 10ft'),
+        e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, marginBottom: 2 } }, 'Zone 2: 30-100ft'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, '• Reduce density'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, '• Remove ladders'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, '• Create fuel breaks'),
+        e(Text, { style: { fontSize: typography.sizes.sm } }, '• Firewood 30ft+')
       )
     ),
-    e(CompactTable, {
+    e(ForestGreenTable, {
       headers: ['Item', 'Qty'],
       rows: [
         ['Water', '1gal/person/day'],
@@ -203,18 +206,10 @@ export default function FireSafetyPageNoJSXDense({ pageNumberMap = {} }) {
         ['Docs', 'Copies'],
         ['Cash', 'Small bills']
       ]
-    })
+  })
   ];
 
   return [
-    // Section Divider Page
-    e(SectionDivider, {
-      number: '04',
-      title: 'FIRE SAFETY &\nEMERGENCY PREPAREDNESS',
-      description: 'Protecting our mountain community from wildfire through awareness, preparation, and collective action',
-      backgroundColor: colors.forestGreen
-    }),
-    
     // Page 1: Wildfire Risk Understanding (Dense)
     e(
       Page,
@@ -228,7 +223,7 @@ export default function FireSafetyPageNoJSXDense({ pageNumberMap = {} }) {
         
         // Risk Level Bar
         e(View, { style: { alignItems: 'center', marginVertical: 8 } },
-          e(Text, { style: { fontSize: 11, fontWeight: 'bold', marginBottom: 4 } }, 'RISK LEVELS'),
+          e(Text, { style: { fontSize: typography.sizes.base, fontWeight: typography.weights.bold, marginBottom: layout.spacing.xs } }, 'RISK LEVELS'),
           e(
             View,
             { style: fireStyles.riskBar },
@@ -263,7 +258,7 @@ export default function FireSafetyPageNoJSXDense({ pageNumberMap = {} }) {
             'Single-access roads',
             'Dense understory growth'
           ]
-        }),
+      }),
         
         e(CompactSubsectionHeader, null, 'FIRE SEASONS'),
         e(InlineInfo, {
@@ -271,20 +266,20 @@ export default function FireSafetyPageNoJSXDense({ pageNumberMap = {} }) {
             { label: 'Spring', value: 'Feb 15 - Apr 30' },
             { label: 'Fall', value: 'Oct 15 - Nov 30' }
           ]
-        }),
-        e(DenseText, { style: { fontWeight: 'bold', color: colors.orange } },
+      }),
+        e(DenseText, { style: { fontWeight: typography.weights.bold, color: colors.orange } },
           'Summer droughts can extend risk periods significantly'
         ),
         
-        // Debris fire image
+        // Debris fire image - now larger and proportional
         assetMap.debrisfire && e(
           View,
-          { style: { marginVertical: 6 } },
+          { style: { marginVertical: 12 } },
           e(Image, { 
             src: assetMap.debrisfire, 
-            style: fireStyles.fireImage 
-          }),
-          e(Text, { style: { fontSize: 9, fontStyle: 'italic', textAlign: 'center' } }, 
+            style: largeProportionalImage 
+        }),
+          e(Text, { style: captionStyle }, 
             'Debris fires can quickly spread in dry conditions'
           )
         ),
@@ -299,7 +294,7 @@ export default function FireSafetyPageNoJSXDense({ pageNumberMap = {} }) {
             'Trim trees away from structures',
             'Store firewood 30ft from home'
           ]
-        })
+      })
       ),
       e(
         View,
@@ -328,10 +323,10 @@ export default function FireSafetyPageNoJSXDense({ pageNumberMap = {} }) {
         e(
           View,
           { style: fireStyles.evacuationMap },
-          e(Text, { style: { fontSize: 11, fontWeight: 'bold', color: colors.slateGray } }, 
+          e(Text, { style: { fontSize: typography.sizes.base, fontWeight: typography.weights.bold, color: colors.slateGray } }, 
             'EVACUATION MAP'
           ),
-          e(Text, { style: { fontSize: 9, color: colors.slateGray, fontStyle: 'italic' } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, color: colors.slateGray, fontStyle: 'italic' } }, 
             'Detailed zone map with primary/secondary routes'
           )
         ),
@@ -339,28 +334,28 @@ export default function FireSafetyPageNoJSXDense({ pageNumberMap = {} }) {
         e(CompactSubsectionHeader, null, 'ZONE DETAILS'),
         
         e(View, { style: fireStyles.zoneBox },
-          e(Text, { style: { fontSize: 10, fontWeight: 'bold', color: colors.forestGreen } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, color: colors.forestGreen } }, 
             'ZONE 1 (Northern) → Blue Mt Rd Exit'
           ),
-          e(Text, { style: { fontSize: 9, lineHeight: 1.3 } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, lineHeight: typography.lineHeights.normal } }, 
             'Far View, Shady Tree, Black Walnut, Blue Mountain Rd, Dogwood Blossom, Little Indian, Lonesome Pine, Hawk Hill, Lost Creek'
           )
         ),
         
         e(View, { style: fireStyles.zoneBox },
-          e(Text, { style: { fontSize: 10, fontWeight: 'bold', color: colors.forestGreen } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, color: colors.forestGreen } }, 
             'ZONE 2 (Central) → Fire Trail to Freezeland'
           ),
-          e(Text, { style: { fontSize: 9, lineHeight: 1.3 } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, lineHeight: typography.lineHeights.normal } }, 
             'Blood Root, Fern Trail, Jasper, Mockingbird, Spring Hill, Pee Wee, Rocky Boulder, Indian Pipes, Paradise'
           )
         ),
         
         e(View, { style: fireStyles.zoneBox },
-          e(Text, { style: { fontSize: 10, fontWeight: 'bold', color: colors.forestGreen } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, color: colors.forestGreen } }, 
             'ZONE 3 (Southern) → Uphill to Freezeland'
           ),
-          e(Text, { style: { fontSize: 9, lineHeight: 1.3 } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, lineHeight: typography.lineHeights.normal } }, 
             'Blue Mountain Rd (upper), Chipmunk Trail, Cliff, Henry, Old Dominion, Trillium Trail'
           )
         ),
@@ -375,10 +370,10 @@ export default function FireSafetyPageNoJSXDense({ pageNumberMap = {} }) {
             'Do not return until cleared',
             'Register at evacuation center'
           ]
-        }),
+      }),
         
         e(View, { style: fireStyles.legalNotice },
-          e(Text, { style: { fontSize: 10, fontWeight: 'bold', color: '#B91C1C' } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, color: colors.dangerDark } }, 
             '⚠️ Failure to evacuate when ordered is a Class 1 misdemeanor'
           )
         )
@@ -404,77 +399,77 @@ export default function FireSafetyPageNoJSXDense({ pageNumberMap = {} }) {
         
         // Family Plan Checklist
         e(View, { style: fireStyles.checklistBox },
-          e(Text, { style: { fontSize: 11, fontWeight: 'bold', color: colors.forestGreen, marginBottom: 4, textAlign: 'center' } }, 
+          e(Text, { style: { fontSize: typography.sizes.base, fontWeight: typography.weights.bold, color: colors.forestGreen, marginBottom: layout.spacing.xs, textAlign: 'center' } }, 
             'FAMILY EVACUATION PLAN CHECKLIST'
           ),
           e(View, { style: fireStyles.checklistItem },
             e(View, { style: fireStyles.checkbox }),
-            e(Text, { style: { fontSize: 9, flex: 1 } }, 'Identify two escape routes from each room')
+            e(Text, { style: { fontSize: typography.sizes.sm, flex: 1 } }, 'Identify two escape routes from each room')
           ),
           e(View, { style: fireStyles.checklistItem },
             e(View, { style: fireStyles.checkbox }),
-            e(Text, { style: { fontSize: 9, flex: 1 } }, 'Choose multiple evacuation routes from neighborhood')
+            e(Text, { style: { fontSize: typography.sizes.sm, flex: 1 } }, 'Choose multiple evacuation routes from neighborhood')
           ),
           e(View, { style: fireStyles.checklistItem },
             e(View, { style: fireStyles.checkbox }),
-            e(Text, { style: { fontSize: 9, flex: 1 } }, 'Establish meeting places (near home & outside area)')
+            e(Text, { style: { fontSize: typography.sizes.sm, flex: 1 } }, 'Establish meeting places (near home & outside area)')
           ),
           e(View, { style: fireStyles.checklistItem },
             e(View, { style: fireStyles.checkbox }),
-            e(Text, { style: { fontSize: 9, flex: 1 } }, 'Designate out-of-area contact person')
+            e(Text, { style: { fontSize: typography.sizes.sm, flex: 1 } }, 'Designate out-of-area contact person')
           ),
           e(View, { style: fireStyles.checklistItem },
             e(View, { style: fireStyles.checkbox }),
-            e(Text, { style: { fontSize: 9, flex: 1 } }, 'Plan for pets and livestock evacuation')
+            e(Text, { style: { fontSize: typography.sizes.sm, flex: 1 } }, 'Plan for pets and livestock evacuation')
           ),
           e(View, { style: fireStyles.checklistItem },
             e(View, { style: fireStyles.checkbox }),
-            e(Text, { style: { fontSize: 9, flex: 1 } }, 'Prepare emergency supply kit')
+            e(Text, { style: { fontSize: typography.sizes.sm, flex: 1 } }, 'Prepare emergency supply kit')
           ),
           e(View, { style: fireStyles.checklistItem },
             e(View, { style: fireStyles.checkbox }),
-            e(Text, { style: { fontSize: 9, flex: 1 } }, 'Create home inventory with photos')
+            e(Text, { style: { fontSize: typography.sizes.sm, flex: 1 } }, 'Create home inventory with photos')
           ),
           e(View, { style: fireStyles.checklistItem },
             e(View, { style: fireStyles.checkbox }),
-            e(Text, { style: { fontSize: 9, flex: 1 } }, 'Practice evacuation plan twice yearly')
+            e(Text, { style: { fontSize: typography.sizes.sm, flex: 1 } }, 'Practice evacuation plan twice yearly')
           )
         ),
         
         e(CompactSubsectionHeader, null, 'EMERGENCY SUPPLY KIT ESSENTIALS'),
         
-        e(View, { style: { flexDirection: 'row', gap: 12, marginBottom: 8 } },
+        e(View, { style: { flexDirection: 'row', gap: 12, marginBottom: layout.spacing.sm } },
           e(View, { style: { flex: 1 } },
-            e(Text, { style: { fontSize: 10, fontWeight: 'bold', marginBottom: 2 } }, 'Water & Food'),
-            e(Text, { style: { fontSize: 9, marginBottom: 1 } }, '• 1 gal/person/day (3 days)'),
-            e(Text, { style: { fontSize: 9, marginBottom: 1 } }, '• Non-perishable food'),
-            e(Text, { style: { fontSize: 9 } }, '• Manual can opener')
+            e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, marginBottom: 2 } }, 'Water & Food'),
+            e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, '• 1 gal/person/day (3 days)'),
+            e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, '• Non-perishable food'),
+            e(Text, { style: { fontSize: typography.sizes.sm } }, '• Manual can opener')
           ),
           e(View, { style: { flex: 1 } },
-            e(Text, { style: { fontSize: 10, fontWeight: 'bold', marginBottom: 2 } }, 'Safety Equipment'),
-            e(Text, { style: { fontSize: 9, marginBottom: 1 } }, '• Battery/crank radio'),
-            e(Text, { style: { fontSize: 9, marginBottom: 1 } }, '• Flashlight & batteries'),
-            e(Text, { style: { fontSize: 9 } }, '• First aid kit')
+            e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, marginBottom: 2 } }, 'Safety Equipment'),
+            e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, '• Battery/crank radio'),
+            e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, '• Flashlight & batteries'),
+            e(Text, { style: { fontSize: typography.sizes.sm } }, '• First aid kit')
           )
         ),
         
         e(View, { style: { flexDirection: 'row', gap: 12 } },
           e(View, { style: { flex: 1 } },
-            e(Text, { style: { fontSize: 10, fontWeight: 'bold', marginBottom: 2 } }, 'Personal Items'),
-            e(Text, { style: { fontSize: 9, marginBottom: 1 } }, '• Prescription meds'),
-            e(Text, { style: { fontSize: 9, marginBottom: 1 } }, '• Important documents'),
-            e(Text, { style: { fontSize: 9 } }, '• Cash & credit cards')
+            e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, marginBottom: 2 } }, 'Personal Items'),
+            e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, '• Prescription meds'),
+            e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, '• Important documents'),
+            e(Text, { style: { fontSize: typography.sizes.sm } }, '• Cash & credit cards')
           ),
           e(View, { style: { flex: 1 } },
-            e(Text, { style: { fontSize: 10, fontWeight: 'bold', marginBottom: 2 } }, 'Protection'),
-            e(Text, { style: { fontSize: 9, marginBottom: 1 } }, '• N95 masks for smoke'),
-            e(Text, { style: { fontSize: 9, marginBottom: 1 } }, '• Change of clothing'),
-            e(Text, { style: { fontSize: 9 } }, '• Sturdy shoes')
+            e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, marginBottom: 2 } }, 'Protection'),
+            e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, '• N95 masks for smoke'),
+            e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 1 } }, '• Change of clothing'),
+            e(Text, { style: { fontSize: typography.sizes.sm } }, '• Sturdy shoes')
           )
         ),
         
-        e(View, { style: { backgroundColor: colors.lightGray, padding: 8, marginTop: 8, borderRadius: 4 } },
-          e(Text, { style: { fontSize: 10, fontWeight: 'bold', fontStyle: 'italic', textAlign: 'center' } }, 
+        e(View, { style: { backgroundColor: colors.lightGray, padding: layout.spacing.sm, marginTop: layout.spacing.sm, borderRadius: callout.radius } },
+          e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, fontStyle: 'italic', textAlign: 'center' } }, 
             'Store supplies in easily accessible location. Review and update contents annually. Keep a smaller kit in your vehicle.'
           )
         )

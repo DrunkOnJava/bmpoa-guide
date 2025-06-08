@@ -1,6 +1,7 @@
 import React from 'react';
 import { Page, View, Text, StyleSheet } from '@react-pdf/renderer';
-import { styles, colors, spacing } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { styles, spacing } from '../theme.js';
 
 export default function WoodChippingPageNoJSX({ pageNumberMap = {} }) {
   const e = React.createElement;
@@ -16,105 +17,105 @@ export default function WoodChippingPageNoJSX({ pageNumberMap = {} }) {
       marginTop: -54,
       marginHorizontal: -54,
       marginBottom: -54,
-    },
+  },
     sectionNumber: {
-      fontSize: 72,
-      fontFamily: 'Helvetica-Bold',
-      fontWeight: 'bold',
+      fontSize: typography.sizes.dividerNumber,
+      fontFamily: typography.families.heading,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.lg,
       opacity: 0.9,
-    },
+  },
     sectionTitle: {
-      fontSize: 36,
-      fontFamily: 'Helvetica-Bold',
-      fontWeight: 'bold',
+      fontSize: typography.sizes.dividerTitle,
+      fontFamily: typography.families.heading,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.lg,
       textAlign: 'center',
       textTransform: 'uppercase',
       letterSpacing: 1,
-    },
+  },
     sectionDescription: {
-      fontSize: 12,
+      fontSize: typography.sizes.base,
       textAlign: 'center',
       maxWidth: '80%',
-      lineHeight: 1.5,
+      lineHeight: typography.lineHeights.relaxed,
       fontStyle: 'italic',
       color: colors.white,
       opacity: 0.9,
-    },
+  },
     highlightBox: {
       backgroundColor: colors.background,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     alertBox: {
       backgroundColor: '#FFE4E1',
       borderLeft: `4px solid #DC143C`,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     infoBox: {
       borderWidth: 1,
       borderColor: colors.accent,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     checklistContainer: {
       borderWidth: 1,
       borderColor: colors.accent,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     checklistTitle: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.sm,
       color: colors.primary,
-    },
+  },
     checklistItem: {
       marginBottom: spacing.xs,
       paddingLeft: 18, // 0.25 inch = 18pt
-    },
+  },
     highlightTitle: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.xs,
       color: colors.primary,
-    },
+  },
     alertTitle: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.xs,
-      color: '#DC143C',
-    },
+      color: colors.danger,
+  },
     paragraph: {
       marginBottom: spacing.sm,
       textAlign: 'justify',
-    },
+  },
     listItem: {
       marginBottom: spacing.xs,
       paddingLeft: spacing.sm,
-    },
+  },
     h3: {
-      fontSize: 16,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.h3,
+      fontWeight: typography.weights.bold,
       marginTop: spacing.md,
       marginBottom: spacing.sm,
       color: colors.accent,
-    },
+  },
     iconText: {
       flexDirection: 'row',
       alignItems: 'flex-start',
       marginBottom: spacing.sm,
-    },
+  },
     icon: {
-      fontSize: 16,
+      fontSize: typography.sizes.h3,
       marginRight: spacing.xs,
-    },
+  },
     mapPlaceholder: {
       borderWidth: 2,
       borderColor: colors.forestGreen,
@@ -125,15 +126,15 @@ export default function WoodChippingPageNoJSX({ pageNumberMap = {} }) {
       alignItems: 'center',
       justifyContent: 'center',
       height: 150,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     mapPlaceholderText: {
-      fontSize: 14,
+      fontSize: typography.sizes.medium,
       color: colors.slateGray,
       fontStyle: 'italic',
       textAlign: 'center',
-    }
-  });
+  }
+});
 
   return [
     // Section Divider Page
@@ -229,18 +230,18 @@ export default function WoodChippingPageNoJSX({ pageNumberMap = {} }) {
           )
         ),
         
-        e(View, { style: { backgroundColor: '#FDF7ED', borderWidth: 0.5, borderColor: '#5D4037', padding: 6, marginVertical: spacing.xs, borderRadius: 4 } },
-          e(Text, { style: { fontSize: 12, fontWeight: 'bold', color: '#5D4037', marginBottom: 2 } }, '🛠 Preparation Reminders:'),
-          e(Text, { style: { fontSize: 10, fontStyle: 'italic', color: '#5D4037', marginBottom: 4 } }, 
+        e(View, { style: { backgroundColor: '#FDF7ED', borderWidth: 0.5, borderColor: '#5D4037', padding: 6, marginVertical: spacing.xs, borderRadius: callout.radius } },
+          e(Text, { style: { fontSize: typography.sizes.base, fontWeight: typography.weights.bold, color: colors.brown, marginBottom: 2 } }, '🛠 Preparation Reminders:'),
+          e(Text, { style: { fontSize: typography.sizes.sm, fontStyle: 'italic', color: colors.brown, marginBottom: layout.spacing.xs } }, 
             'Start collecting brush throughout the year for easier management. Focus on dead branches and fire hazards first. Mark your pile location with a reflective marker if away from the main road.'
           ),
-          e(Text, { style: { fontSize: 10, fontStyle: 'italic', color: '#5D4037' } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, fontStyle: 'italic', color: colors.brown } }, 
             'Starting early and consistently collecting brush year-round spreads the workload, allows prompt removal of dead branches, creates ongoing improvement to your property\'s defensible space, and reduces winter storm damage.'
           )
         ),
         
         e(View, { style: [woodStyles.alertBox, { marginTop: spacing.xs }] },
-          e(Text, { style: { fontSize: 12, fontWeight: 'bold', color: '#B91C1C', marginBottom: 4 } }, '🚫 MATERIALS NOT ACCEPTED'),
+          e(Text, { style: { fontSize: typography.sizes.base, fontWeight: typography.weights.bold, color: colors.dangerDark, marginBottom: layout.spacing.xs } }, '🚫 MATERIALS NOT ACCEPTED'),
           e(Text, { style: [woodStyles.listItem, { marginBottom: 2 }] }, '• Lumber, treated wood, or construction debris'),
           e(Text, { style: [woodStyles.listItem, { marginBottom: 2 }] }, '• Root balls with dirt and rocks'),
           e(Text, { style: [woodStyles.listItem, { marginBottom: 2 }] }, '• Stumps and chunks of wood'),
@@ -295,7 +296,7 @@ export default function WoodChippingPageNoJSX({ pageNumberMap = {} }) {
         
         e(View, { style: woodStyles.mapPlaceholder },
           e(Text, { style: woodStyles.mapPlaceholderText }, 'MAP: WOOD CHIP PICKUP LOCATIONS'),
-          e(Text, { style: [woodStyles.mapPlaceholderText, { fontSize: 10, marginTop: spacing.xs }] }, 
+          e(Text, { style: [woodStyles.mapPlaceholderText, { fontSize: typography.sizes.sm, marginTop: spacing.xs }] }, 
             'Shows Lodge and Dam parking areas'
           )
         ),

@@ -45,7 +45,7 @@ export const mapStyle = {
   width: '100%',
   height: 240,
   objectFit: 'contain',    // Preserve entire map
-  backgroundColor: '#FFFFFF',
+  backgroundColor: colors.white,
   padding: 8,
   borderRadius: 6,
   marginVertical: 20,
@@ -53,10 +53,10 @@ export const mapStyle = {
 
 // Lodge interior specific style
 export const lodgeImageStyle = {
-  width: 400,
-  height: 140,
+  width: '100%',  // Full width instead of fixed 400
+  height: 280,    // Doubled from 140
   alignSelf: 'center',
-  objectFit: 'cover',
+  objectFit: 'contain',  // Changed from 'cover' to preserve native proportions
   borderRadius: 8,
   marginVertical: 12,
   borderWidth: 0.5,
@@ -80,6 +80,29 @@ export const overlayStyle = {
   left: 0,
   width: '100%',
   height: '100%',
-  backgroundColor: '#000000',
+  backgroundColor: colors.black,
   opacity: 0.4,
+};
+
+// Large proportional image style - maintains aspect ratio
+export const largeProportionalImage = {
+  width: '100%',
+  height: 300,             // Larger height for impactful display
+  objectFit: 'contain',    // Maintains aspect ratio without distortion
+  borderRadius: 6,
+  marginVertical: 12,
+  borderWidth: 0.5,
+  borderColor: colors.forestGreen,
+  backgroundColor: '#F9FAFB', // Light background for images with transparency
+};
+
+// Medium proportional image style - for standard content images
+export const mediumProportionalImage = {
+  width: '100%',
+  height: 220,
+  objectFit: 'contain',
+  borderRadius: 6,
+  marginVertical: 10,
+  borderWidth: 0.5,
+  borderColor: colors.mediumGray,
 };

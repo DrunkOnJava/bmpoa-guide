@@ -2,15 +2,26 @@
 
 This document serves as the single source of truth for all page layout designs and styling options available in the BMPOA Community Guide PDF generation system.
 
+## 📚 Developer Resources
+
+Before implementing any page, consult these essential documents:
+- **[COMPONENT-CATALOG.md](COMPONENT-CATALOG.md)** - Comprehensive documentation of all components with examples
+- **[VISUAL-COMPONENT-GUIDE.md](VISUAL-COMPONENT-GUIDE.md)** - Visual representation of each component
+- **[COMPONENT-QUICK-REFERENCE.md](COMPONENT-QUICK-REFERENCE.md)** - Printable quick reference card
+
+**Important**: Always use existing components from our libraries instead of creating custom solutions.
+
 ## Table of Contents
 1. [Cover Page Templates](#cover-page-templates)
 2. [Table of Contents Templates](#table-of-contents-templates)
 3. [Section Divider Templates](#section-divider-templates)
 4. [Content Page Templates](#content-page-templates)
-5. [Special Component Templates](#special-component-templates)
-6. [Typography Standards](#typography-standards)
-7. [Color Palette](#color-palette)
-8. [Spacing Guidelines](#spacing-guidelines)
+5. [**NEW: Mirrored Layout Templates**](#mirrored-layout-templates)
+6. [**NEW: Enhanced Sidebar Components**](#enhanced-sidebar-components)
+7. [Special Component Templates](#special-component-templates)
+8. [Typography Standards](#typography-standards)
+9. [Color Palette](#color-palette)
+10. [Spacing Guidelines](#spacing-guidelines)
 
 ## Cover Page Templates
 
@@ -119,6 +130,24 @@ Body: 10pt regular
 Icon: Optional 16x16px
 ```
 
+### Full Width Info Box
+```
+Background: #DBEAFE (customizable)
+Padding: 16pt
+Title: 14pt bold uppercase
+Body: 11pt regular
+Use: Important announcements
+```
+
+### Decorative Stars Separator
+```
+Symbol: ★
+Size: 14pt
+Color: Primary blue
+Spacing: 4pt between stars
+Use: Visual section breaks
+```
+
 ### Warning Box (Red)
 ```
 Background: #FEF2F2
@@ -173,6 +202,93 @@ Border: 0.5pt #4B5563
 Checkmarks: ✓ in forest green
 Items: 10pt regular
 Indent: 0.25"
+```
+
+### Enhanced Checklist Box
+```
+Background: #FEF3C7 (yellow)
+Border: 1pt #F59E0B
+Title: 12pt bold uppercase
+Checkmarks: ✓ green (#059669)
+Items: 10pt regular
+Use: Important checklists
+```
+
+### Burn Ban Alert Box
+```
+Background: #FEE2E2
+Border: 1.5pt #DC2626
+Title: 12pt bold #B91C1C uppercase
+Body: 10pt #7F1D1D
+Use: Fire safety warnings
+```
+
+### Risk Level Box
+```
+Title: 12pt bold
+Body: 10pt regular
+Spacing: 8pt between levels
+Use: Categorizing risk information
+```
+
+### Contact Card
+```
+Background: #F9FAFB
+Border: 0.5pt #E5E7EB
+Icon: 24x24 circle with symbol
+Label: 9pt gray
+Value: 11pt bold
+Use: Contact information display
+```
+
+### Section Header Underlined
+```
+Title: 16pt bold
+Underline: 3pt height, 40pt width
+Color: Primary blue
+Use: Major section breaks
+```
+
+### Image Caption Box
+```
+Image area: Variable height
+Background: #F3F4F6 (if no image)
+Caption: 10pt italic centered
+Padding: 20pt horizontal
+Use: Featured images
+```
+
+### Numbered Requirements
+```
+Number: 11pt bold
+Text: 11pt regular
+Spacing: 8pt between items
+Use: Sequential requirements
+```
+
+### Specification List
+```
+Bullet: • (8pt)
+Text: 10pt regular
+Indent: 16pt
+Spacing: 6pt between items
+Use: Technical specifications
+```
+
+### Meeting Places Box
+```
+Title: 14pt bold
+Items: Numbered list
+Spacing: 8pt between items
+Use: Location listings
+```
+
+### Seasonal Info
+```
+Label: Bold inline
+Dates: Regular inline
+Format: "Season: Date Range"
+Use: Time-based information
 ```
 
 ## Typography Standards
@@ -287,6 +403,123 @@ spacing: {
    - Service catalogs
    - Contact cards
    - Feature highlights
+
+## Mirrored Layout Templates
+
+### Template 1: Mirrored Two-Column
+- **Component**: `MirroredTwoColumnLayout`
+- **Layout**: Sidebar LEFT, main content RIGHT
+- **Gap**: 16pt between columns
+- **Ratio**: 1:2 (sidebar:main)
+- **Use**: Create layout variety, visual interest
+
+```javascript
+import { MirroredTwoColumnLayout } from './MirroredLayoutComponents.js';
+
+e(MirroredTwoColumnLayout, { sidebarContent },
+  // Main content goes here (will appear on RIGHT)
+)
+```
+
+### When to Use Mirrored Layout
+- Alternate with standard TwoColumnLayout for visual variety
+- Emphasize sidebar content (appears first in reading order)
+- Create balanced spread across facing pages
+- Break up long sections with consistent layouts
+
+## Enhanced Sidebar Components
+
+### Size Comparison Chart
+| Component | Height Increase | Font Size | Padding | Best Use Case |
+|-----------|----------------|-----------|---------|---------------|
+| Standard InfoBox | Baseline | 9pt | 12px | Basic information |
+| TallInfoBox | +25% | 10pt | 14px | Enhanced details |
+| ExtraTallInfoBox | +50% | 10pt | 16px | Complex information |
+| JumboInfoBox | +75% | 11pt | 18px | Extensive content |
+
+### TallInfoBox
+```
+Height: +25% increase
+Font: 10pt (vs 9pt standard)
+Padding: 14px (vs 12px standard)
+Min Height: 120pt
+Use: Enhanced details, longer lists
+```
+
+### ExtraTallInfoBox  
+```
+Height: +50% increase
+Font: 10pt body, 13pt title
+Padding: 16px
+Min Height: 160pt
+Use: Complex multi-step information
+```
+
+### JumboInfoBox
+```
+Height: +75% increase
+Font: 11pt body, 14pt title
+Padding: 18px
+Min Height: 200pt
+Use: Extensive content, emergency procedures
+```
+
+### TallQuickFactsBox
+```
+Height: +25% increase
+Font: 10pt labels/values
+Spacing: 5px row padding
+Use: Extended fact lists, detailed specifications
+```
+
+### ExtendedSidebarBox
+```
+Multiple titled sections in one component
+Type colors: info, warning, danger, success
+Sections: title + content pairs
+Use: Organizing related information categories
+```
+
+### TabbedSidebarBox
+```
+Multiple tabs with content switching
+Tab headers with active state styling
+Flexible content areas
+Use: Seasonal info, categorized data, time-based content
+```
+
+### Component Selection Guidelines
+
+**Use TallInfoBox when:**
+- Standard InfoBox feels cramped
+- Content needs better breathing room
+- Displaying 5-8 bullet points
+- Enhanced readability is priority
+
+**Use ExtraTallInfoBox when:**
+- Displaying complex procedures
+- Multiple related concepts
+- Step-by-step instructions
+- 8-12 content items
+
+**Use JumboInfoBox when:**
+- Emergency procedures
+- Comprehensive checklists  
+- Detailed safety information
+- 12+ content items
+- Maximum visual impact needed
+
+**Use ExtendedSidebarBox when:**
+- Multiple related topics
+- Categorized information
+- Contact lists by type
+- Organized reference data
+
+**Use TabbedSidebarBox when:**
+- Seasonal variations
+- Time-based information
+- Alternative approaches
+- Space-efficient categorization
 
 ### Accessibility Considerations
 - Maintain 11pt minimum font size for body text

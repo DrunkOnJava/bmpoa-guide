@@ -1,11 +1,13 @@
 import React from 'react';
 import { Page, View, Text, StyleSheet } from '@react-pdf/renderer';
-import { styles, colors, spacing } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { styles, spacing } from '../theme.js';
 import { 
   TwoColumnLayout, 
   QuickFactsBox, 
   InfoBox, 
   CompactTable,
+  ForestGreenTable,
   DenseText,
   CompactSectionHeader,
   CompactSubsectionHeader,
@@ -18,39 +20,39 @@ export default function WoodChippingPageNoJSXDense({ pageNumberMap = {} }) {
   
   const woodStyles = StyleSheet.create({
     alertBox: {
-      backgroundColor: '#FEE2E2',
+      backgroundColor: colors.backgroundDanger,
       borderWidth: 1,
       borderColor: '#DC2626',
-      borderRadius: 4,
+      borderRadius: callout.radius,
       padding: 6,
-      marginBottom: 8,
-    },
+      marginBottom: layout.spacing.sm,
+  },
     alertTitle: {
-      fontSize: 11,
-      fontWeight: 'bold',
-      color: '#B91C1C',
-      marginBottom: 4,
-    },
+      fontSize: typography.sizes.base,
+      fontWeight: typography.weights.bold,
+      color: colors.dangerDark,
+      marginBottom: layout.spacing.xs,
+  },
     checklistBox: {
-      backgroundColor: '#F5F5F5',
+      backgroundColor: colors.backgroundAlt,
       borderWidth: 0.5,
       borderColor: colors.slateGray,
-      borderRadius: 4,
-      padding: 8,
-      marginBottom: 8,
-    },
+      borderRadius: callout.radius,
+      padding: layout.spacing.sm,
+      marginBottom: layout.spacing.sm,
+  },
     checklistItem: {
-      fontSize: 9,
+      fontSize: typography.sizes.sm,
       marginBottom: 3,
       paddingLeft: 14,
       position: 'relative',
-    },
+  },
     checkbox: {
       position: 'absolute',
       left: 0,
       top: 0,
-    }
-  });
+  }
+});
 
   // Sidebar content for page 1
   const page1Sidebar = [
@@ -61,22 +63,22 @@ export default function WoodChippingPageNoJSXDense({ pageNumberMap = {} }) {
         { label: 'Duration', value: '1 week' },
         { label: 'Partner', value: 'VA Forestry' }
       ]
-    }),
+  }),
     e(InfoBox, { title: '📞 Contact' },
-      e(Text, { style: { fontSize: 9 } }, 'Jim Cook'),
-      e(Text, { style: { fontSize: 9, marginTop: 2 } }, 'jcook0313@gmail.com'),
-      e(Text, { style: { fontSize: 9, marginTop: 4, fontStyle: 'italic' } }, 
+      e(Text, { style: { fontSize: typography.sizes.sm } }, 'Jim Cook'),
+      e(Text, { style: { fontSize: typography.sizes.sm, marginTop: 2 } }, 'jcook0313@gmail.com'),
+      e(Text, { style: { fontSize: typography.sizes.sm, marginTop: layout.spacing.xs, fontStyle: 'italic' } }, 
         'Contact for delivery requests or questions'
       )
     ),
     e(InfoBox, { title: '🔥 Fire Facts' },
-      e(Text, { style: { fontSize: 9, marginBottom: 3 } }, 
+      e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 3 } }, 
         '• Blue Mountain is a Wildland-Urban Interface'
       ),
-      e(Text, { style: { fontSize: 9, marginBottom: 3 } }, 
+      e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 3 } }, 
         '• Defensible space reduces fire risk by 80%'
       ),
-      e(Text, { style: { fontSize: 9 } }, 
+      e(Text, { style: { fontSize: typography.sizes.sm } }, 
         '• Dead branches are primary fuel source'
       )
     )
@@ -84,7 +86,7 @@ export default function WoodChippingPageNoJSXDense({ pageNumberMap = {} }) {
 
   // Sidebar content for page 2
   const page2Sidebar = [
-    e(CompactTable, {
+    e(ForestGreenTable, {
       headers: ['Schedule', 'Date'],
       rows: [
         ['Collection starts', 'March 15-30'],
@@ -92,18 +94,18 @@ export default function WoodChippingPageNoJSXDense({ pageNumberMap = {} }) {
         ['Chip delivery', 'April 8-15'],
         ['Final cleanup', 'April 16-20']
       ]
-    }),
+  }),
     e(InfoBox, { title: '⚠️ Not Accepted' },
       e(View, null,
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Lumber/treated wood'),
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Root balls with dirt'),
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Stumps > 8" diameter'),
-        e(Text, { style: { fontSize: 9, marginBottom: 2 } }, '• Grass/leaves'),
-        e(Text, { style: { fontSize: 9 } }, '• Any trash')
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Lumber/treated wood'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Root balls with dirt'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Stumps > 8" diameter'),
+        e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Grass/leaves'),
+        e(Text, { style: { fontSize: typography.sizes.sm } }, '• Any trash')
       )
     ),
     e(InfoBox, { title: '💡 Pro Tips' },
-      e(Text, { style: { fontSize: 9, fontStyle: 'italic' } }, 
+      e(Text, { style: { fontSize: typography.sizes.sm, fontStyle: 'italic' } }, 
         'Start collecting brush year-round. Mark pile location with reflector. Focus on dead branches first.'
       )
     )
@@ -118,13 +120,13 @@ export default function WoodChippingPageNoJSXDense({ pageNumberMap = {} }) {
         { label: 'Delivery', value: 'Free on request' },
         { label: 'Uses', value: 'Mulch, paths' }
       ]
-    }),
+  }),
     e(InfoBox, { title: '🌱 Garden Tip' },
-      e(Text, { style: { fontSize: 9 } }, 
+      e(Text, { style: { fontSize: typography.sizes.sm } }, 
         'Fresh chips tie up nitrogen. Age 3-6 months for gardens or add nitrogen fertilizer. Keep away from stems.'
       )
     ),
-    e(CompactTable, {
+    e(ForestGreenTable, {
       headers: ['Use', 'Fresh OK?'],
       rows: [
         ['Paths', '✓'],
@@ -133,18 +135,10 @@ export default function WoodChippingPageNoJSXDense({ pageNumberMap = {} }) {
         ['Gardens', '✗'],
         ['Compost', '✓*']
       ]
-    })
+  })
   ];
 
   return [
-    // Section Divider Page
-    e(SectionDivider, {
-      number: '03',
-      title: 'WOOD-CHIPPING PROGRAM',
-      description: 'Our annual wood-chipping program helps reduce wildfire risk while keeping our mountain beautiful',
-      backgroundColor: colors.forestGreen
-    }),
-    
     // Page 1: Annual Chipping & Fire Mitigation (Dense)
     e(
       Page,
@@ -157,11 +151,11 @@ export default function WoodChippingPageNoJSXDense({ pageNumberMap = {} }) {
           'All property owners within the BMPOA Sanitary District are eligible for free wood chipping annually. This valuable service helps reduce fire hazards around homes while providing a convenient way to dispose of woody debris.'
         ),
         
-        e(View, { style: { backgroundColor: '#F5F5F5', padding: 6, marginBottom: 8, borderRadius: 4 } },
-          e(Text, { style: { fontSize: 10, fontWeight: 'bold', color: colors.forestGreen, marginBottom: 3 } }, 
+        e(View, { style: { backgroundColor: colors.backgroundAlt, padding: 6, marginBottom: layout.spacing.sm, borderRadius: callout.radius } },
+          e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, color: colors.forestGreen, marginBottom: 3 } }, 
             '🔥 FIRE PREVENTION BENEFIT'
           ),
-          e(Text, { style: { fontSize: 9, lineHeight: 1.4 } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, lineHeight: typography.lineHeights.relaxed } }, 
             'Removing dead branches, brush, and small trees creates defensible space—one of the most effective wildfire protection strategies. Participation helps reduce risk for the entire mountain community.'
           )
         ),
@@ -178,7 +172,7 @@ export default function WoodChippingPageNoJSXDense({ pageNumberMap = {} }) {
             'Educational resources on defensible space',
             'Follow-up assessments & recommendations'
           ]
-        }),
+      }),
         
         e(CompactSubsectionHeader, null, 'PREPARING YOUR BRUSH PILE'),
         e(DenseText, null,
@@ -186,7 +180,7 @@ export default function WoodChippingPageNoJSXDense({ pageNumberMap = {} }) {
         ),
         
         e(View, { style: woodStyles.checklistBox },
-          e(Text, { style: { fontSize: 10, fontWeight: 'bold', marginBottom: 4 } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, marginBottom: layout.spacing.xs } }, 
             '✓ BRUSH PILE CHECKLIST'
           ),
           e(View, null,
@@ -255,16 +249,16 @@ export default function WoodChippingPageNoJSXDense({ pageNumberMap = {} }) {
           'Wood chips are available at communal stockpile locations:'
         ),
         
-        e(CompactTable, {
+        e(ForestGreenTable, {
           headers: ['Location', 'Details'],
           rows: [
             ['Lodge Parking', '540 Cliff Road, near main building'],
             ['Dam Parking', 'Deer Lake dam area, marked pile']
           ]
-        }),
+      }),
         
-        e(View, { style: { marginTop: 8, padding: 8, backgroundColor: colors.lightGray, borderRadius: 4 } },
-          e(Text, { style: { fontSize: 9, textAlign: 'center', fontStyle: 'italic' } }, 
+        e(View, { style: { marginTop: layout.spacing.sm, padding: layout.spacing.sm, backgroundColor: colors.lightGray, borderRadius: callout.radius } },
+          e(Text, { style: { fontSize: typography.sizes.sm, textAlign: 'center', fontStyle: 'italic' } }, 
             'Map showing pickup locations available at Lodge'
           )
         ),

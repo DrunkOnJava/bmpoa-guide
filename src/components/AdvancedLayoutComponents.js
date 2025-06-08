@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from '@react-pdf/renderer';
-import { colors, spacing } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { spacing } from '../theme.js';
 
 // Advanced layout components inspired by ComponentGarden analysis
 
@@ -9,81 +10,81 @@ const advancedStyles = StyleSheet.create({
   mixedLayoutContainer: {
     flexDirection: 'column',
     width: '100%',
-  },
+},
   
   // Card Grid Styles
   cardGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 8,
-    marginBottom: 12,
-  },
+    marginBottom: layout.spacing.md,
+},
   
   card: {
     flex: '1 1 45%',
     backgroundColor: '#F9FAFB',
     borderWidth: 0.5,
     borderColor: '#E5E7EB',
-    borderRadius: 4,
+    borderRadius: callout.radius,
     padding: 10,
     minHeight: 80,
-  },
+},
   
   cardHeader: {
-    fontSize: 11,
-    fontWeight: 'bold',
+    fontSize: typography.sizes.base,
+    fontWeight: typography.weights.bold,
     color: colors.forestGreen,
-    marginBottom: 4,
-  },
+    marginBottom: layout.spacing.xs,
+},
   
   cardBody: {
-    fontSize: 9,
+    fontSize: typography.sizes.sm,
     color: colors.darkGray,
-    lineHeight: 1.4,
-  },
+    lineHeight: typography.lineHeights.relaxed,
+},
   
   cardIcon: {
     width: 20,
     height: 20,
-    marginBottom: 4,
-  },
+    marginBottom: layout.spacing.xs,
+},
   
   // Hierarchical List Styles
   hierarchicalList: {
-    marginBottom: 12,
-  },
+    marginBottom: layout.spacing.md,
+},
   
   mainItem: {
-    fontSize: 11,
-    fontWeight: 'bold',
+    fontSize: typography.sizes.base,
+    fontWeight: typography.weights.bold,
     color: colors.darkGray,
-    marginBottom: 4,
-  },
+    marginBottom: layout.spacing.xs,
+},
   
   subItem: {
-    fontSize: 10,
+    fontSize: typography.sizes.sm,
     color: colors.mediumGray,
     paddingLeft: 20,
     marginBottom: 2,
-  },
+},
   
   subSubItem: {
-    fontSize: 9,
+    fontSize: typography.sizes.sm,
     color: colors.mediumGray,
     paddingLeft: 40,
     marginBottom: 1,
-  },
+},
   
   // Timeline Layout
   timelineContainer: {
-    marginBottom: 16,
-  },
+    marginBottom: layout.spacing.lg,
+},
   
   timelineItem: {
     flexDirection: 'row',
-    marginBottom: 12,
+    marginBottom: layout.spacing.md,
     position: 'relative',
-  },
+},
   
   timelineDot: {
     width: 12,
@@ -92,7 +93,7 @@ const advancedStyles = StyleSheet.create({
     backgroundColor: colors.primary,
     marginRight: 12,
     marginTop: 2,
-  },
+},
   
   timelineLine: {
     position: 'absolute',
@@ -101,24 +102,24 @@ const advancedStyles = StyleSheet.create({
     width: 1,
     height: '100%',
     backgroundColor: '#E5E7EB',
-  },
+},
   
   timelineContent: {
     flex: 1,
-  },
+},
   
   timelineDate: {
-    fontSize: 9,
+    fontSize: typography.sizes.sm,
     color: colors.primary,
-    fontWeight: 'bold',
+    fontWeight: typography.weights.bold,
     marginBottom: 2,
-  },
+},
   
   timelineText: {
-    fontSize: 10,
+    fontSize: typography.sizes.sm,
     color: colors.darkGray,
-    lineHeight: 1.4,
-  },
+    lineHeight: typography.lineHeights.relaxed,
+},
   
   // Feature Box with Icon
   featureBox: {
@@ -126,57 +127,57 @@ const advancedStyles = StyleSheet.create({
     backgroundColor: '#EBF4FF',
     borderWidth: 1,
     borderColor: '#2563EB',
-    borderRadius: 4,
+    borderRadius: callout.radius,
     padding: 10,
-    marginBottom: 8,
-  },
+    marginBottom: layout.spacing.sm,
+},
   
   featureIcon: {
     width: 32,
     height: 32,
     marginRight: 10,
-  },
+},
   
   featureContent: {
     flex: 1,
-  },
+},
   
   featureTitle: {
-    fontSize: 11,
-    fontWeight: 'bold',
-    color: '#1E40AF',
+    fontSize: typography.sizes.base,
+    fontWeight: typography.weights.bold,
+    color: colors.blueDark,
     marginBottom: 2,
-  },
+},
   
   featureText: {
-    fontSize: 9,
+    fontSize: typography.sizes.sm,
     color: colors.darkGray,
-    lineHeight: 1.4,
-  },
+    lineHeight: typography.lineHeights.relaxed,
+},
   
   // Sidebar Box Styles
   sidebarBox: {
     backgroundColor: '#FFFAEB',
     borderWidth: 0.5,
     borderColor: '#F59E0B',
-    borderRadius: 4,
-    padding: 8,
-    marginBottom: 8,
-  },
+    borderRadius: callout.radius,
+    padding: layout.spacing.sm,
+    marginBottom: layout.spacing.sm,
+},
   
   sidebarTitle: {
-    fontSize: 10,
-    fontWeight: 'bold',
-    color: '#D97706',
-    marginBottom: 4,
+    fontSize: typography.sizes.sm,
+    fontWeight: typography.weights.bold,
+    color: colors.danger,
+    marginBottom: layout.spacing.xs,
     textTransform: 'uppercase',
-  },
+},
   
   sidebarContent: {
-    fontSize: 9,
+    fontSize: typography.sizes.sm,
     color: colors.darkGray,
-    lineHeight: 1.4,
-  },
+    lineHeight: typography.lineHeights.relaxed,
+},
   
   // Professional Quote Box
   quoteBox: {
@@ -187,21 +188,21 @@ const advancedStyles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8,
     marginVertical: 12,
-  },
+},
   
   quoteText: {
-    fontSize: 11,
+    fontSize: typography.sizes.base,
     fontStyle: 'italic',
     color: colors.darkGray,
-    lineHeight: 1.5,
-    marginBottom: 4,
-  },
+    lineHeight: typography.lineHeights.relaxed,
+    marginBottom: layout.spacing.xs,
+},
   
   quoteAttribution: {
-    fontSize: 9,
+    fontSize: typography.sizes.sm,
     color: colors.mediumGray,
     textAlign: 'right',
-  },
+},
   
   // Badge Style Elements
   badge: {
@@ -210,10 +211,10 @@ const advancedStyles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 2,
     borderRadius: 12,
-    fontSize: 8,
-    fontWeight: 'bold',
+    fontSize: typography.sizes.sm,
+    fontWeight: typography.weights.bold,
     alignSelf: 'flex-start',
-  },
+},
   
   cornerBadge: {
     position: 'absolute',
@@ -223,10 +224,10 @@ const advancedStyles = StyleSheet.create({
     color: colors.white,
     paddingHorizontal: 12,
     paddingVertical: 4,
-    borderRadius: 4,
-    fontSize: 9,
-    fontWeight: 'bold',
-  },
+    borderRadius: callout.radius,
+    fontSize: typography.sizes.sm,
+    fontWeight: typography.weights.bold,
+},
 });
 
 // Card Grid Component
@@ -259,7 +260,7 @@ export const HierarchicalList = ({ items = [] }) => {
               e(Text, { 
                 key: `subsub-${index}-${subIndex}-${subSubIndex}`,
                 style: advancedStyles.subSubItem 
-              }, subSubItem)
+            }, subSubItem)
             )
           )
         )
@@ -309,19 +310,19 @@ export const SidebarBox = ({ title, content, type = 'info' }) => {
       ...advancedStyles.sidebarBox, 
       backgroundColor: '#FEF2F2',
       borderColor: '#DC2626' 
-    },
+  },
     success: { 
       ...advancedStyles.sidebarBox, 
       backgroundColor: '#F0FDF4',
       borderColor: '#10B981' 
-    }
-  };
+  }
+};
   
   const titleStyles = {
     info: { ...advancedStyles.sidebarTitle },
-    warning: { ...advancedStyles.sidebarTitle, color: '#B91C1C' },
-    success: { ...advancedStyles.sidebarTitle, color: '#059669' }
-  };
+    warning: { ...advancedStyles.sidebarTitle, color: colors.dangerDark },
+    success: { ...advancedStyles.sidebarTitle, color: colors.successDark }
+};
   
   return e(View, { style: boxStyles[type] },
     e(Text, { style: titleStyles[type] }, title),
@@ -345,7 +346,7 @@ export const Badge = ({ text, corner = false }) => {
   
   return e(Text, { 
     style: corner ? advancedStyles.cornerBadge : advancedStyles.badge 
-  }, text);
+}, text);
 };
 
 // Mixed Layout Component - Combines different layout patterns
@@ -362,8 +363,8 @@ export const CoverHeader = ({ established, type }) => {
   const headerStyle = {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 48,
-  };
+    marginBottom: layout.spacing.xl,
+};
   
   const badgeStyle = {
     backgroundColor: colors.white,
@@ -373,9 +374,9 @@ export const CoverHeader = ({ established, type }) => {
     borderRadius: 20,
     borderWidth: 2,
     borderColor: colors.darkGray,
-    fontSize: 10,
-    fontWeight: 'bold',
-  };
+    fontSize: typography.sizes.sm,
+    fontWeight: typography.weights.bold,
+};
   
   return e(View, { style: headerStyle },
     established && e(Text, { style: badgeStyle }, `EST. ${established}`),
@@ -392,18 +393,18 @@ export const TOCEntry = ({ number, title, page, level = 1 }) => {
     justifyContent: 'space-between',
     marginBottom: level === 1 ? 12 : 8,
     paddingLeft: level > 1 ? (level - 1) * 20 : 0,
-  };
+};
   
   const titleStyle = {
     fontSize: level === 1 ? 11 : 10,
     fontWeight: level === 1 ? 'bold' : 'normal',
     color: level === 1 ? colors.darkGray : colors.mediumGray,
-  };
+};
   
   const pageStyle = {
     fontSize: level === 1 ? 11 : 10,
     color: colors.mediumGray,
-  };
+};
   
   return e(View, { style: entryStyle },
     e(Text, { style: titleStyle }, 

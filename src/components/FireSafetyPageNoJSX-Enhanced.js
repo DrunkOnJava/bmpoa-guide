@@ -1,6 +1,7 @@
 import React from 'react';
 import { Page, View, Text, StyleSheet, Image } from '@react-pdf/renderer';
-import { styles, colors, spacing, typography } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { styles, spacing } from '../theme.js';
 import { 
   PageFooterNoJSX, 
   SectionBannerNoJSX,
@@ -27,47 +28,47 @@ export default function FireSafetyPageNoJSXEnhanced({ pageNumberMap = {} }) {
       marginTop: -spacing.sm,
       marginHorizontal: -54,
       height: 18,
-    },
+  },
     ribbonText: {
       color: colors.white,
-      fontSize: 10,
-      fontFamily: 'Helvetica-Bold',
-      fontWeight: 'bold',
+      fontSize: typography.sizes.sm,
+      fontFamily: typography.families.heading,
+      fontWeight: typography.weights.bold,
       textAlign: 'center',
-    },
+  },
     riskBar: {
       flexDirection: 'row',
       marginVertical: spacing.md,
-      borderRadius: 4,
+      borderRadius: callout.radius,
       overflow: 'hidden',
       width: 300, // Exactly 300px (≈4″ at 72 dpi)
       alignSelf: 'center',
-    },
+  },
     riskLevel: {
       padding: spacing.sm,
       alignItems: 'center',
       justifyContent: 'center',
       flex: 1,
-    },
+  },
     riskLevelText: {
       fontSize: typography.caption,
-      fontWeight: 'bold',
+      fontWeight: typography.weights.bold,
       color: colors.white,
-    },
+  },
     riskLevelDesc: {
-      fontSize: 8,
+      fontSize: typography.sizes.sm,
       color: colors.white,
       opacity: 0.9,
-    },
+  },
     highRisk: {
       backgroundColor: '#DC143C',
-    },
+  },
     moderateRisk: {
       backgroundColor: colors.orange,
-    },
+  },
     lowRisk: {
       backgroundColor: '#228B22',
-    },
+  },
     evacuationMapBox: {
       borderWidth: 2,
       borderColor: colors.orange,
@@ -77,67 +78,67 @@ export default function FireSafetyPageNoJSXEnhanced({ pageNumberMap = {} }) {
       alignItems: 'center',
       backgroundColor: colors.lightGray,
       opacity: 0.3,
-    },
+  },
     mapPlaceholderText: {
       fontSize: typography.subtitle,
       color: colors.slateGray,
       fontStyle: 'italic',
-    },
+  },
     legalNotice: {
       backgroundColor: '#FEFCE8', // Light yellow
       borderWidth: 0.5,
       borderColor: colors.slateGray, // Dark gray border
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     legalTitle: {
-      fontSize: 12, // 12pt bold
-      fontFamily: 'Helvetica-Bold',
-      fontWeight: 'bold',
-      color: '#B91C1C', // Red
+      fontSize: typography.sizes.base, // 12pt bold
+      fontFamily: typography.families.heading,
+      fontWeight: typography.weights.bold,
+      color: colors.dangerDark, // Red
       marginBottom: spacing.xs,
-    },
+  },
     legalText: {
       fontSize: typography.caption, // 10pt
       fontStyle: 'italic',
-      color: '#5D4037', // Dark brown
+      color: colors.brown, // Dark brown
       lineHeight: typography.lineHeightNormal,
-    },
+  },
     zoneBox: {
       backgroundColor: colors.lightGray,
       padding: spacing.sm,
       marginBottom: spacing.xs,
       borderLeftWidth: 3,
       borderLeftColor: colors.forestGreen,
-    },
+  },
     zoneTitle: {
       fontSize: typography.body,
-      fontFamily: 'Helvetica-Bold',
-      fontWeight: 'bold',
+      fontFamily: typography.families.heading,
+      fontWeight: typography.weights.bold,
       color: colors.forestGreen,
       marginBottom: 2,
-    },
+  },
     checklistBox: {
       borderWidth: 1,
       borderColor: colors.forestGreen,
       padding: spacing.md,
       marginVertical: spacing.md,
       backgroundColor: colors.white,
-    },
+  },
     checklistHeader: {
       fontSize: typography.subtitle,
-      fontFamily: 'Helvetica-Bold',
-      fontWeight: 'bold',
+      fontFamily: typography.families.heading,
+      fontWeight: typography.weights.bold,
       color: colors.forestGreen,
       marginBottom: spacing.sm,
       textAlign: 'center',
-    },
+  },
     checklistRow: {
       flexDirection: 'row',
       marginBottom: spacing.xs,
       paddingLeft: spacing.sm,
-    },
+  },
     checkbox: {
       width: 10,
       height: 10,
@@ -145,26 +146,26 @@ export default function FireSafetyPageNoJSXEnhanced({ pageNumberMap = {} }) {
       borderColor: colors.slateGray,
       marginRight: spacing.sm,
       marginTop: 2,
-    },
+  },
     checklistItem: {
       fontSize: typography.body,
       flex: 1,
       color: colors.darkCharcoal,
-    },
+  },
     fireImage: {
       width: '100%',
       height: 180,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     imageCaption: {
       fontSize: typography.caption,
       fontStyle: 'italic',
       color: colors.warmGray,
       textAlign: 'center',
       marginBottom: spacing.md,
-    }
-  });
+  }
+});
 
   // Return array of pages
   return [
@@ -173,7 +174,7 @@ export default function FireSafetyPageNoJSXEnhanced({ pageNumberMap = {} }) {
       number: '04',
       title: 'FIRE SAFETY &\nEMERGENCY PREPAREDNESS',
       description: 'Protecting our mountain community from wildfire through awareness, preparation, and collective action'
-    }),
+  }),
     
     // Wildfire Risk Understanding Page
     e(
@@ -187,7 +188,7 @@ export default function FireSafetyPageNoJSXEnhanced({ pageNumberMap = {} }) {
         e(SectionBannerNoJSX, {
           number: 'SECTION 4',
           title: 'FIRE SAFETY & EMERGENCY PREPAREDNESS',
-        }),
+      }),
         e(
           View,
           { style: fireStyles.orangeRibbon },
@@ -236,7 +237,7 @@ export default function FireSafetyPageNoJSXEnhanced({ pageNumberMap = {} }) {
             { type: 'warning' },
             e(Text, { style: styles.bulletItem }, '• Spring: February 15 - April 30'),
             e(Text, { style: styles.bulletItem }, '• Fall: October 15 - November 30'),
-            e(Text, { style: [styles.bulletItem, { fontWeight: 'bold' }] }, 
+            e(Text, { style: [styles.bulletItem, { fontWeight: typography.weights.bold }] }, 
               '• Summer droughts can extend risk periods'
             )
           ),
@@ -248,7 +249,7 @@ export default function FireSafetyPageNoJSXEnhanced({ pageNumberMap = {} }) {
             e(Image, { 
               src: assetMap.debrisfire, 
               style: fireStyles.fireImage 
-            }),
+          }),
             e(Text, { style: fireStyles.imageCaption }, 
               'Debris fires can quickly spread in dry conditions'
             )
@@ -287,12 +288,12 @@ export default function FireSafetyPageNoJSXEnhanced({ pageNumberMap = {} }) {
             e(Text, { style: fireStyles.legalText }, 
               'Open burning is forbidden at all times within BMPOA. Warren County Code § 974.3575 prohibits burning within 300 ft of woods before 4 PM. BMPOA prohibits ALL open burning.'
             ),
-            e(Text, { style: [fireStyles.legalText, { marginTop: spacing.xs, fontWeight: 'bold' }] }, 
+            e(Text, { style: [fireStyles.legalText, { marginTop: spacing.xs, fontWeight: typography.weights.bold }] }, 
               'Violations: Class 3 misdemeanor, fines up to $500 plus suppression costs.'
             )
           )
         )
-      }),
+    }),
       
       // Footer
       e(PageFooterNoJSX, { pageNumber: 15 })
@@ -310,7 +311,7 @@ export default function FireSafetyPageNoJSXEnhanced({ pageNumberMap = {} }) {
         View,
         { style: fireStyles.evacuationMapBox },
         e(Text, { style: fireStyles.mapPlaceholderText }, 'EVACUATION MAP'),
-        e(Text, { style: [fireStyles.mapPlaceholderText, { fontSize: 10 }] }, 
+        e(Text, { style: [fireStyles.mapPlaceholderText, { fontSize: typography.sizes.sm }] }, 
           'Detailed zone map showing primary and secondary routes'
         )
       ),
@@ -332,7 +333,7 @@ export default function FireSafetyPageNoJSXEnhanced({ pageNumberMap = {} }) {
               e(Text, { style: styles.bulletItem }, '• Blue Mountain Rd, Dogwood Blossom'),
               e(Text, { style: styles.bulletItem }, '• Little Indian, Lonesome Pine'),
               e(Text, { style: styles.bulletItem }, '• Hawk Hill, Lost Creek'),
-              e(Text, { style: [styles.bulletItem, { fontWeight: 'bold' }] }, 
+              e(Text, { style: [styles.bulletItem, { fontWeight: typography.weights.bold }] }, 
                 'Route: To Blue Mt Rd, then as directed'
               )
             )
@@ -347,7 +348,7 @@ export default function FireSafetyPageNoJSXEnhanced({ pageNumberMap = {} }) {
               e(Text, { style: styles.bulletItem }, '• Mockingbird, Spring Hill'),
               e(Text, { style: styles.bulletItem }, '• Pee Wee, Rocky Boulder'),
               e(Text, { style: styles.bulletItem }, '• Indian Pipes, Paradise'),
-              e(Text, { style: [styles.bulletItem, { fontWeight: 'bold' }] }, 
+              e(Text, { style: [styles.bulletItem, { fontWeight: typography.weights.bold }] }, 
                 'Route: Via Fire Trail to Freezeland'
               )
             )
@@ -365,7 +366,7 @@ export default function FireSafetyPageNoJSXEnhanced({ pageNumberMap = {} }) {
               e(Text, { style: styles.bulletItem }, '• Chipmunk Trail, Cliff'),
               e(Text, { style: styles.bulletItem }, '• Henry, Old Dominion'),
               e(Text, { style: styles.bulletItem }, '• Trillium Trail'),
-              e(Text, { style: [styles.bulletItem, { fontWeight: 'bold' }] }, 
+              e(Text, { style: [styles.bulletItem, { fontWeight: typography.weights.bold }] }, 
                 'Route: Uphill to Freezeland'
               )
             )
@@ -381,7 +382,7 @@ export default function FireSafetyPageNoJSXEnhanced({ pageNumberMap = {} }) {
             e(Text, { style: styles.bulletItem }, '• Help neighbors who need assistance')
           )
         )
-      }),
+    }),
       
       // Footer
       e(PageFooterNoJSX, { pageNumber: 16 })
@@ -415,7 +416,7 @@ export default function FireSafetyPageNoJSXEnhanced({ pageNumberMap = {} }) {
           ],
           columnWidths: [18, 482], // 0.25" for checkbox column
           compact: true
-        })
+      })
       ),
       
       e(TwoColumnLayoutNoJSX, {
@@ -425,15 +426,15 @@ export default function FireSafetyPageNoJSXEnhanced({ pageNumberMap = {} }) {
           null,
           e(Text, { style: [styles.h2, { marginTop: spacing.xs }] }, 'EMERGENCY SUPPLY KIT'),
           e(View, { style: [styles.bulletList, { marginTop: spacing.xs }] },
-            e(Text, { style: [styles.bulletItem, { fontWeight: 'bold', marginBottom: 2 }] }, 'Water & Food:'),
+            e(Text, { style: [styles.bulletItem, { fontWeight: typography.weights.bold, marginBottom: 2 }] }, 'Water & Food:'),
             e(Text, { style: [styles.bulletItem, { marginBottom: 2 }] }, '✓ 1 gallon/person/day (3 days)'),
             e(Text, { style: [styles.bulletItem, { marginBottom: spacing.xs }] }, '✓ Non-perishable food (3 days)'),
-            e(Text, { style: [styles.bulletItem, { fontWeight: 'bold', marginBottom: 2 }] }, 'Safety Equipment:'),
+            e(Text, { style: [styles.bulletItem, { fontWeight: typography.weights.bold, marginBottom: 2 }] }, 'Safety Equipment:'),
             e(Text, { style: [styles.bulletItem, { marginBottom: 2 }] }, '✓ Battery/hand-crank radio'),
             e(Text, { style: [styles.bulletItem, { marginBottom: 2 }] }, '✓ Flashlight & extra batteries'),
             e(Text, { style: [styles.bulletItem, { marginBottom: 2 }] }, '✓ First aid kit'),
             e(Text, { style: [styles.bulletItem, { marginBottom: spacing.xs }] }, '✓ N95 masks for smoke'),
-            e(Text, { style: [styles.bulletItem, { fontWeight: 'bold', marginBottom: 2 }] }, 'Personal Items:'),
+            e(Text, { style: [styles.bulletItem, { fontWeight: typography.weights.bold, marginBottom: 2 }] }, 'Personal Items:'),
             e(Text, { style: [styles.bulletItem, { marginBottom: 2 }] }, '✓ Prescription medications'),
             e(Text, { style: [styles.bulletItem, { marginBottom: 2 }] }, '✓ Important documents'),
             e(Text, { style: [styles.bulletItem, { marginBottom: 2 }] }, '✓ Cash & credit cards'),
@@ -459,14 +460,14 @@ export default function FireSafetyPageNoJSXEnhanced({ pageNumberMap = {} }) {
           e(
             CalloutBoxNoJSX,
             { type: 'warning' },
-            e(Text, { style: { fontWeight: 'bold', marginBottom: 2 } }, 
+            e(Text, { style: { fontWeight: typography.weights.bold, marginBottom: 2 } }, 
               'Zone 1: 0-30 feet'
             ),
             e(Text, { style: [styles.bulletItem, { marginBottom: 2 }] }, '• Remove all dead vegetation'),
             e(Text, { style: [styles.bulletItem, { marginBottom: 2 }] }, '• Keep grass mowed short'),
             e(Text, { style: [styles.bulletItem, { marginBottom: 2 }] }, '• Prune trees 6-10 ft up'),
             e(Text, { style: [styles.bulletItem, { marginBottom: spacing.xs }] }, '• Space tree crowns 10 ft apart'),
-            e(Text, { style: { fontWeight: 'bold', marginTop: spacing.xs, marginBottom: 2 } }, 
+            e(Text, { style: { fontWeight: typography.weights.bold, marginTop: spacing.xs, marginBottom: 2 } }, 
               'Zone 2: 30-100 feet'
             ),
             e(Text, { style: [styles.bulletItem, { marginBottom: 2 }] }, '• Reduce vegetation density'),
@@ -479,13 +480,13 @@ export default function FireSafetyPageNoJSXEnhanced({ pageNumberMap = {} }) {
           e(
             CalloutBoxNoJSX,
             { type: 'warning' },
-            e(Text, { style: [styles.bulletItem, { fontWeight: 'bold' }] }, 'Emergency: 911'),
+            e(Text, { style: [styles.bulletItem, { fontWeight: typography.weights.bold }] }, 'Emergency: 911'),
             e(Text, { style: styles.bulletItem }, 'Warren County Sheriff: 540-635-7100'),
             e(Text, { style: styles.bulletItem }, 'Fire & Rescue: 540-636-3830'),
             e(Text, { style: styles.bulletItem }, 'BMPOA Emergency: 540-635-3589')
           )
         )
-      }),
+    }),
       
       // Footer
       e(PageFooterNoJSX, { pageNumber: 17 })

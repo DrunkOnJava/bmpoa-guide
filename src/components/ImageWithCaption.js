@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Image, Text } from '@react-pdf/renderer';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -23,7 +24,7 @@ export default function ImageWithCaption({ srcKey, captionText, overrideStyle = 
   
   return e(
     View,
-    { style: { marginBottom: 24 } },
+    { style: { marginBottom: layout.spacing.xl } },
     e(
       Image,
       {

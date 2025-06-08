@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from '@react-pdf/renderer';
-import { styles, colors, spacing, typography } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { styles, spacing } from '../theme.js';
 
 // Page Header Component
 export function PageHeaderNoJSX({ sectionName, pageNumber }) {
@@ -26,8 +27,8 @@ export function PageFooterNoJSX({ pageNumber }) {
       right: 54,
       height: 1,
       backgroundColor: colors.slateGray,
-    }
-  });
+  }
+});
   
   return [
     e(View, { style: footerStyles.footerLine }),
@@ -49,29 +50,29 @@ export function SectionBannerNoJSX({ number, title, subtitle }) {
       marginTop: -54, // Negative margin to span full width
       marginHorizontal: -54,
       marginBottom: spacing.lg,
-    },
+  },
     banner: {
       ...styles.sectionBanner,
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
       gap: spacing.sm,
-    },
+  },
     number: {
       fontSize: typography.sectionBanner,
-      fontFamily: 'Helvetica-Bold',
-      fontWeight: 'bold',
+      fontFamily: typography.families.heading,
+      fontWeight: typography.weights.bold,
       opacity: 0.8,
-    },
+  },
     divider: {
       fontSize: typography.sectionBanner,
       opacity: 0.6,
-    },
+  },
     subtitle: {
       ...styles.sectionSubBanner,
       marginTop: 0,
-    }
-  });
+  }
+});
   
   return e(
     View,
@@ -100,28 +101,28 @@ export function CalloutBoxNoJSX({ title, children, type = 'info' }) {
       backgroundColor: colors.lightGray,
       borderColor: colors.slateGray,
       titleColor: colors.darkCharcoal,
-    },
+  },
     tip: {
       backgroundColor: colors.lightGreen,
       borderColor: colors.forestGreen,
       titleColor: colors.forestGreen,
-    },
+  },
     warning: {
       backgroundColor: colors.lightPink,
       borderColor: colors.alertRed,
       titleColor: colors.alertRed,
-    },
+  },
     legal: {
       backgroundColor: '#FFFBEB', // Light yellow
       borderColor: colors.slateGray,
       titleColor: colors.darkCharcoal,
-    },
+  },
     bear: {
       backgroundColor: colors.lightOrange,
       borderColor: '#92400E', // Dark orange
       titleColor: '#92400E',
-    }
-  };
+  }
+};
   
   const style = typeStyles[type] || typeStyles.info;
   
@@ -130,23 +131,23 @@ export function CalloutBoxNoJSX({ title, children, type = 'info' }) {
       backgroundColor: style.backgroundColor,
       borderWidth: 0.5,
       borderColor: style.borderColor,
-      borderRadius: 4,
+      borderRadius: callout.radius,
       padding: spacing.sm,
       marginVertical: spacing.sm,
-    },
+  },
     title: {
       fontSize: typography.body,
-      fontFamily: 'Helvetica-Bold',
-      fontWeight: 'bold',
+      fontFamily: typography.families.heading,
+      fontWeight: typography.weights.bold,
       color: style.titleColor,
       marginBottom: spacing.xs,
-    },
+  },
     content: {
       fontSize: typography.body,
       color: colors.warmGray,
       lineHeight: typography.lineHeightNormal,
-    }
-  });
+  }
+});
   
   return e(
     View,
@@ -165,35 +166,35 @@ export function TableNoJSX({ headers, rows, compact = false }) {
       ...styles.table,
       borderWidth: 0.5,
       borderColor: colors.slateGray,
-      borderRadius: 4,
+      borderRadius: callout.radius,
       overflow: 'hidden',
-    },
+  },
     headerRow: {
       ...styles.tableHeaderRow,
       flexDirection: 'row',
       paddingVertical: spacing.xs,
       paddingHorizontal: spacing.xs,
-    },
+  },
     headerCell: {
       ...styles.tableHeaderCell,
       flex: 1,
       fontSize: compact ? typography.caption : typography.body,
-    },
+  },
     row: {
       ...styles.tableRow,
       flexDirection: 'row',
       paddingVertical: spacing.xs,
       paddingHorizontal: spacing.xs,
-    },
+  },
     rowEven: {
       backgroundColor: colors.lightGray,
-    },
+  },
     cell: {
       ...styles.tableCell,
       flex: 1,
       fontSize: compact ? typography.small : typography.caption,
-    }
-  });
+  }
+});
   
   return e(
     View,
@@ -216,7 +217,7 @@ export function TableNoJSX({ headers, rows, compact = false }) {
             tableStyles.row,
             rowIndex % 2 === 1 ? tableStyles.rowEven : null
           ] 
-        },
+      },
         row.map((cell, cellIndex) => 
           e(Text, { key: cellIndex, style: tableStyles.cell }, cell)
         )
@@ -234,11 +235,11 @@ export function TwoColumnLayoutNoJSX({ left, right, gutter = 22 }) {
       flexDirection: 'row',
       gap: gutter,
       marginVertical: spacing.sm,
-    },
+  },
     column: {
       flex: 1,
-    }
-  });
+  }
+});
   
   return e(
     View,
@@ -256,16 +257,16 @@ export function SidebarNoJSX({ children, color = colors.forestGreen, width = 10 
     container: {
       flexDirection: 'row',
       gap: spacing.sm,
-    },
+  },
     bar: {
       width: width,
       backgroundColor: color,
       borderRadius: 2,
-    },
+  },
     content: {
       flex: 1,
-    }
-  });
+  }
+});
   
   return e(
     View,
@@ -285,16 +286,16 @@ export function IconTextNoJSX({ icon, text, size = 16 }) {
       alignItems: 'center',
       gap: spacing.xs,
       marginBottom: spacing.xs,
-    },
+  },
     icon: {
       fontSize: size,
-    },
+  },
     text: {
       fontSize: typography.body,
       color: colors.warmGray,
       flex: 1,
-    }
-  });
+  }
+});
   
   return e(
     View,
@@ -314,18 +315,18 @@ export function ChecklistItemNoJSX({ text, checked = false }) {
       alignItems: 'flex-start',
       gap: spacing.xs,
       marginBottom: spacing.xs,
-    },
+  },
     checkbox: {
       fontSize: typography.body,
       marginTop: -2,
-    },
+  },
     text: {
       fontSize: typography.body,
       color: colors.warmGray,
       flex: 1,
       lineHeight: typography.lineHeightNormal,
-    }
-  });
+  }
+});
   
   return e(
     View,
@@ -348,20 +349,20 @@ export function PullQuoteNoJSX({ text, attribution }) {
       marginVertical: spacing.md,
       marginLeft: spacing.lg,
       marginRight: spacing.lg,
-    },
+  },
     text: {
       fontSize: typography.body,
       fontStyle: 'italic',
       color: colors.darkCharcoal,
       lineHeight: typography.lineHeightRelaxed,
       marginBottom: spacing.xs,
-    },
+  },
     attribution: {
       fontSize: typography.caption,
       color: colors.warmGray,
       textAlign: 'right',
-    }
-  });
+  }
+});
   
   return e(
     View,

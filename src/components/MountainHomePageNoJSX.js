@@ -1,6 +1,7 @@
 import React from 'react';
 import { Page, View, Text, Image, StyleSheet } from '@react-pdf/renderer';
-import { styles, colors, spacing, typography } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { styles, spacing } from '../theme.js';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -24,119 +25,164 @@ export default function MountainHomePageNoJSX({ pageNumberMap = {} }) {
       marginTop: -54,
       marginHorizontal: -54,
       marginBottom: -54,
-    },
+  },
     sectionNumber: {
-      fontSize: 72,
-      fontFamily: 'Helvetica-Bold',
-      fontWeight: 'bold',
+      fontSize: typography.sizes.dividerNumber,
+      fontFamily: typography.families.heading,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.lg,
       opacity: 0.9,
-    },
+  },
     sectionTitle: {
-      fontSize: 36,
-      fontFamily: 'Helvetica-Bold',
-      fontWeight: 'bold',
+      fontSize: typography.sizes.dividerTitle,
+      fontFamily: typography.families.heading,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.lg,
       textAlign: 'center',
       textTransform: 'uppercase',
       letterSpacing: 1,
-    },
+  },
     sectionDescription: {
-      fontSize: 12,
+      fontSize: typography.sizes.base,
       textAlign: 'center',
       maxWidth: '80%',
-      lineHeight: 1.5,
+      lineHeight: typography.lineHeights.relaxed,
       fontStyle: 'italic',
       color: colors.white,
       opacity: 0.9,
-    },
+  },
     highlightBox: {
       backgroundColor: colors.background,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     alertBox: {
       backgroundColor: '#FFE4E1',
       borderLeft: `4px solid #DC143C`,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     infoBox: {
       borderWidth: 1,
       borderColor: colors.accent,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     highlightTitle: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.xs,
       color: colors.primary,
-    },
+  },
     alertTitle: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.xs,
-      color: '#DC143C',
-    },
+      color: colors.danger,
+  },
     prominentText: {
       backgroundColor: colors.background,
       padding: spacing.md,
       marginVertical: spacing.md,
       borderLeft: `12px solid ${colors.primary}`, // Widened to 12pt
-      fontSize: 14,
+      fontSize: typography.sizes.medium,
       fontStyle: 'italic',
       color: colors.primary,
-    },
+  },
     paragraph: {
       marginBottom: spacing.sm,
       textAlign: 'left', // Changed from 'justify' to avoid gaps
-    },
+  },
     listItem: {
       marginBottom: spacing.xs,
       paddingLeft: spacing.sm,
-    },
+  },
     secondaryListItem: {
       marginBottom: spacing.xs,
       paddingLeft: spacing.lg, // Secondary indentation
-    },
+  },
     h3: {
-      fontSize: 16,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.h3,
+      fontWeight: typography.weights.bold,
       marginTop: spacing.md,
       marginBottom: spacing.sm,
       color: colors.accent,
-    },
+  },
     tipBox: {
-      backgroundColor: '#F5F5F5', // Light gray background
+      backgroundColor: colors.backgroundAlt, // Light gray background
       borderWidth: 0.5,
       borderColor: colors.slateGray,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     tipTitle: {
-      fontSize: 11,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.base,
+      fontWeight: typography.weights.bold,
       color: colors.forestGreen,
-    }
-  });
+  }
+});
 
   return [
-    // Section Divider Page
+    // Section Divider Page with full background image
     e(
       Page,
-      { size: 'LETTER' },
+      { size: 'LETTER', style: { padding: 0 } }, // Remove default page padding
       e(
         View,
-        { style: mountainStyles.sectionDivider },
-        e(Text, { style: mountainStyles.sectionNumber }, '02'),
-        e(Text, { style: mountainStyles.sectionTitle }, 'A MOUNTAIN HOME'),
-        e(Text, { style: mountainStyles.sectionDescription }, 
-          'Living on Blue Mountain offers a unique combination of natural beauty, privacy, and community'
+        { style: { position: 'relative', width: '100%', height: '100%' } },
+        // Full-page background image
+        assetMap.mountainvistaoriginal && e(
+          Image,
+          {
+            src: assetMap.mountainvistaoriginal,
+            style: {
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+          }
+        }
+        ),
+        // Semi-transparent overlay for better text readability
+        e(
+          View,
+          {
+            style: {
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              backgroundColor: 'rgba(0, 0, 0, 0.4)', // Dark overlay for text contrast
+          }
+        }
+        ),
+        // Content overlay
+        e(
+          View,
+          { 
+            style: {
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+              padding: spacing.xl,
+          }
+        },
+          e(Text, { style: { ...mountainStyles.sectionNumber, color: colors.white } }, '02'),
+          e(Text, { style: { ...mountainStyles.sectionTitle, color: colors.white } }, 'A MOUNTAIN HOME'),
+          e(Text, { style: { ...mountainStyles.sectionDescription, color: colors.white } }, 
+            'Living on Blue Mountain offers a unique combination of natural beauty, privacy, and community'
+          )
         )
       )
     ),
@@ -205,7 +251,7 @@ export default function MountainHomePageNoJSX({ pageNumberMap = {} }) {
         null,
         e(View, { style: [mountainStyles.tipBox, { marginBottom: spacing.sm }] },
           e(View, { style: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.xs } },
-            e(Text, { style: { fontSize: 16, marginRight: spacing.xs } }, '💡'),
+            e(Text, { style: { fontSize: typography.sizes.h3, marginRight: spacing.xs } }, '💡'),
             e(Text, { style: mountainStyles.tipTitle }, 'Tip:')
           ),
           e(Text, { style: { fontSize: typography.body } }, 
@@ -263,59 +309,80 @@ export default function MountainHomePageNoJSX({ pageNumberMap = {} }) {
         View,
         null,
         e(Text, { style: mountainStyles.paragraph },
-          "One of Blue Mountain's most treasured aspects is its abundant natural beauty and diverse wildlife. Living here means being immersed in the natural world, with opportunities to observe and appreciate the changing seasons and the many species that call our mountain home."
+          "Blue Mountain's most treasured aspects include abundant natural beauty and diverse wildlife. Living here means immersion in the natural world with opportunities to observe changing seasons and native species."
         ),
         
-        // Add mountain vista image showcasing natural beauty
-        assetMap.mountainvista && e(
+        // Two-column layout with large vertical image on left
+        e(
           View,
-          { style: { marginVertical: spacing.md } },
+          { style: { flexDirection: 'row', marginTop: spacing.md } },
+          // Left column - Large vertical image
           e(
-            Image,
-            {
-              src: assetMap.mountainvista,
-              style: {
-                ...baseImageStyle,
-                height: 180  // Slightly reduced to fit with surrounding text blocks
+            View,
+            { style: { width: '45%', marginRight: spacing.md } },
+            assetMap.mountainvista && e(
+              View,
+              null,
+              e(
+                Image,
+                {
+                  src: assetMap.mountainvista,
+                  style: {
+                    width: '100%',
+                    height: 500,  // Tall vertical container
+                    objectFit: 'contain',
+                    transform: [{ rotate: '90deg' }],  // Rotate image to vertical
+                    borderRadius: 6,
+                    borderWidth: 0.5,
+                    borderColor: colors.forestGreen,
+                }
               }
-            }
+              ),
+              e(
+                Text,
+                { style: {...captionStyle, marginTop: 6, textAlign: 'center'} },
+                'Blue Ridge views showcase nature\'s renewal'
+              )
+            )
           ),
+          
+          // Right column - Content
           e(
-            Text,
-            { style: {...captionStyle, marginTop: 6} }, // 6pt spacing
-            'Springtime views from the Blue Ridge showcase nature\'s renewal.'
+            View,
+            { style: { width: '50%' } },
+            e(
+              View,
+              { style: { backgroundColor: colors.background, padding: spacing.sm, borderRadius: callout.radius, marginBottom: spacing.sm } },
+              e(Text, { style: { fontSize: typography.sizes.base, fontWeight: typography.weights.bold, color: colors.accent, marginBottom: spacing.xs } }, 'Season Highlights'),
+              e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, 'Spring: Wildflowers, dogwood'),
+              e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, 'Summer: Green canopy, butterflies'),
+              e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, 'Fall: Foliage: red, orange, gold'),
+              e(Text, { style: { fontSize: typography.sizes.sm } }, 'Winter: Snow-covered serenity')
+            ),
+            
+            e(Text, { style: { fontSize: typography.sizes.base, fontWeight: typography.weights.bold, color: colors.accent, marginTop: spacing.sm, marginBottom: spacing.xs } }, 'Wildlife'),
+            e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• White-tailed deer'),
+            e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Wild turkeys'),
+            e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Black bears'),
+            e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Red and gray foxes'),
+            e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: spacing.sm } }, '• Various songbirds & raptors'),
+            
+            e(Text, { style: { fontSize: typography.sizes.base, fontWeight: typography.weights.bold, color: colors.accent, marginBottom: spacing.xs } }, 'Scenic Views'),
+            e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Shenandoah Valley vistas'),
+            e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Distant mountain ranges'),
+            e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, '• Dramatic sunrises/sunsets'),
+            e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: spacing.sm } }, '• Star-filled night skies'),
+            
+            e(View, { style: { backgroundColor: '#FFE4E1', padding: spacing.sm, borderRadius: callout.radius, marginTop: spacing.sm } },
+              e(Text, { style: { fontSize: typography.sizes.base, fontWeight: typography.weights.bold, color: colors.danger, marginBottom: layout.spacing.xs } }, 'BEAR SAFETY'),
+              e(Text, { style: { fontSize: typography.sizes.sm } }, 
+                'Secure trash, remove bird feeders when active, clean grills, never feed bears.'
+              )
+            )
           )
         ),
         
-        e(Text, { style: mountainStyles.h3 }, 'SCENIC VIEWS'),
-        e(Text, { style: mountainStyles.paragraph }, 'Blue Mountain is known for its spectacular vistas, particularly:'),
-        e(Text, { style: mountainStyles.listItem }, '• Sweeping views of the Shenandoah Valley'),
-        e(Text, { style: mountainStyles.listItem }, '• Distant mountain ranges visible on clear days'),
-        e(Text, { style: mountainStyles.listItem }, '• Dramatic sunrises and sunsets'),
-        e(Text, { style: mountainStyles.listItem }, '• Star-filled night skies with minimal light pollution'),
-        
-        e(Text, { style: mountainStyles.h3 }, 'SEASONAL BEAUTY'),
-        e(Text, { style: mountainStyles.paragraph }, 'Each season brings its own distinctive charm to Blue Mountain:'),
-        e(Text, { style: mountainStyles.listItem }, '• Spring: Wildflowers carpet the forest floor, dogwoods and redbuds bloom'),
-        e(Text, { style: mountainStyles.listItem }, '• Summer: Dense, green canopies provide shade, butterflies visit flowering plants'),
-        e(Text, { style: mountainStyles.listItem }, '• Fall: Spectacular foliage transforms the mountain with vivid reds, oranges, and golds'),
-        e(Text, { style: mountainStyles.listItem }, '• Winter: Snow-covered landscapes create a serene atmosphere'),
-        
-        e(Text, { style: mountainStyles.h3 }, 'WILDLIFE ENCOUNTERS'),
-        e(Text, { style: mountainStyles.listItem }, '• White-tailed deer, often seen in small groups'),
-        e(Text, { style: mountainStyles.listItem }, '• Wild turkeys strutting through the forest'),
-        e(Text, { style: mountainStyles.listItem }, '• Black bears, particularly in spring and fall'),
-        e(Text, { style: mountainStyles.listItem }, '• Red and gray foxes'),
-        e(Text, { style: mountainStyles.listItem }, '• A wide variety of songbirds, woodpeckers, and raptors'),
-        
-        e(View, { style: mountainStyles.alertBox },
-          e(Text, { style: mountainStyles.alertTitle }, 'LIVING WITH BEARS'),
-          e(Text, null, 
-            'Black bears are part of our mountain ecosystem. To prevent unwanted encounters: secure trash in bear-resistant containers, remove bird feeders when bears are active, clean grills thoroughly, and never intentionally feed bears.'
-          )
-        ),
-        
-        e(View, { style: mountainStyles.prominentText },
+        e(View, { style: { ...mountainStyles.prominentText, marginTop: spacing.md } },
           e(Text, null, 'The natural beauty and wildlife of Blue Mountain are precious resources that all residents help protect through mindful living practices.')
         )
       ),

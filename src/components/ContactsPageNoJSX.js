@@ -1,6 +1,7 @@
 import React from 'react';
 import { Page, View, Text, StyleSheet } from '@react-pdf/renderer';
-import { styles, colors, spacing } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { styles, spacing } from '../theme.js';
 
 export default function ContactsPageNoJSX({ pageNumberMap = {} }) {
   const e = React.createElement;
@@ -13,127 +14,127 @@ export default function ContactsPageNoJSX({ pageNumberMap = {} }) {
       justifyContent: 'center',
       alignItems: 'center',
       minHeight: '100%',
-    },
+  },
     sectionNumber: {
-      fontSize: 72,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.dividerNumber,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.lg,
       opacity: 0.9,
-    },
+  },
     sectionTitle: {
-      fontSize: 36,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.dividerTitle,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.lg,
       textAlign: 'center',
-    },
+  },
     sectionDescription: {
-      fontSize: 16,
+      fontSize: typography.sizes.h3,
       textAlign: 'center',
       maxWidth: '80%',
-      lineHeight: 1.6,
-    },
+      lineHeight: typography.lineHeights.relaxed,
+  },
     contactCard: {
       borderWidth: 1,
       borderColor: colors.background,
       backgroundColor: '#FAFAFA',
       padding: spacing.md,
       marginBottom: 6,  // Standardized 6pt spacing between entries
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     contactName: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       color: colors.primary,
       marginBottom: 2,
-    },
+  },
     contactRole: {
-      fontSize: 12,
+      fontSize: typography.sizes.base,
       color: colors.accent,
       marginBottom: spacing.xs,
-    },
+  },
     contactInfo: {
-      fontSize: 11,
-      lineHeight: 1.4,
-    },
+      fontSize: typography.sizes.base,
+      lineHeight: typography.lineHeights.relaxed,
+  },
     contactIcon: {
-      fontSize: 10,
+      fontSize: typography.sizes.sm,
       marginRight: 4,
-    },
+  },
     servicesGrid: {
       marginTop: spacing.sm,
       marginBottom: spacing.md,
-    },
+  },
     serviceItem: {
       marginBottom: spacing.sm,
       paddingLeft: spacing.sm,
       borderLeft: `2px solid ${colors.background}`,
-    },
+  },
     serviceName: {
-      fontSize: 12,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.base,
+      fontWeight: typography.weights.bold,
       marginBottom: 2,
-    },
+  },
     highlightBox: {
       backgroundColor: colors.background,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     alertBox: {
       backgroundColor: '#FFE4E1',
       borderLeft: `4px solid #DC143C`,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     infoBox: {
       borderWidth: 1,
       borderColor: colors.accent,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     checklistContainer: {
       borderWidth: 1,
       borderColor: colors.accent,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     highlightTitle: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.xs,
       color: colors.primary,
-    },
+  },
     alertTitle: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.xs,
-      color: '#DC143C',
-    },
+      color: colors.danger,
+  },
     checklistTitle: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.sm,
       color: colors.primary,
-    },
+  },
     checklistItem: {
       marginBottom: spacing.xs,
       paddingLeft: spacing.md,
-    },
+  },
     h3: {
-      fontSize: 16,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.h3,
+      fontWeight: typography.weights.bold,
       marginTop: spacing.md,
       marginBottom: spacing.sm,
       color: colors.accent,
-    },
+  },
     listItem: {
       marginBottom: spacing.xs,
       paddingLeft: spacing.sm,
-    }
-  });
+  }
+});
 
   return [
     // Section Divider Page
@@ -237,7 +238,7 @@ export default function ContactsPageNoJSX({ pageNumberMap = {} }) {
         View,
         { style: styles.pageHeader },
         e(Text, { style: styles.pageTitle }, 'BMPOA CONTACT DIRECTORY'),
-        e(Text, { style: { fontSize: 10, color: colors.lightText } }, '(Continued from previous page)')
+        e(Text, { style: { fontSize: typography.sizes.sm, color: colors.lightText } }, '(Continued from previous page)')
       ),
       e(
         View,
@@ -246,7 +247,7 @@ export default function ContactsPageNoJSX({ pageNumberMap = {} }) {
         
         e(View, { style: contactStyles.highlightBox },
           e(Text, { style: contactStyles.highlightTitle }, 'BMPOA MAILING ADDRESS'),
-          e(Text, { style: { fontSize: 11, fontWeight: 'bold', color: colors.forestGreen } }, 'Blue Mountain Property Owners Association'),
+          e(Text, { style: { fontSize: typography.sizes.base, fontWeight: typography.weights.bold, color: colors.forestGreen } }, 'Blue Mountain Property Owners Association'),
           e(Text, null, 'P.O. Box 114'),
           e(Text, null, 'Linden, VA 22642'),
           e(Text, { style: { marginTop: spacing.xs } }, 'Website: www.bmpoa.org'),
@@ -261,13 +262,13 @@ export default function ContactsPageNoJSX({ pageNumberMap = {} }) {
           padding: spacing.sm,
           marginTop: spacing.md,
           marginBottom: spacing.md,
-          borderRadius: 4
-        } },
+          borderRadius: callout.radius
+      } },
           e(View, { style: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.xs } },
-            e(Text, { style: { fontSize: 12, marginRight: spacing.xs } }, 'ℹ️'),
-            e(Text, { style: { fontSize: 11, fontWeight: 'bold', color: colors.forestGreen } }, 'Contact Updates')
+            e(Text, { style: { fontSize: typography.sizes.base, marginRight: spacing.xs } }, 'ℹ️'),
+            e(Text, { style: { fontSize: typography.sizes.base, fontWeight: typography.weights.bold, color: colors.forestGreen } }, 'Contact Updates')
           ),
-          e(Text, { style: { fontSize: 10, fontStyle: 'italic', color: colors.darkCharcoal } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, fontStyle: 'italic', color: colors.darkCharcoal } }, 
             'If any contact information changes, please notify the Secretary at secretary@bmpoa.org to ensure you continue receiving important community communications.'
           )
         ),
@@ -333,7 +334,7 @@ export default function ContactsPageNoJSX({ pageNumberMap = {} }) {
         null,
         e(View, { style: { ...contactStyles.alertBox, borderWidth: 1, borderColor: '#DC143C' } },
           e(View, { style: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.xs } },
-            e(Text, { style: { fontSize: 12, color: '#DC143C', marginRight: spacing.xs } }, '🔔'),
+            e(Text, { style: { fontSize: typography.sizes.base, color: colors.danger, marginRight: spacing.xs } }, '🔔'),
             e(Text, { style: contactStyles.alertTitle }, 'DIAL 911 FOR ALL EMERGENCIES')
           ),
           e(Text, null, 
@@ -394,7 +395,7 @@ export default function ContactsPageNoJSX({ pageNumberMap = {} }) {
         View,
         { style: styles.pageHeader },
         e(Text, { style: styles.pageTitle }, 'EMERGENCY NUMBERS'),
-        e(Text, { style: { fontSize: 10, color: colors.lightText } }, '(Continued from previous page)')
+        e(Text, { style: { fontSize: typography.sizes.sm, color: colors.lightText } }, '(Continued from previous page)')
       ),
       e(
         View,
@@ -416,7 +417,7 @@ export default function ContactsPageNoJSX({ pageNumberMap = {} }) {
         
         e(View, { style: contactStyles.alertBox },
           e(Text, { style: contactStyles.alertTitle }, 'POISON CONTROL CENTER'),
-          e(Text, { style: { fontSize: 16, fontWeight: 'bold' } }, '📞 1-800-222-1222'),
+          e(Text, { style: { fontSize: typography.sizes.h3, fontWeight: typography.weights.bold } }, '📞 1-800-222-1222'),
           e(Text, null, 'Available 24/7 for poison emergencies and questions. Keep this number posted near phones and add to cell phone contacts.')
         ),
         

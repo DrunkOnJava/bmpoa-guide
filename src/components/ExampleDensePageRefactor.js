@@ -1,5 +1,6 @@
 import React from 'react';
 import { Page, View, Text, StyleSheet } from '@react-pdf/renderer';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
 import {
   TwoColumnLayout,
   InfoBox,
@@ -20,7 +21,7 @@ export default function LodgePageDenseExample({ pageNumberMap }) {
   const styles = StyleSheet.create({
     page: {
       padding: '0.75in',
-      fontSize: 10,
+      fontSize: typography.sizes.sm,
     },
     pageHeader: {
       backgroundColor: '#2C5282',
@@ -28,26 +29,26 @@ export default function LodgePageDenseExample({ pageNumberMap }) {
       padding: '20px 0.75in',
     },
     pageTitle: {
-      color: '#FFFFFF',
-      fontSize: 20,
-      fontWeight: 'bold',
+      color: colors.inverse,
+      fontSize: typography.sizes.large,
+      fontWeight: typography.weights.bold,
     },
     pageSubtitle: {
-      color: '#E2E8F0',
-      fontSize: 11,
-      marginTop: 4,
+      color: colors.grayLight,
+      fontSize: typography.sizes.base,
+      marginTop: layout.spacing.xs,
     },
     calloutBox: {
       backgroundColor: '#E6FFFA',
       border: '1px solid #38A169',
-      borderRadius: 4,
+      borderRadius: callout.radius,
       padding: 10,
-      marginBottom: 12,
+      marginBottom: layout.spacing.md,
     },
     contactCard: {
-      backgroundColor: '#FFFFFF',
+      backgroundColor: colors.background,
       border: '2px solid #2C5282',
-      borderRadius: 4,
+      borderRadius: callout.radius,
       padding: 10,
     },
     footer: {
@@ -56,8 +57,8 @@ export default function LodgePageDenseExample({ pageNumberMap }) {
       left: 0,
       right: 0,
       textAlign: 'center',
-      fontSize: 9,
-      color: '#718096',
+      fontSize: typography.sizes.sm,
+      color: colors.grayMedium,
     },
   });
   
@@ -76,29 +77,29 @@ export default function LodgePageDenseExample({ pageNumberMap }) {
     
     // Hours box
     e(InfoBox, { title: 'Rental Hours' },
-      e(Text, { style: { fontSize: 9, marginBottom: 4 } }, 'Available 7 days a week'),
-      e(Text, { style: { fontSize: 9 } }, '8:00 AM - 10:00 PM')
+      e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: layout.spacing.xs } }, 'Available 7 days a week'),
+      e(Text, { style: { fontSize: typography.sizes.sm } }, '8:00 AM - 10:00 PM')
     ),
     
     // Contact card
     e(View, { style: styles.contactCard },
-      e(Text, { style: { fontSize: 11, fontWeight: 'bold', marginBottom: 6 } }, 'Reserve Today'),
-      e(Text, { style: { fontSize: 9, marginBottom: 2 } }, 'Email:'),
-      e(Text, { style: { fontSize: 8, color: '#2C5282', marginBottom: 4 } }, 
+      e(Text, { style: { fontSize: typography.sizes.base, fontWeight: typography.weights.bold, marginBottom: 6 } }, 'Reserve Today'),
+      e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, 'Email:'),
+      e(Text, { style: { fontSize: typography.sizes.sm, color: colors.blueDarker, marginBottom: layout.spacing.xs } }, 
         'bluemountainlodgebooking@gmail.com'
       ),
-      e(Text, { style: { fontSize: 9, marginBottom: 2 } }, 'Phone:'),
-      e(Text, { style: { fontSize: 8 } }, '(540) 635-0922')
+      e(Text, { style: { fontSize: typography.sizes.sm, marginBottom: 2 } }, 'Phone:'),
+      e(Text, { style: { fontSize: typography.sizes.sm } }, '(540) 635-0922')
     ),
     
     // What's included box
     e(InfoBox, { title: "What's Included" },
-      e(Text, { style: { fontSize: 9 } }, '• Tables and chairs'),
-      e(Text, { style: { fontSize: 9 } }, '• Full kitchen'),
-      e(Text, { style: { fontSize: 9 } }, '• Restrooms'),
-      e(Text, { style: { fontSize: 9 } }, '• Heating/cooling'),
-      e(Text, { style: { fontSize: 9 } }, '• Sound system'),
-      e(Text, { style: { fontSize: 9 } }, '• Outdoor deck')
+      e(Text, { style: { fontSize: typography.sizes.sm } }, '• Tables and chairs'),
+      e(Text, { style: { fontSize: typography.sizes.sm } }, '• Full kitchen'),
+      e(Text, { style: { fontSize: typography.sizes.sm } }, '• Restrooms'),
+      e(Text, { style: { fontSize: typography.sizes.sm } }, '• Heating/cooling'),
+      e(Text, { style: { fontSize: typography.sizes.sm } }, '• Sound system'),
+      e(Text, { style: { fontSize: typography.sizes.sm } }, '• Outdoor deck')
     )
   ];
   
@@ -162,22 +163,22 @@ export default function LodgePageDenseExample({ pageNumberMap }) {
         
         // Important callout
         e(View, { style: styles.calloutBox },
-          e(Text, { style: { fontSize: 10, fontWeight: 'bold', marginBottom: 4 } }, 
+          e(Text, { style: { fontSize: typography.sizes.sm, fontWeight: typography.weights.bold, marginBottom: layout.spacing.xs } }, 
             'Important Rental Information'
           ),
-          e(Text, { style: { fontSize: 9 } },
+          e(Text, { style: { fontSize: typography.sizes.sm } },
             'All rentals require a signed agreement and are subject to availability. Security deposit is refundable pending inspection. BMPOA members in good standing receive priority booking and member rates.'
           )
         ),
         
         // Rental process
         e(CompactSubsectionHeader, null, 'How to Reserve'),
-        e(View, { style: { flexDirection: 'row', flexWrap: 'wrap', marginBottom: 8 } },
-          e(Text, { style: { fontSize: 9, marginRight: 8 } }, '1. Check availability'),
-          e(Text, { style: { fontSize: 9, marginRight: 8 } }, '→ 2. Submit request'),
-          e(Text, { style: { fontSize: 9, marginRight: 8 } }, '→ 3. Sign agreement'),
-          e(Text, { style: { fontSize: 9, marginRight: 8 } }, '→ 4. Pay deposit'),
-          e(Text, { style: { fontSize: 9 } }, '→ 5. Receive confirmation')
+        e(View, { style: { flexDirection: 'row', flexWrap: 'wrap', marginBottom: layout.spacing.sm } },
+          e(Text, { style: { fontSize: typography.sizes.sm, marginRight: 8 } }, '1. Check availability'),
+          e(Text, { style: { fontSize: typography.sizes.sm, marginRight: 8 } }, '→ 2. Submit request'),
+          e(Text, { style: { fontSize: typography.sizes.sm, marginRight: 8 } }, '→ 3. Sign agreement'),
+          e(Text, { style: { fontSize: typography.sizes.sm, marginRight: 8 } }, '→ 4. Pay deposit'),
+          e(Text, { style: { fontSize: typography.sizes.sm } }, '→ 5. Receive confirmation')
         ),
         
         // Rules summary

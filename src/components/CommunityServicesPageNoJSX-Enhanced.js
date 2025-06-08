@@ -1,6 +1,7 @@
 import React from 'react';
 import { Page, View, Text, StyleSheet, Image } from '@react-pdf/renderer';
-import { styles, colors, spacing, typography } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { styles, spacing } from '../theme.js';
 import { 
   PageFooterNoJSX, 
   SectionBannerNoJSX,
@@ -27,116 +28,116 @@ export default function CommunityServicesPageNoJSXEnhanced({ pageNumberMap = {} 
       marginBottom: spacing.sm,
       borderLeftWidth: 3,
       borderLeftColor: colors.mustard,
-    },
+  },
     serviceName: {
       fontSize: typography.subtitle,
-      fontFamily: 'Helvetica-Bold',
-      fontWeight: 'bold',
+      fontFamily: typography.families.heading,
+      fontWeight: typography.weights.bold,
       color: colors.forestGreen,
       marginBottom: spacing.xs,
-    },
+  },
     serviceDesc: {
       fontSize: typography.body,
       color: colors.darkCharcoal,
       lineHeight: typography.lineHeightNormal,
-    },
+  },
     winterTip: {
       backgroundColor: '#E3F2FD',
       borderLeftWidth: 4,
       borderLeftColor: '#2196F3',
       padding: spacing.md,
       marginVertical: spacing.md,
-    },
+  },
     winterTipTitle: {
       fontSize: typography.subtitle,
-      fontFamily: 'Helvetica-Bold',
-      fontWeight: 'bold',
-      color: '#1976D2',
+      fontFamily: typography.families.heading,
+      fontWeight: typography.weights.bold,
+      color: colors.infoDark,
       marginBottom: spacing.xs,
-    },
+  },
     mapContainer: {
       marginVertical: spacing.lg,
       alignItems: 'center',
-    },
+  },
     map: {
       width: '100%',
       height: 280,
-      borderRadius: 4,
+      borderRadius: callout.radius,
       borderWidth: 1,
       borderColor: colors.slateGray,
-    },
+  },
     mapCaption: {
       fontSize: typography.caption,
       fontStyle: 'italic',
       color: colors.warmGray,
       textAlign: 'center',
       marginTop: spacing.sm,
-    },
+  },
     iconBullet: {
       width: 20,
       flexDirection: 'row',
       alignItems: 'flex-start', // Changed from 'center' to align with text baseline
       marginRight: spacing.xs,
-    },
+  },
     iconText: {
-      fontSize: 16,
+      fontSize: typography.sizes.h3,
       color: colors.mustard,
-      lineHeight: 1, // Ensure icon doesn't add extra line height
-    },
+      lineHeight: typography.lineHeights.tight, // Ensure icon doesn't add extra line height
+  },
     trashServiceRow: {
       flexDirection: 'row',
       marginBottom: spacing.sm,
       paddingBottom: spacing.sm,
       borderBottomWidth: 0.5,
       borderBottomColor: colors.lightGray,
-    },
+  },
     trashServiceName: {
       flex: 1,
       fontSize: typography.body,
-      fontWeight: 'bold',
+      fontWeight: typography.weights.bold,
       color: colors.forestGreen,
-    },
+  },
     trashServicePhone: {
       fontSize: typography.body,
       color: colors.darkCharcoal,
-    },
+  },
     bearWarning: {
       backgroundColor: '#FFF3CD',
       borderWidth: 2,
       borderColor: '#5D4037', // Dark brown
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     bearIcon: {
-      fontSize: 24,
+      fontSize: typography.sizes.h2,
       textAlign: 'center',
       marginBottom: spacing.xs,
-    },
+  },
     internetProviderBox: {
       marginBottom: spacing.md,
       paddingBottom: spacing.md,
       borderBottomWidth: 0.5,
       borderBottomColor: colors.lightGray,
-    },
+  },
     providerName: {
       fontSize: typography.subtitle,
-      fontFamily: 'Helvetica-Bold',
-      fontWeight: 'bold',
+      fontFamily: typography.families.heading,
+      fontWeight: typography.weights.bold,
       color: colors.forestGreen,
       marginBottom: 2,
-    },
+  },
     providerType: {
       fontSize: typography.caption,
       color: colors.mustard,
       marginBottom: spacing.xs,
-    },
+  },
     providerDesc: {
       fontSize: typography.body,
       color: colors.darkCharcoal,
       lineHeight: typography.lineHeightNormal,
-    }
-  });
+  }
+});
 
   // Return array of pages
   return [
@@ -145,7 +146,7 @@ export default function CommunityServicesPageNoJSXEnhanced({ pageNumberMap = {} 
       number: '05',
       title: 'COMMUNITY SERVICES\n& AMENITIES',
       description: 'Essential services and resources that support our mountain community lifestyle'
-    }),
+  }),
     
     // Roads & Winter Weather Page
     e(
@@ -157,7 +158,7 @@ export default function CommunityServicesPageNoJSXEnhanced({ pageNumberMap = {} 
         number: 'SECTION 5',
         title: 'COMMUNITY SERVICES & AMENITIES',
         subtitle: 'Road maintenance, waste disposal, utilities, and essential services'
-      }),
+    }),
       
       e(Text, { style: styles.h1 }, 'ROADS & WINTER WEATHER'),
       
@@ -173,14 +174,14 @@ export default function CommunityServicesPageNoJSXEnhanced({ pageNumberMap = {} 
           e(
             CalloutBoxNoJSX,
             { type: 'info' },
-            e(Text, { style: { fontWeight: 'bold', marginBottom: spacing.xs } }, 
+            e(Text, { style: { fontWeight: typography.weights.bold, marginBottom: spacing.xs } }, 
               'BMPOA maintains all private roads except:'
             ),
             e(Text, { style: styles.bulletItem }, '• Fire Trail Road (contact VDGIF)'),
             e(Text, { style: styles.bulletItem }, '• State roads (VDOT maintained)')
           ),
           
-          e(Text, { style: { fontWeight: 'bold', marginTop: spacing.md } }, 'Services include:'),
+          e(Text, { style: { fontWeight: typography.weights.bold, marginTop: spacing.md } }, 'Services include:'),
           e(View, { style: styles.bulletList },
             e(Text, { style: styles.bulletItem }, '• Regular grading of gravel roads'),
             e(Text, { style: styles.bulletItem }, '• Pothole filling and drainage maintenance'),
@@ -238,7 +239,7 @@ export default function CommunityServicesPageNoJSXEnhanced({ pageNumberMap = {} 
             )
           )
         )
-      }),
+    }),
       
       // Footer
       e(PageFooterNoJSX, { pageNumber: 22 })
@@ -256,10 +257,10 @@ export default function CommunityServicesPageNoJSXEnhanced({ pageNumberMap = {} 
         View,
         { style: servicesStyles.bearWarning },
         e(Text, { style: servicesStyles.bearIcon }, '🐻'),
-        e(Text, { style: { fontSize: typography.subtitle, fontWeight: 'bold', textAlign: 'center', color: '#5D4037' } }, 
+        e(Text, { style: { fontSize: typography.subtitle, fontWeight: typography.weights.bold, textAlign: 'center', color: colors.brown } }, 
           'BEAR COUNTRY WARNING'
         ),
-        e(Text, { style: { fontSize: typography.body, color: '#5D4037', textAlign: 'center' } }, 
+        e(Text, { style: { fontSize: typography.body, color: colors.brown, textAlign: 'center' } }, 
           'Improperly stored trash attracts bears. Use bear-resistant containers and never leave trash out overnight.'
         )
       ),
@@ -277,7 +278,7 @@ export default function CommunityServicesPageNoJSXEnhanced({ pageNumberMap = {} 
           ['Bentonville*', '232 Shangri-La Rd', '⏰ Tu-Sa: 7AM-7PM\n⏰ Su: 9AM-5PM']
         ],
         columnWidths: [140, 200, 100]
-      }),
+    }),
       e(Text, { style: { fontSize: typography.caption, fontStyle: 'italic', marginTop: spacing.xs } }, 
         '*Bentonville accepts large/bulky items. All sites closed Mondays and holidays.'
       ),
@@ -289,7 +290,7 @@ export default function CommunityServicesPageNoJSXEnhanced({ pageNumberMap = {} 
         e(Image, { 
           src: assetMap.warrencountywastemap, 
           style: servicesStyles.map 
-        }),
+      }),
         e(Text, { style: servicesStyles.mapCaption }, 
           'Warren County waste disposal sites. Linden location is closest to BMPOA.'
         )
@@ -313,7 +314,7 @@ export default function CommunityServicesPageNoJSXEnhanced({ pageNumberMap = {} 
             e(Text, { style: servicesStyles.trashServicePhone }, '(540) 974-9418')
           ),
           
-          e(Text, { style: { fontWeight: 'bold', marginTop: spacing.md } }, 'Best Practices:'),
+          e(Text, { style: { fontWeight: typography.weights.bold, marginTop: spacing.md } }, 'Best Practices:'),
           e(View, { style: styles.bulletList },
             e(Text, { style: styles.bulletItem }, '• Use bear-resistant containers'),
             e(Text, { style: styles.bulletItem }, '• Morning pickup only'),
@@ -338,12 +339,12 @@ export default function CommunityServicesPageNoJSXEnhanced({ pageNumberMap = {} 
             e(Text, { style: { fontSize: typography.body } }, 
               'Report to Warren County Sheriff:'
             ),
-            e(Text, { style: { fontSize: typography.subtitle, fontWeight: 'bold' } }, 
+            e(Text, { style: { fontSize: typography.subtitle, fontWeight: typography.weights.bold } }, 
               '(540) 635-4128'
             )
           )
         )
-      }),
+    }),
       
       // Footer
       e(PageFooterNoJSX, { pageNumber: 24 })
@@ -444,7 +445,7 @@ export default function CommunityServicesPageNoJSXEnhanced({ pageNumberMap = {} 
             e(Text, { style: styles.bulletItem }, '• Local coffee shops and restaurants in Front Royal')
           )
         )
-      }),
+    }),
       
       // Footer
       e(PageFooterNoJSX, { pageNumber: 26 })

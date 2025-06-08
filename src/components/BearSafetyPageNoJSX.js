@@ -1,7 +1,9 @@
 import React from 'react';
 import { Page, View, Text, StyleSheet } from '@react-pdf/renderer';
-import { styles, colors, spacing } from '../theme.js';
+import { typography, layout, colors, callout, footer } from '../designTokens.js';
+import { styles, spacing } from '../theme.js';
 import SectionDivider from './SectionDivider.js';
+import { SectionBannerNoJSX } from './DesignComponents.js';
 
 export default function BearSafetyPageNoJSX({ pageNumberMap = {} }) {
   const e = React.createElement;
@@ -14,120 +16,120 @@ export default function BearSafetyPageNoJSX({ pageNumberMap = {} }) {
       justifyContent: 'center',
       alignItems: 'center',
       minHeight: '100%',
-    },
+  },
     sectionNumber: {
-      fontSize: 72,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.dividerNumber,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.lg,
       opacity: 0.9,
-    },
+  },
     sectionTitle: {
-      fontSize: 36,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.dividerTitle,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.lg,
       textAlign: 'center',
-    },
+  },
     sectionDescription: {
-      fontSize: 16,
+      fontSize: typography.sizes.h3,
       textAlign: 'center',
       maxWidth: '80%',
-      lineHeight: 1.6,
-    },
+      lineHeight: typography.lineHeights.relaxed,
+  },
     alertBox: {
       backgroundColor: '#FFE4E1',
       borderLeft: `4px solid #DC143C`,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     alertTitle: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.xs,
-      color: '#DC143C',
-    },
+      color: colors.danger,
+  },
     infoBox: {
       borderWidth: 1,
       borderColor: colors.accent,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     highlightBox: {
       backgroundColor: colors.background,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     highlightTitle: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.xs,
       color: colors.primary,
-    },
+  },
     checklistContainer: {
       borderWidth: 1,
       borderColor: colors.accent,
       padding: spacing.md,
       marginVertical: spacing.md,
-      borderRadius: 4,
-    },
+      borderRadius: callout.radius,
+  },
     checklistTitle: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginBottom: spacing.sm,
       color: colors.primary,
-    },
+  },
     checklistItem: {
-      marginBottom: 12,  // 12pt spacing between items
+      marginBottom: layout.spacing.md,  // 12pt spacing between items
       paddingLeft: 18,  // 0.25 inch = 18pt
-    },
+  },
     servicesGrid: {
       marginTop: spacing.sm,
       marginBottom: spacing.md,
-    },
+  },
     serviceItem: {
       marginBottom: spacing.sm,
       paddingLeft: spacing.sm,
       borderLeft: `2px solid ${colors.background}`,
-    },
+  },
     serviceName: {
-      fontSize: 12,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.base,
+      fontWeight: typography.weights.bold,
       marginBottom: 2,
       color: colors.accent,
-    },
+  },
     prominentText: {
       backgroundColor: colors.background,
       padding: spacing.md,
       marginVertical: spacing.md,
       borderLeft: `4px solid ${colors.primary}`,
-      fontSize: 14,
+      fontSize: typography.sizes.medium,
       fontStyle: 'italic',
       color: colors.primary,
-    },
+  },
     paragraph: {
       marginBottom: spacing.sm,
       textAlign: 'justify',
-    },
+  },
     listItem: {
       marginBottom: spacing.xs,
       paddingLeft: spacing.sm,
-    },
+  },
     h3: {
-      fontSize: 16,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.h3,
+      fontWeight: typography.weights.bold,
       marginTop: spacing.md,
       marginBottom: spacing.sm,
       color: colors.accent,
-    },
+  },
     h4: {
-      fontSize: 14,
-      fontWeight: 'bold',
+      fontSize: typography.sizes.medium,
+      fontWeight: typography.weights.bold,
       marginTop: spacing.sm,
       marginBottom: spacing.xs,
-    }
-  });
+  }
+});
 
   return [
     // Section Divider Page
@@ -136,20 +138,22 @@ export default function BearSafetyPageNoJSX({ pageNumberMap = {} }) {
       title: 'BEAR SAFETY',
       description: 'Living in harmony with black bears requires understanding their behavior and taking proactive steps to prevent conflicts. This section provides essential information for keeping your family, property, and our bear population safe.',
       backgroundColor: colors.primary
-    }),
+  }),
     
     // Understanding Bear Behavior Page
     e(
       Page,
       { size: 'LETTER', style: styles.page },
-      e(
-        View,
-        { style: styles.pageHeader },
-        e(Text, { style: styles.pageTitle }, 'UNDERSTANDING BEAR BEHAVIOR')
-      ),
+      // Section Banner
+      e(SectionBannerNoJSX, {
+        number: 'SECTION 12',
+        title: 'BEAR SAFETY',
+        subtitle: 'Understanding and coexisting with black bears'
+    }),
       e(
         View,
         null,
+        e(Text, { style: styles.h1 }, 'UNDERSTANDING BEAR BEHAVIOR'),
         e(Text, { style: bearStyles.paragraph },
           'Black bears are intelligent and typically avoid humans. Most conflicts occur because bears seek out food attractants, not out of aggression. Understanding bear behavior helps us coexist peacefully with these magnificent animals that share our mountain home.'
         ),
@@ -198,7 +202,7 @@ export default function BearSafetyPageNoJSX({ pageNumberMap = {} }) {
         View,
         { style: styles.pageFooter },
         e(Text, null, 'BMPOA Community Guide'),
-        e(Text, null, '56')
+        e(Text, null, pageNumberMap['bear-safety'] || '')
       )
     ),
 
@@ -221,11 +225,11 @@ export default function BearSafetyPageNoJSX({ pageNumberMap = {} }) {
         
         // Attractants table with 60% Prevention column
         e(View, { style: { marginTop: spacing.md, marginBottom: spacing.md } },
-          e(View, { style: { borderWidth: 0.5, borderColor: colors.slateGray, borderRadius: 4, overflow: 'hidden' } },
+          e(View, { style: { borderWidth: 0.5, borderColor: colors.slateGray, borderRadius: callout.radius, overflow: 'hidden' } },
             // Header row
             e(View, { style: { flexDirection: 'row', backgroundColor: colors.lightGray, borderBottomWidth: 1, borderBottomColor: colors.slateGray } },
-              e(Text, { style: { width: '40%', fontSize: 11, fontFamily: 'Helvetica-Bold', fontWeight: 'bold', color: colors.forestGreen, paddingVertical: 4, paddingHorizontal: 6 } }, 'Attractant'),
-              e(Text, { style: { width: '60%', fontSize: 11, fontFamily: 'Helvetica-Bold', fontWeight: 'bold', color: colors.forestGreen, paddingVertical: 4, paddingHorizontal: 6 } }, 'Prevention Method')
+              e(Text, { style: { width: '40%', fontSize: typography.sizes.base, fontFamily: typography.families.heading, fontWeight: typography.weights.bold, color: colors.forestGreen, paddingVertical: 4, paddingHorizontal: 6 } }, 'Attractant'),
+              e(Text, { style: { width: '60%', fontSize: typography.sizes.base, fontFamily: typography.families.heading, fontWeight: typography.weights.bold, color: colors.forestGreen, paddingVertical: 4, paddingHorizontal: 6 } }, 'Prevention Method')
             ),
             // Data rows
             ...[
@@ -245,10 +249,10 @@ export default function BearSafetyPageNoJSX({ pageNumberMap = {} }) {
                   borderBottomWidth: index < 7 ? 0.5 : 0, 
                   borderBottomColor: colors.lightGray,
                   backgroundColor: index % 2 === 1 ? colors.lightGray : 'transparent'
-                } 
-              },
-                e(Text, { style: { width: '40%', fontSize: 10, color: colors.warmGray, paddingVertical: 4, paddingHorizontal: 6 } }, row[0]),
-                e(Text, { style: { width: '60%', fontSize: 10, color: colors.warmGray, paddingVertical: 4, paddingHorizontal: 6 } }, row[1])
+              } 
+            },
+                e(Text, { style: { width: '40%', fontSize: typography.sizes.sm, color: colors.warmGray, paddingVertical: 4, paddingHorizontal: 6 } }, row[0]),
+                e(Text, { style: { width: '60%', fontSize: typography.sizes.sm, color: colors.warmGray, paddingVertical: 4, paddingHorizontal: 6 } }, row[1])
               )
             )
           )
@@ -278,7 +282,7 @@ export default function BearSafetyPageNoJSX({ pageNumberMap = {} }) {
         View,
         { style: styles.pageFooter },
         e(Text, null, 'BMPOA Community Guide'),
-        e(Text, null, '57')
+        e(Text, null, (pageNumberMap['bear-safety'] || 0) + 1)
       )
     ),
 
@@ -336,7 +340,7 @@ export default function BearSafetyPageNoJSX({ pageNumberMap = {} }) {
         View,
         { style: styles.pageFooter },
         e(Text, null, 'BMPOA Community Guide'),
-        e(Text, null, '58')
+        e(Text, null, (pageNumberMap['bear-safety'] || 0) + 2)
       )
     ),
 
@@ -391,7 +395,7 @@ export default function BearSafetyPageNoJSX({ pageNumberMap = {} }) {
         View,
         { style: styles.pageFooter },
         e(Text, null, 'BMPOA Community Guide'),
-        e(Text, null, '59')
+        e(Text, null, (pageNumberMap['bear-safety'] || 0) + 3)
       )
     )
   ];
